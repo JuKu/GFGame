@@ -2,11 +2,15 @@
 package net.generationfuture.game;
 
 import org.newdawn.slick.*;
+import org.newdawn.slick.tiled.*;
 
 public class GFGame extends BasicGame{
 
     // @param args
     Image minimap = null;
+    Image playerposImage = null;
+    TiledMap map = null;
+    
     int x = 0;
     int y = 0;
     
@@ -21,20 +25,28 @@ public class GFGame extends BasicGame{
     @Override
     public void init(GameContainer gc) 
 			throws SlickException {
-        minimap = new Image("materials/mystery.jpg");
+        minimap = new Image("materials/mystery.png");
+        map = new TiledMap("materials/firstmystery.tmx","materials");
+        playerposImage = new Image("materials/point.png");
      }
  
     @Override
     public void update(GameContainer gc, int delta) 
 			throws SlickException     
     {
- 
+        if (gc.getInput().isKeyDown(Input.KEY_LEFT)) {x--;}
+	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {x++;}
+	if (gc.getInput().isKeyDown(Input.KEY_UP)) {y--;}
+	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y++;}
     }
  
     public void render(GameContainer gc, Graphics g) 
 			throws SlickException 
     {
-        minimap.draw(0, 0);
+        double relation = map.getHeight()/minimapx;
+        map.render(x,y);
+        map.render(0,0,x+1,y+1,3,3);
+        playerposImage.draw(10, 10);
     }
  
     public static void main(String[] args) 

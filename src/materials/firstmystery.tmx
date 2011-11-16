@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="12" height="16" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="aurora" tilewidth="32" tileheight="32">
+  <image source="aurora-upper.png" trans="000000" width="384" height="196"/>
+ </tileset>
+ <tileset firstgid="73" name="mystery" tilewidth="32" tileheight="32">
+  <image source="mystery-upper.png" trans="000000" width="384" height="320"/>
+ </tileset>
+ <layer name="Kachelebene 1" width="12" height="16">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAACw3DB1cOAAAAwK8hKcmWjJKZmYaZtuydvWdWKiMrq7IyGyIUUbIjK0J+mrv3LigQCAQbYqi9DLO34fYxwkj7GmU/o+3vAAc6yMEOcajDjHG4sY5wpKMcbZzxjjHBsY5zvBOc6CQTnewUpzrN6c4wyZkmm2Kqac5ytnOc6zznm+4CM8w0y2xzzDXPhea7yMUucanLXO4KV7rK1a5xresscL0b3OgmN7vFrW5zuzvc6S53u8e97nO/Byz0oIc87BGPWuQxiy2x1OOe8KSnLPO0ZzzrOc9b7gUvesnLXrHCSqu86jWve8ObVnvL297xrve8b4211lnvAxt86CMbfewTn9pks898bosvfGmrbb6y3de+8a3vfO8HP9rhJz/b6Re/+s3v/rDLn/6y29/+8a89/vM/gJh4WAADAAA=
+  </data>
+ </layer>
+</map>
