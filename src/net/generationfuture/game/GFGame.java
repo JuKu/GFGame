@@ -34,19 +34,19 @@ public class GFGame extends BasicGame{
     public void update(GameContainer gc, int delta) 
 			throws SlickException     
     {
-        if (gc.getInput().isKeyDown(Input.KEY_LEFT)) {x--;}
-	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {x++;}
-	if (gc.getInput().isKeyDown(Input.KEY_UP)) {y--;}
-	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y++;}
+        if (gc.getInput().isKeyDown(Input.KEY_LEFT)) {x++;}
+	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {x--;}
+	if (gc.getInput().isKeyDown(Input.KEY_UP)) {y++;}
+	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y--;}
     }
  
     public void render(GameContainer gc, Graphics g) 
 			throws SlickException 
     {
-        double relation = map.getHeight()/minimapx;
-        map.render(x,y);
-        map.render(0,0,x+1,y+1,3,3);
-        playerposImage.draw(10, 10);
+        map.render(0,0,x-400,y-300,800,600);
+        map.render(0,0,x-40,y-40,80,80);
+        playerposImage.draw(34, 34);
+        playerposImage.draw(400, 300);
     }
  
     public static void main(String[] args) 
