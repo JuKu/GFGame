@@ -34,8 +34,8 @@ public class GFGame extends BasicGame{
     public void update(GameContainer gc, int delta) 
 			throws SlickException     
     {
-        if (gc.getInput().isKeyDown(Input.KEY_LEFT)) {x++;}
-	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {x--;}
+        if (gc.getInput().isKeyDown(Input.KEY_LEFT)) {x--;}
+	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {x++;}
 	if (gc.getInput().isKeyDown(Input.KEY_UP)) {y--;}
 	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y++;}
     }
