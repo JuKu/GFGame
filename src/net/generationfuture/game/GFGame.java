@@ -36,17 +36,17 @@ public class GFGame extends BasicGame{
     {
         if (gc.getInput().isKeyDown(Input.KEY_LEFT)) {x++;}
 	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {x--;}
-	if (gc.getInput().isKeyDown(Input.KEY_UP)) {y++;}
-	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y--;}
+	if (gc.getInput().isKeyDown(Input.KEY_UP)) {y--;}
+	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y++;}
     }
  
     public void render(GameContainer gc, Graphics g) 
 			throws SlickException 
     {
         map.render(0,0,x-400,y-300,800,600);
-        map.render(0,0,x-40,y-40,80,80);
-        playerposImage.draw(34, 34);
-        playerposImage.draw(400, 300);
+        map.render(0,0,x-60,y-60,120,120);
+        playerposImage.draw(54, 54);
+        playerposImage.draw(394, 294);
     }
  
     public static void main(String[] args) 
