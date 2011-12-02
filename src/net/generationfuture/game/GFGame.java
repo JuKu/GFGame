@@ -40,6 +40,7 @@ public class GFGame extends BasicGame{
 	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y++;}
     }
  
+    @Override
     public void render(GameContainer gc, Graphics g) 
 			throws SlickException 
     {
@@ -54,7 +55,7 @@ public class GFGame extends BasicGame{
     {
          
          AppGameContainer app = new AppGameContainer(new GFGame());
- 
+         //Dies ist JuKus erster Kommentar in dieser Datei. ;-)
          app.setDisplayMode(800, 600, false);
          app.start();
     }
