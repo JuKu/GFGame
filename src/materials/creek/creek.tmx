@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
- <tileset firstgid="1" name="creek" tilewidth="32" tileheight="32">
-  <image source="creek tileset.bmp" trans="ff00ff" width="512" height="1024"/>
- </tileset>
+ <tileset firstgid="1" source="creek.tsx"/>
  <layer name="Kachelebene 1" width="100" height="100">
   <data encoding="base64" compression="zlib">
-   eJztztc1IAAURdErNDBoQGhg0IDQgNAApgGhAaEBoQGhAUyBbhXez95rnf+zkGSxLbXlMO1PW2mrbW34hWS9bbTNtjX8QvK3bbedtjv8QrLX9ttBOxx+ITlqx+2knQ6/kJy183bR/g2/kFy2q3bdboZfSG7bXbtvD8MvJI/tqT23l+EXktf21t7bx/ALyWf7at/t//ALAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL/vB3POEPk=
+   eJzt0ffzDwQcx/GvCkU4VCjj7NG6zOyzZzplFNIhe3Rkhpw9CmfPONE0ujahTkbIOHtzInucWaHx+Cc+97nzeT/vHr+/7v1Ol5aW9gAP8hDpyUBGHuYRMpGZR8lCVrKlRYkoOznIyWM8zhPkIjd5eJKnyEs+8lMgGWNToIIUojBFKEoxilOCkpTiaZ7hWZ7j+WSMTYFeoDRlKEs5ylOBF6lIJSpThapUo3oyxqZANahJLWpTh7rUoz4NaEgjGvMSTXg5GWNToKa8wqs0ozktaMlrvE4rWtOGN2jLm8kYmwK1oz0deIuOdKIzXehKN7rTg5704u1kjE2BetOHd+hLP/ozgIEM4l0GM4ShvMewZIxNgYYzgpGMYjRjGMs4xjOB9/mAiUxicjLGpkBTmMo0pjODmcxiNnOYyzzm8yELWJiMsSnQIj5iMUv4mE/4lM/4nC9YyjKWs4IvkzE2BfqKr/mGb/mO7/mBlaziR1azhrX8xM/JGJsCreMX1rOBjWziVzazha38xja2s4OdyRibAu1iN3vYyz72c4CDHOIwRzjKMY5zIhljU6CT/M4pTvMHZzjLOc5zgYtc4jJXuJqMsSnQNa5zg5vc4jZ/8hd/c4e73OMf/uW/ZIxNgdKlS0t7gAd5iPRkICMP8wiZyMyjZCEr2dIle/n9WXZ3zUFOHuNxniAXucnDkzxFXvKRnwLxj4RU0F0LUZgiFKUYxSlBSUrxNM/wLM/xfPwjIb3grqUpQ1nKUZ4KvEhFKlGZKlSlGtXjHwmphrvWpBa1qUNd6lGfBjSkEY15iSa8HP9ISE3d9RVepRnNaUFLXuN1WtGaNrxBW96MfySkdu7ang68RUc60ZkudKUb3elBT3rxdvwjIfV21z68Q1/60Z8BDGQQ7zKYIQzlPYbFPxLScHcdwUhGMZoxjGUc45nA+3zARCYxOf6RkKa461SmMZ0ZzGQWs5nDXOYxnw9ZwML4R0Ja5K4fsZglfMwnfMpnfM4XLGUZy1nBl/GPhPSVu37NN3zLd3zPD6xkFT+ymjWs5Sd+jn8kpHXu+gvr2cBGNvErm9nCVn5jG9vZwc74R0La5a672cNe9rGfAxzkEIc5wlGOcZwT8Y+EdNJdf+cUp/mDM5zlHOe5wEUucZkrXI1/JKRr7nqdG9zkFrf5k7/4mzvc5R7/8C//xT+iKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqiKIqi+6D/AThQ8PE=
   </data>
  </layer>
 </map>
