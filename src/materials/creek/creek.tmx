@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="creek" tilewidth="32" tileheight="32">
+  <image source="creek tileset.bmp" trans="ff00ff" width="512" height="1024"/>
+ </tileset>
+ <layer name="Kachelebene 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJztztc1IAAURdErNDBoQGhg0IDQgNAApgGhAaEBoQGhAUyBbhXez95rnf+zkGSxLbXlMO1PW2mrbW34hWS9bbTNtjX8QvK3bbedtjv8QrLX9ttBOxx+ITlqx+2knQ6/kJy183bR/g2/kFy2q3bdboZfSG7bXbtvD8MvJI/tqT23l+EXktf21t7bx/ALyWf7at/t//ALAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAL/vB3POEPk=
+  </data>
+ </layer>
+</map>
