@@ -95,4 +95,14 @@ public class Player {
         
     }
     
+    public Boolean isSleepy () {
+        
+        if (energie < 20) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
 }

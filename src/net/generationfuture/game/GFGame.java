@@ -59,6 +59,7 @@ public class GFGame extends BasicGame{
 	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y++;}
         
         player.addHunger(-1);
+        player.addEnergie(-1);
         
     }
  
@@ -97,6 +98,8 @@ public class GFGame extends BasicGame{
         
         if (player.isHungry()) {
             g.setColor(Color.red);
+        } else if (player.getHunger() < 40) {
+            g.setColor(Color.orange);
         } else {
             g.setColor(Color.green);
         }
@@ -109,6 +112,33 @@ public class GFGame extends BasicGame{
         
         g.setColor(Color.white);
         g.drawString("Hunger", hunger_anzeige_x + 30, hunger_anzeige_y);
+        
+        //Energie
+        
+        int energie_anzeige_x = 240;//20;
+        int energie_anzeige_y = 520;//540;
+        
+        int energie_length = 200;//120;
+        
+        g.setColor(Color.blue);
+        g.fillRoundRect(energie_anzeige_x, energie_anzeige_y, energie_length, 20, 50, 50);
+        
+        if (player.isSleepy()) {
+            g.setColor(Color.red);
+        } else if (player.getEnergie() < 40) {
+            g.setColor(Color.orange);
+        }  else {
+            g.setColor(Color.green);
+        }
+        
+        if (player.getEnergie() <= 0) {
+            player.addEnergie(1);
+        }
+        
+        g.fillRoundRect(energie_anzeige_x, energie_anzeige_y, player.getEnergie() * 2, 20, 50, 50);
+        
+        g.setColor(Color.white);
+        g.drawString("Energie", energie_anzeige_x + 30, energie_anzeige_y);
         
     }
  
