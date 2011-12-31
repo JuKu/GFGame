@@ -3,7 +3,7 @@ package net.generationfuture.game;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.*;
 
-public abstract class Minispiel {
+public abstract class Minispiel_ {
     
     protected Image background;
     protected Image mouse;
