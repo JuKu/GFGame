@@ -11,8 +11,11 @@ public class Object {
     protected int x = 1;
     protected int y = 1;
     
-    public void createObject (Image picture) {
+    public void createObject (Image picture, int x, int y) {
         this.picture = picture;
+        
+        this.x = x;
+        this.y = y;
     }
     
     public void paint (Graphics g) {
