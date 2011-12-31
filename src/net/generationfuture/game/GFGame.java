@@ -52,10 +52,14 @@ public class GFGame extends BasicGame{
     public void update(GameContainer gc, int delta) 
 			throws SlickException     
     {
+        
         if (gc.getInput().isKeyDown(Input.KEY_LEFT)) {x--;}
 	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {x++;}
 	if (gc.getInput().isKeyDown(Input.KEY_UP)) {y--;}
 	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y++;}
+        
+        player.addHunger(-1);
+        
     }
  
     @Override
@@ -95,6 +99,10 @@ public class GFGame extends BasicGame{
             g.setColor(Color.red);
         } else {
             g.setColor(Color.green);
+        }
+        
+        if (player.getHunger() <= 0) {
+            player.addHunger(1);
         }
         
         g.fillRoundRect(hunger_anzeige_x, hunger_anzeige_y, player.getHunger() * 2, 20, 50, 50);

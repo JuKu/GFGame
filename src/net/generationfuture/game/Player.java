@@ -58,4 +58,16 @@ public class Player {
         return energie;
     }
     
+    public void addHunger (int hunger) {
+        
+        this.hunger = this.hunger + hunger;
+        if (hunger > 100) { hunger = 100; }
+        
+        if (hunger <= 0) { 
+            hunger = 0;
+            //Rettungshubschrauber holt Player aus dem Park
+        }
+        
+    }
+    
 }
