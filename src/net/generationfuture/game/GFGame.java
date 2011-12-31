@@ -47,7 +47,7 @@ public class GFGame extends BasicGame{
         map.render(0,0,x-400,y-300,800,600);
         map.render(0,0,x-60,y-60,120,120);
         playerposImage.draw(54, 54);
-        playerposImage.draw(394, 294);
+        //playerposImage.draw(394, 294);
     }
  
     public static void main(String[] args) 
