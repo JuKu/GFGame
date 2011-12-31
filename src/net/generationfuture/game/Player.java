@@ -63,12 +63,50 @@ public class Player {
         
     }
     
+    public Boolean isSleepy () {
+        
+        if (energie < 20) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
+    public Boolean isDirty () {
+        
+        if (hygiene < 20) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
+    public Boolean isHarndrang () {
+        
+        if (harndrang < 20) {
+            return true;
+        } else {
+            return false;
+        }
+        
+    }
+    
     public int getHunger () {
         return hunger;
     }
     
     public int getEnergie () {
         return energie;
+    }
+    
+    public int getHygiene () {
+        return hygiene;
+    }
+    
+    public int getHarndrang () {
+        return harndrang;
     }
     
     public void addHunger (int hunger) {
@@ -95,12 +133,26 @@ public class Player {
         
     }
     
-    public Boolean isSleepy () {
+    public void addHygiene (int hygiene) {
         
-        if (energie < 20) {
-            return true;
-        } else {
-            return false;
+        this.hygiene = this.hygiene + hygiene;
+        if (hygiene > 100) { hygiene = 100; }
+        
+        if (hygiene <= 0) { 
+            hygiene = 0;
+            //Rettungshubschrauber holt Player aus dem Park
+        }
+        
+    }
+    
+    public void addHarndrang (int harndrang) {
+        
+        this.harndrang = this.harndrang + harndrang;
+        if (energie > 100) { energie = 100; }
+        
+        if (energie <= 0) { 
+            energie = 0;
+            //Rettungshubschrauber holt Player aus dem Park
         }
         
     }

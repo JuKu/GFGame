@@ -60,6 +60,8 @@ public class GFGame extends BasicGame{
         
         player.addHunger(-1);
         player.addEnergie(-1);
+        player.addHygiene(-1);
+        player.addHarndrang(-1);
         
     }
  
@@ -139,6 +141,60 @@ public class GFGame extends BasicGame{
         
         g.setColor(Color.white);
         g.drawString("Energie", energie_anzeige_x + 30, energie_anzeige_y);
+        
+        //Hygiene
+        
+        int hygiene_anzeige_x = 20;//20;
+        int hygiene_anzeige_y = 550;//540;
+        
+        int hygiene_length = 200;//120;
+        
+        g.setColor(Color.blue);
+        g.fillRoundRect(hygiene_anzeige_x, hygiene_anzeige_y, hygiene_length, 20, 50, 50);
+        
+        if (player.isDirty()) {
+            g.setColor(Color.red);
+        } else if (player.getHygiene() < 40) {
+            g.setColor(Color.orange);
+        }  else {
+            g.setColor(Color.green);
+        }
+        
+        if (player.getHygiene() <= 0) {
+            player.addHygiene(1);
+        }
+        
+        g.fillRoundRect(hygiene_anzeige_x, hygiene_anzeige_y, player.getHygiene() * 2, 20, 50, 50);
+        
+        g.setColor(Color.white);
+        g.drawString("Hygiene", hygiene_anzeige_x + 30, hygiene_anzeige_y);
+        
+        //Harndrang
+        
+        int harndrang_anzeige_x = 240;//20;
+        int harndrang_anzeige_y = 550;//540;
+        
+        int harndrang_length = 200;//120;
+        
+        g.setColor(Color.blue);
+        g.fillRoundRect(harndrang_anzeige_x, harndrang_anzeige_y, harndrang_length, 20, 50, 50);
+        
+        if (player.isHarndrang()) {
+            g.setColor(Color.red);
+        } else if (player.getHarndrang() < 40) {
+            g.setColor(Color.orange);
+        }  else {
+            g.setColor(Color.green);
+        }
+        
+        if (player.getHarndrang() <= 0) {
+            player.addHarndrang(1);
+        }
+        
+        g.fillRoundRect(harndrang_anzeige_x, harndrang_anzeige_y, player.getHarndrang() * 2, 20, 50, 50);
+        
+        g.setColor(Color.white);
+        g.drawString("Harndrang", harndrang_anzeige_x + 30, harndrang_anzeige_y);
         
     }
  
