@@ -30,6 +30,8 @@ public class GFGame extends BasicGame{
     int minimapy = 200;
     
     Object objects[];
+    Object objects_2[];//2. Grafik-Ebene
+    Object objects_3[];//3. Grafik-Ebene
     Player player;
     
     Object objekte[][][];
@@ -60,6 +62,7 @@ public class GFGame extends BasicGame{
         objekte = new Object[grafik_ebenen][width][height];
         
         objects[0] = new Tree1(200, 200, this.tree1_picture1);
+        objects[1] = new Tree1(200 + 128, 200, this.tree1_picture1);
         
         player = new Player();
      }
@@ -69,10 +72,10 @@ public class GFGame extends BasicGame{
 			throws SlickException     
     {
         
-        if (gc.getInput().isKeyDown(Input.KEY_LEFT)) {x--; player.move(); objects[0].scroll(1, 0); }
-	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {x++; player.move(); objects[0].scroll(-1, 0); }
-	if (gc.getInput().isKeyDown(Input.KEY_UP)) {y--; player.move(); objects[0].scroll(0, 1); }
-	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y++; player.move(); objects[0].scroll(0, -1); }
+        if (gc.getInput().isKeyDown(Input.KEY_LEFT)) {x--; player.move(); this.scroll(1, 0); }
+	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {x++; player.move(); this.scroll(-1, 0); }
+	if (gc.getInput().isKeyDown(Input.KEY_UP)) {y--; player.move(); this.scroll(0, 1); }
+	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y++; player.move(); this.scroll(0, -1); }
         
         //player.addHunger(-1);
         //player.addEnergie(-1);
@@ -85,8 +88,27 @@ public class GFGame extends BasicGame{
     public void render(GameContainer gc, Graphics g) 
 			throws SlickException 
     {
+        
+        /*for (int i = 0; i < objects.length; i++) {
+            
+            if (objects[i] != null) {
+                objects[i].paint(g);
+            }
+            
+        }*/
+        
         map.render(0,0,x-400,y-300,800,600);
+        
+        for (int i = 0; i < objects.length; i++) {
+            
+            if (objects[i] != null) {
+                objects[i].paint(g);
+            }
+            
+        }
+        
         map.render(0,0,x-60,y-60,120,120);
+        
         playerposImage.draw(54, 54);
         playerposImage.draw(394, 294);
         //objects[0].paint(g);
@@ -102,14 +124,6 @@ public class GFGame extends BasicGame{
             }
             
         }*/
-        
-        for (int i = 0; i < objects.length; i++) {
-            
-            if (objects[i] != null) {
-                objects[i].paint(g);
-            }
-            
-        }
         
         /*********************************
          * 
@@ -256,6 +270,18 @@ public class GFGame extends BasicGame{
         }
         
         return img;
+        
+    }
+    
+    public void scroll (int x, int y) {
+        
+        for (int i = 0; i < objects.length; i++) {
+            
+            if (objects[i] != null) {
+                objects[i].scroll(x, y);
+            }
+            
+        }
         
     }
     
