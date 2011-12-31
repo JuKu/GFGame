@@ -1,5 +1,6 @@
 package net.generationfuture.game;
 
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -43,7 +44,14 @@ public class GFGame extends BasicGame{
         map = new TiledMap("materials/firstmystery.tmx","materials");
         playerposImage = new Image("materials/point.png");
         tree1_picture1 = new Image("src/materials/trees/tree1_/fir C ani0000.bmp");
-        //objects[0] = new Tree1(1, 1, this.tree1_picture1);
+        
+        if (this.tree1_picture1 == null) {
+            System.err.println("NullPointerException.");
+        }
+        
+        objects = new Object[100];
+        
+        objects[0] = new Tree1(1, 1, this.tree1_picture1);
         
         player = new Player();
      }
@@ -53,15 +61,15 @@ public class GFGame extends BasicGame{
 			throws SlickException     
     {
         
-        if (gc.getInput().isKeyDown(Input.KEY_LEFT)) {x--;}
-	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {x++;}
-	if (gc.getInput().isKeyDown(Input.KEY_UP)) {y--;}
-	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y++;}
+        if (gc.getInput().isKeyDown(Input.KEY_LEFT)) {x--; player.move(); objects[0].scroll(-1, 0); }
+	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {x++; player.move(); objects[0].scroll(1, 0); }
+	if (gc.getInput().isKeyDown(Input.KEY_UP)) {y--; player.move(); objects[0].scroll(0, -1); }
+	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y++; player.move(); objects[0].scroll(0, 1); }
         
-        player.addHunger(-1);
-        player.addEnergie(-1);
-        player.addHygiene(-1);
-        player.addHarndrang(-1);
+        //player.addHunger(-1);
+        //player.addEnergie(-1);
+        //player.addHygiene(-1);
+        //player.addHarndrang(-1);
         
     }
  
@@ -72,7 +80,7 @@ public class GFGame extends BasicGame{
         map.render(0,0,x-400,y-300,800,600);
         map.render(0,0,x-60,y-60,120,120);
         playerposImage.draw(54, 54);
-        //playerposImage.draw(394, 294);
+        playerposImage.draw(394, 294);
         //objects[0].paint(g);
         
         /*********************************
@@ -196,6 +204,8 @@ public class GFGame extends BasicGame{
         g.setColor(Color.white);
         g.drawString("Harndrang", harndrang_anzeige_x + 30, harndrang_anzeige_y);
         
+        objects[0].paint(g);
+        
     }
  
     public static void main(String[] args) 
@@ -207,4 +217,20 @@ public class GFGame extends BasicGame{
          app.setDisplayMode(800, 600, false);
          app.start();
     }
+    
+    public BufferedImage makeTransparent (BufferedImage img) {
+        
+        for (int i = img.getWidth() - 1; i > -1; i--) {
+	for (int j = img.getHeight() - 1;  j > -1; j--) {
+		if (img.getRGB(i, j) == new Color(255,255,255).getAlpha()) {
+			img.setRGB(i, j, new Color(0, 0, 0, 0).getAlpha());
+		}
+	}
+        
+        }
+        
+        return img;
+        
+    }
+    
 }
