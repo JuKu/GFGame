@@ -32,4 +32,17 @@ public abstract class Minispiel {
         this.enable_mouse = enableMouse;
     }
     
+    public void setMouse (int x, int y) {
+        this.mouse_x = x;
+        this.mouse_y = y;
+    }
+    
+    public int getMouseX () {
+        return this.mouse_x;
+    }
+    
+    public int getMouseY () {
+        return this.mouse_y;
+    }
+    
 }
