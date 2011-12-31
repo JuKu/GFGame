@@ -7,6 +7,8 @@ public class Player {
     private int hygiene = 100;//Hygiene (waschen)
     private int harndrang = 100;//Harndrang (Toilette)
     
+    private Boolean sleeping = false;//Player schläft
+    
     /*****************************************
      * 
      * Alle Bedürfnisse müssen ausreichend versorgt werden, sonst wird der Spieler mit einem Rettungshubschrauber abgeholt.
@@ -24,6 +26,13 @@ public class Player {
         if (hunger > 100) { hunger = 100; }
     }
     
+    public void sleep (int sleep) {
+        energie = energie + sleep;
+        if (energie > 100) {
+            energie = 100;
+        }
+    }
+    
     public void move () {
         
         if (counter1 > 100) {
@@ -38,6 +47,10 @@ public class Player {
             counter1++;
         }
         
+    }
+    
+    public void wake () {
+        sleeping = false;
     }
     
     public Boolean isHungry () {
@@ -65,6 +78,18 @@ public class Player {
         
         if (hunger <= 0) { 
             hunger = 0;
+            //Rettungshubschrauber holt Player aus dem Park
+        }
+        
+    }
+    
+    public void addEnergie (int energie) {
+        
+        this.energie = this.energie + energie;
+        if (energie > 100) { energie = 100; }
+        
+        if (energie <= 0) { 
+            energie = 0;
             //Rettungshubschrauber holt Player aus dem Park
         }
         
