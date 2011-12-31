@@ -81,7 +81,26 @@ public class GFGame extends BasicGame{
         g.setColor(Color.blue);
         g.drawString("Bedürfnisse", 20, 500);
         
+        //Hunger
         
+        int hunger_anzeige_x = 20;//20;
+        int hunger_anzeige_y = 520;//540;
+        
+        int hunger_length = 200;//120;
+        
+        g.setColor(Color.blue);
+        g.fillRoundRect(hunger_anzeige_x, hunger_anzeige_y, hunger_length, 20, 50, 50);
+        
+        if (player.isHungry()) {
+            g.setColor(Color.red);
+        } else {
+            g.setColor(Color.green);
+        }
+        
+        g.fillRoundRect(hunger_anzeige_x, hunger_anzeige_y, player.getHunger() * 2, 20, 50, 50);
+        
+        g.setColor(Color.white);
+        g.drawString("Hunger", hunger_anzeige_x + 30, hunger_anzeige_y);
         
     }
  
