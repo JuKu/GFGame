@@ -1,5 +1,10 @@
 package net.generationfuture.game;
 
+import java.awt.Color;
+import java.awt.image.BufferedImage;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+
 public class Player {
     
     private int energie = 100;//Energie (Schlafen)
@@ -9,6 +14,9 @@ public class Player {
     
     private Boolean sleeping = false;//Player schläft
     
+    Image picture1;
+    BufferedImage bufferedimage;
+    
     /*****************************************
      * 
      * Alle Bedürfnisse müssen ausreichend versorgt werden, sonst wird der Spieler mit einem Rettungshubschrauber abgeholt.
@@ -17,8 +25,9 @@ public class Player {
     
     int counter1 = 0;
     
-    public Player () {
-        //
+    public Player () throws SlickException {
+        picture1 = new Image("materials/characters/test/stopped0000.bmp");
+       //bufferedimage.addTileObserver(null);
     }
     
     public void eat (int eat) {
@@ -154,6 +163,25 @@ public class Player {
             energie = 0;
             //Rettungshubschrauber holt Player aus dem Park
         }
+        
+    }
+    
+    public Image getImage () {
+        return picture1;
+    }
+    
+    public BufferedImage makeTransparent (BufferedImage img) {
+        
+        for (int i = img.getWidth() - 1; i > -1; i--) {
+	for (int j = img.getHeight() - 1;  j > -1; j--) {
+		if (img.getRGB(i, j) == new Color(255,255,255).getAlpha()) {
+			img.setRGB(i, j, new Color(0, 0, 0, 0).getAlpha());
+		}
+	}
+        
+        }
+        
+        return img;
         
     }
     
