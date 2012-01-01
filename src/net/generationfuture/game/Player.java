@@ -115,24 +115,24 @@ public class Player {
         walking_right8 = new Image("materials/characters/test/walking e0007.bmp",new Color(97, 68, 43, 255));
         walking_right9 = new Image("materials/characters/test/stopped0002.bmp",new Color(97, 68, 43, 255));
         
-        walking_for1 = new Image("materials/characters/test/walking n0000.bmp",new Color(97, 68, 43, 255));
-        walking_for2 = new Image("materials/characters/test/walking n0001.bmp",new Color(97, 68, 43, 255));
-        walking_for3 = new Image("materials/characters/test/walking n0002.bmp",new Color(97, 68, 43, 255));
-        walking_for4 = new Image("materials/characters/test/walking n0003.bmp",new Color(97, 68, 43, 255));
-        walking_for5 = new Image("materials/characters/test/walking n0004.bmp",new Color(97, 68, 43, 255));
-        walking_for6 = new Image("materials/characters/test/walking n0005.bmp",new Color(97, 68, 43, 255));
-        walking_for7 = new Image("materials/characters/test/walking n0006.bmp",new Color(97, 68, 43, 255));
-        walking_for8 = new Image("materials/characters/test/walking n0007.bmp",new Color(97, 68, 43, 255));
+        walking_for1 = new Image("materials/characters/test/walking s0000.bmp",new Color(97, 68, 43, 255));
+        walking_for2 = new Image("materials/characters/test/walking s0001.bmp",new Color(97, 68, 43, 255));
+        walking_for3 = new Image("materials/characters/test/walking s0002.bmp",new Color(97, 68, 43, 255));
+        walking_for4 = new Image("materials/characters/test/walking s0003.bmp",new Color(97, 68, 43, 255));
+        walking_for5 = new Image("materials/characters/test/walking s0004.bmp",new Color(97, 68, 43, 255));
+        walking_for6 = new Image("materials/characters/test/walking s0005.bmp",new Color(97, 68, 43, 255));
+        walking_for7 = new Image("materials/characters/test/walking s0006.bmp",new Color(97, 68, 43, 255));
+        walking_for8 = new Image("materials/characters/test/walking s0007.bmp",new Color(97, 68, 43, 255));
         walking_for9 = new Image("materials/characters/test/stopped0004.bmp",new Color(97, 68, 43, 255));
         
-        walking_back1 = new Image("materials/characters/test/walking s0000.bmp",new Color(97, 68, 43, 255));
-        walking_back2 = new Image("materials/characters/test/walking s0001.bmp",new Color(97, 68, 43, 255));
-        walking_back3 = new Image("materials/characters/test/walking s0002.bmp",new Color(97, 68, 43, 255));
-        walking_back4 = new Image("materials/characters/test/walking s0003.bmp",new Color(97, 68, 43, 255));
-        walking_back5 = new Image("materials/characters/test/walking s0004.bmp",new Color(97, 68, 43, 255));
-        walking_back6 = new Image("materials/characters/test/walking s0005.bmp",new Color(97, 68, 43, 255));
-        walking_back7 = new Image("materials/characters/test/walking s0006.bmp",new Color(97, 68, 43, 255));
-        walking_back8 = new Image("materials/characters/test/walking s0007.bmp",new Color(97, 68, 43, 255));
+        walking_back1 = new Image("materials/characters/test/walking n0000.bmp",new Color(97, 68, 43, 255));
+        walking_back2 = new Image("materials/characters/test/walking n0001.bmp",new Color(97, 68, 43, 255));
+        walking_back3 = new Image("materials/characters/test/walking n0002.bmp",new Color(97, 68, 43, 255));
+        walking_back4 = new Image("materials/characters/test/walking n0003.bmp",new Color(97, 68, 43, 255));
+        walking_back5 = new Image("materials/characters/test/walking n0004.bmp",new Color(97, 68, 43, 255));
+        walking_back6 = new Image("materials/characters/test/walking n0005.bmp",new Color(97, 68, 43, 255));
+        walking_back7 = new Image("materials/characters/test/walking n0006.bmp",new Color(97, 68, 43, 255));
+        walking_back8 = new Image("materials/characters/test/walking n0007.bmp",new Color(97, 68, 43, 255));
         walking_back9 = new Image("materials/characters/test/stopped0000.bmp",new Color(97, 68, 43, 255));
         
         picture_counter = 0;
@@ -296,6 +296,9 @@ public class Player {
             
             if (picture_counter >= 7) {
                 picture_counter = 0;
+                walking_left = false;
+                
+                standing_left = true;
             }
             
             picture_counter++;
@@ -324,6 +327,9 @@ public class Player {
             
             if (picture_counter >= 7) {
                 picture_counter = 0;
+                walking_right= false;
+                
+                standing_right = true;
             }
             
             picture_counter++;
@@ -347,6 +353,68 @@ public class Player {
             } else {
                 return walking_right9;
             }          
+            
+        } else if (walking_for) {
+            
+            if (picture_counter >= 7) {
+                picture_counter = 0;
+                walking_for = false;
+                
+                standing_for = true;
+            }
+            
+            picture_counter++;
+            
+            if (picture_counter == 0) {
+                return walking_for1;
+            } else if (picture_counter == 1) {
+                return walking_for2;
+            } else if (picture_counter == 2) {
+                return walking_for3;
+            } else if (picture_counter == 3) {
+                return walking_for4;
+            } else if (picture_counter == 4) {
+                return walking_for5;
+            } else if (picture_counter == 5) {
+                return walking_for6;
+            } else if (picture_counter == 6) {
+                return walking_for7;
+            } else if (picture_counter == 7) {
+                return walking_for8;
+            } else {
+                return walking_for9;
+            }          
+            
+        } else if (walking_back) {
+            
+            if (picture_counter >= 7) {
+                picture_counter = 0;
+                walking_back = false;
+                
+                standing_back = true;
+            }
+            
+            picture_counter++;
+            
+            if (picture_counter == 0) {
+                return walking_back1;
+            } else if (picture_counter == 1) {
+                return walking_back2;
+            } else if (picture_counter == 2) {
+                return walking_back3;
+            } else if (picture_counter == 3) {
+                return walking_back4;
+            } else if (picture_counter == 4) {
+                return walking_back5;
+            } else if (picture_counter == 5) {
+                return walking_back6;
+            } else if (picture_counter == 6) {
+                return walking_back7;
+            } else if (picture_counter == 7) {
+                return walking_back8;
+            } else {
+                return walking_right9;
+            }         
             
         } else {
             return stopped1;
@@ -412,6 +480,32 @@ public class Player {
         walking_right = true;
         walking_for = false;
         walking_back = false;
+        
+        //picture_counter = 0;
+    }
+    
+    public void walkingFor () {
+        standing_for = false;
+        standing_left = false;
+        standing_back = false;
+        standing_right = false;
+        walking_left = false;
+        walking_right = false;
+        walking_for = true;
+        walking_back = false;
+        
+        //picture_counter = 0;
+    }
+    
+    public void walkingBack () {
+        standing_for = false;
+        standing_left = false;
+        standing_back = false;
+        standing_right = false;
+        walking_left = false;
+        walking_right = false;
+        walking_for = false;
+        walking_back = true;
         
         //picture_counter = 0;
     }
