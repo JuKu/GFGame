@@ -1,7 +1,8 @@
 package net.generationfuture.game;
 
-import java.awt.Color;
+//import java.awt.Color;
 import java.awt.image.BufferedImage;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 
@@ -13,9 +14,25 @@ public class Player {
     private int harndrang = 100;//Harndrang (Toilette)
     
     private Boolean sleeping = false;//Player schläft
+    private Boolean walking_right = false;
+    private Boolean walking_left = false;
+    private Boolean standing_right = false;
+    private Boolean standing_left = false;
+    private Boolean walking_for = false;
+    private Boolean walking_back = false;
+    private Boolean standing_for = false;
+    private Boolean standing_back = false;
     
     Image picture1;
     BufferedImage bufferedimage;
+    
+    private Image image;
+    private Image timage;
+    
+    private Image stopped1;
+    private Image stopped2;
+    private Image stopped3;
+    private Image stopped4;
     
     /*****************************************
      * 
@@ -27,7 +44,22 @@ public class Player {
     
     public Player () throws SlickException {
         picture1 = new Image("materials/characters/test/stopped0000.bmp");
-       //bufferedimage.addTileObserver(null);
+        timage = new Image("materials/characters/test/stopped0000.bmp",new Color(/*94,66,41,255*/97, 68, 43, 255));
+        
+        picture1 = timage;
+        
+        stopped1 = new Image("materials/characters/test/stopped0000.bmp",new Color(97, 68, 43, 255));
+        stopped2 = new Image("materials/characters/test/stopped0002.bmp",new Color(97, 68, 43, 255));
+        stopped3 = new Image("materials/characters/test/stopped0004.bmp",new Color(97, 68, 43, 255));
+        stopped4 = new Image("materials/characters/test/stopped0006.bmp",new Color(97, 68, 43, 255));
+        
+        /*Image src = picture1.getImage( "gatesInAlbuquerque.jpg" );
+        ImageFilter colorfilter = new GrayFilter();
+        ImageProducer imageprod = new FilteredImageSource( src.getSource(), colorfilter );
+        Image img = createImage( imageprod );*/
+        //5E4229
+        
+        //TransparentFilter transparentfilter = new TransparentFilter(Color.decode("0x5E4229"));
     }
     
     public void eat (int eat) {
@@ -167,8 +199,54 @@ public class Player {
     }
     
     public Image getImage () {
-        return picture1;
+        
+        if (standing_for) {
+            return stopped1;
+        } else if (standing_left) {
+            return stopped2;
+        } else if (standing_back) {
+            return stopped3;
+        } else if (standing_right) {
+            return stopped4;
+        } else {
+            return stopped1;
+        }
+        
     }
+    
+    public void standingLeft () {
+        standing_for = false;
+        standing_left = true;
+        
+        standing_back = false;
+        standing_right = false;
+    }
+    
+    public void standingRight () {
+        standing_for = false;
+        standing_left = false;
+        
+        standing_back = false;
+        standing_right = true;
+    }
+    
+    public void standingFor () {
+        standing_for = true;
+        standing_left = false;
+        
+        standing_back = false;
+        standing_right = false;
+    }
+    
+    public void standingBack () {
+        standing_for = false;
+        standing_left = false;
+        
+        standing_back = true;
+        standing_right = false;
+    }
+    
+    
     
     public BufferedImage makeTransparent (BufferedImage img) {
         
