@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="100" height="100" tilewidth="32" tileheight="32">
+ <tileset firstgid="1" name="sand to grass tileset" tilewidth="32" tileheight="32">
+  <image source="gras/sand to grass tileset.bmp" trans="ff00ff" width="1024" height="1024"/>
+ </tileset>
+ <layer name="Kachelebene 1" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0UENACAMALGBA3CCfxkYYsk8LDza5BTcmhE74w8nX9xRAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADQ7wF2gQID
+  </data>
+ </layer>
+ <layer name="Kachelebene 2" width="100" height="100">
+  <data encoding="base64" compression="zlib">
+   eJzt0TENAAAIwDCCJPyL4yBYgKdNpmARo3Li377wAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADgXgNZyAEF
+  </data>
+ </layer>
+ <objectgroup name="Objektebene 1" width="100" height="100"/>
+</map>
