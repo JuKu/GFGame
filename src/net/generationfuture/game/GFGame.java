@@ -1,5 +1,7 @@
 package net.generationfuture.game;
 
+import animals.Animal;
+import animals.Rabbit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -42,6 +44,7 @@ public class GFGame extends BasicGame{
     int height = 200;
     
     int grafik_ebenen = 3;
+    Animal animals[];
     
     public GFGame() throws SlickException
     {
@@ -62,6 +65,9 @@ public class GFGame extends BasicGame{
         
         objects = new Object[100];
         objekte = new Object[grafik_ebenen][width][height];
+        
+        animals = new Animal[100];
+        animals[0] = new Rabbit(100, 200);
         
         objects[0] = new Tree1(200, 200, this.tree1_picture1);
         objects[1] = new Tree1(200 + 128, 200, this.tree1_picture1);
@@ -130,6 +136,20 @@ public class GFGame extends BasicGame{
             }
             
         }*/
+        
+        /*********************************
+         * 
+         * Animals "zeichnen"
+         * 
+         ********************************/
+        
+        for (int i = 0; i < animals.length; i++) {
+            
+            if (animals[i] != null) {
+                animals[i].paint(g);
+            }
+            
+        }
         
         /*********************************
          * 
