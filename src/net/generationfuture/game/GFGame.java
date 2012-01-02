@@ -245,6 +245,24 @@ public class GFGame extends BasicGame{
         g.setColor(Color.white);
         g.drawString("Harndrang", harndrang_anzeige_x + 30, harndrang_anzeige_y);
         
+        /********************************************
+         * 
+         * Object-Menu
+         * 
+         *******************************************/
+        
+        /*if (objectmenu != null) {
+            objectmenu.paint(g);
+        }*/
+        
+        for (int i = 0; i < objects.length; i++) {
+            
+            if (objects[i] != null) {
+                objects[i].paintMenu(g);
+            }
+            
+        }
+        
     }
  
     public static void main(String[] args) 
