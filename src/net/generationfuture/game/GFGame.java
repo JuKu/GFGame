@@ -335,6 +335,14 @@ public class GFGame extends BasicGame{
             
         }
         
+        for (int i = 0; i < animals.length; i++) {
+            
+            if (animals[i] != null) {
+                animals[i].scroll(x, y);
+            }
+            
+        }
+        
     }
     
 }
