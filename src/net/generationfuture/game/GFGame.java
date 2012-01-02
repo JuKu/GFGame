@@ -4,6 +4,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.*;
 
@@ -75,6 +78,10 @@ public class GFGame extends BasicGame{
 	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {x++; player.move(); this.scroll(-1, 0); player.walkingRight(); }
 	if (gc.getInput().isKeyDown(Input.KEY_UP)) {y--; player.move(); this.scroll(0, 1); player.walkingBack(); }
 	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y++; player.move(); this.scroll(0, -1); player.walkingFor(); }
+        
+        if (gc.isMouseGrabbed()) {
+            JOptionPane.showInternalMessageDialog(new JLabel("test"), this);
+        }
         
         //player.addHunger(-1);
         //player.addEnergie(-1);

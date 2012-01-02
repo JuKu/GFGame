@@ -37,7 +37,7 @@ public class plant extends Object {
     @Override
     public void createObject (Image picture, int x, int y) {
         this.picture = picture;
-        objectmenu = new ObjectMenu();
+        objectmenu = new ObjectMenu(this);
         
         this.x = x;
         this.y = y;

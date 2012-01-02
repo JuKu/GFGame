@@ -15,7 +15,7 @@ public class Object {
     
     public void createObject (Image picture, int x, int y) {
         this.picture = picture;
-        this.objectmenu = new ObjectMenu();
+        this.objectmenu = new ObjectMenu(this);
         
         this.x = x;
         this.y = y;
@@ -32,6 +32,10 @@ public class Object {
     
     public void paintMenu (Graphics g) {
         objectmenu.paint(g);
+    }
+    
+    public void actionPerformed (String command) {
+        //
     }
     
 }
