@@ -39,7 +39,7 @@ public abstract class Animal extends Object {
     protected Image walking_for1;
     protected Image walking_for2;
     protected Image walking_for3;
-    protected Image walking_rfor4;
+    protected Image walking_for4;
     protected Image walking_for5;
     protected Image walking_for6;
     protected Image walking_for7;
@@ -93,6 +93,28 @@ public abstract class Animal extends Object {
         this.walking_right = true;
         this.walking_for = false;
         this.walking_back = false;
+        this.standing_left = false;
+        this.standing_right = false;
+        this.standing_for = false;
+        this.standing_back = false;
+    }
+    
+    public void walkingFront () {
+        this.walking_left = false;
+        this.walking_right = false;
+        this.walking_for = true;
+        this.walking_back = false;
+        this.standing_left = false;
+        this.standing_right = false;
+        this.standing_for = false;
+        this.standing_back = false;
+    }
+    
+    public void walkingBack () {
+        this.walking_left = false;
+        this.walking_right = false;
+        this.walking_for = false;
+        this.walking_back = true;
         this.standing_left = false;
         this.standing_right = false;
         this.standing_for = false;
@@ -169,6 +191,68 @@ public abstract class Animal extends Object {
                 walking_right8.draw(x, y);
             } else {
                 walking_right1.draw(x, y);
+            }
+            
+        } else if (walking_for) {
+            
+            if (picture_counter >= 8) {
+                picture_counter = 0;
+                walking_for = false;
+                
+                standing_for = true;
+            }
+            
+            picture_counter++;
+            
+            if (picture_counter == 0) {
+                walking_for1.draw(x, y);
+            } else if (picture_counter == 1) {
+                walking_for2.draw(x, y);
+            } else if (picture_counter == 2) {
+                walking_for3.draw(x, y);
+            } else if (picture_counter == 3) {
+                walking_for4.draw(x, y);
+            } else if (picture_counter == 4) {
+                walking_for5.draw(x, y);
+            } else if (picture_counter == 5) {
+                walking_for6.draw(x, y);
+            } else if (picture_counter == 6) {
+                walking_for7.draw(x, y);
+            } else if (picture_counter == 7) {
+                walking_for8.draw(x, y);
+            } else {
+                walking_for1.draw(x, y);
+            }
+            
+        } else if (walking_back) {
+            
+            if (picture_counter >= 8) {
+                picture_counter = 0;
+                walking_back = false;
+                
+                standing_back = true;
+            }
+            
+            picture_counter++;
+            
+            if (picture_counter == 0) {
+                walking_back1.draw(x, y);
+            } else if (picture_counter == 1) {
+                walking_back2.draw(x, y);
+            } else if (picture_counter == 2) {
+                walking_back3.draw(x, y);
+            } else if (picture_counter == 3) {
+                walking_back4.draw(x, y);
+            } else if (picture_counter == 4) {
+                walking_back5.draw(x, y);
+            } else if (picture_counter == 5) {
+                walking_back6.draw(x, y);
+            } else if (picture_counter == 6) {
+                walking_back7.draw(x, y);
+            } else if (picture_counter == 7) {
+                walking_back8.draw(x, y);
+            } else {
+                walking_back1.draw(x, y);
             }
             
         }
