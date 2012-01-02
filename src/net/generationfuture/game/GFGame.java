@@ -1,10 +1,14 @@
 package net.generationfuture.game;
 
+import animals.Animal;
+import animals.Rabbit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JDialog;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.*;
 
@@ -40,6 +44,7 @@ public class GFGame extends BasicGame{
     int height = 200;
     
     int grafik_ebenen = 3;
+    Animal animals[];
     
     public GFGame() throws SlickException
     {
@@ -52,7 +57,7 @@ public class GFGame extends BasicGame{
         minimap = new Image("materials/mystery.png");
         map = new TiledMap("materials/firstmystery.tmx","materials");
         playerposImage = new Image("materials/point.png");
-        tree1_picture1 = new Image("src/materials/trees/tree1_/fir C ani0000.bmp");
+        tree1_picture1 = new Image("src/materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
         
         if (this.tree1_picture1 == null) {
             System.err.println("NullPointerException.");
@@ -60,6 +65,9 @@ public class GFGame extends BasicGame{
         
         objects = new Object[100];
         objekte = new Object[grafik_ebenen][width][height];
+        
+        animals = new Animal[100];
+        animals[0] = new Rabbit(100, 200);
         
         objects[0] = new Tree1(200, 200, this.tree1_picture1);
         objects[1] = new Tree1(200 + 128, 200, this.tree1_picture1);
@@ -72,10 +80,22 @@ public class GFGame extends BasicGame{
 			throws SlickException     
     {
         
-        if (gc.getInput().isKeyDown(Input.KEY_LEFT)) {x--; player.move(); this.scroll(1, 0); }
-	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {x++; player.move(); this.scroll(-1, 0); }
-	if (gc.getInput().isKeyDown(Input.KEY_UP)) {y--; player.move(); this.scroll(0, 1); }
-	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y++; player.move(); this.scroll(0, -1); }
+        if (gc.getInput().isKeyDown(Input.KEY_LEFT)) {x--; player.move(); this.scroll(1, 0); player.walkingLeft(); }
+	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {x++; player.move(); this.scroll(-1, 0); player.walkingRight(); }
+	if (gc.getInput().isKeyDown(Input.KEY_UP)) {y--; player.move(); this.scroll(0, 1); player.walkingBack(); }
+	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y++; player.move(); this.scroll(0, -1); player.walkingFor(); }
+        
+        if (gc.isMouseGrabbed()) {
+            JOptionPane.showInternalMessageDialog(new JLabel("test"), this);
+        }
+        
+        for (int i = 0; i < animals.length; i++) {
+            
+            if (animals[i] != null) {
+                animals[i].move();
+            }
+            
+        }
         
         //player.addHunger(-1);
         //player.addEnergie(-1);
@@ -110,7 +130,7 @@ public class GFGame extends BasicGame{
         map.render(0,0,x-60,y-60,120,120);
         
         playerposImage.draw(54, 54);
-        playerposImage.draw(394, 294);
+        player.getImage().draw(394, 294);//playerposImage.draw(394, 294);
         //objects[0].paint(g);
         
         /*for (int i = 0; i <= grafik_ebenen; i++) {
@@ -124,6 +144,20 @@ public class GFGame extends BasicGame{
             }
             
         }*/
+        
+        /*********************************
+         * 
+         * Animals "zeichnen"
+         * 
+         ********************************/
+        
+        for (int i = 0; i < animals.length; i++) {
+            
+            if (animals[i] != null) {
+                animals[i].paint(g);
+            }
+            
+        }
         
         /*********************************
          * 
@@ -246,6 +280,24 @@ public class GFGame extends BasicGame{
         g.setColor(Color.white);
         g.drawString("Harndrang", harndrang_anzeige_x + 30, harndrang_anzeige_y);
         
+        /********************************************
+         * 
+         * Object-Menu
+         * 
+         *******************************************/
+        
+        /*if (objectmenu != null) {
+            objectmenu.paint(g);
+        }*/
+        
+        for (int i = 0; i < objects.length; i++) {
+            
+            if (objects[i] != null) {
+                objects[i].paintMenu(g);
+            }
+            
+        }
+        
     }
  
     public static void main(String[] args) 
@@ -279,6 +331,14 @@ public class GFGame extends BasicGame{
             
             if (objects[i] != null) {
                 objects[i].scroll(x, y);
+            }
+            
+        }
+        
+        for (int i = 0; i < animals.length; i++) {
+            
+            if (animals[i] != null) {
+                animals[i].scroll(x, y);
             }
             
         }

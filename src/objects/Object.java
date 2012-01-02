@@ -10,9 +10,14 @@ public class Object {
     
     protected int x = 1;
     protected int y = 1;
+    protected int height = 128;
+    protected int width = 128;
+    
+    protected ObjectMenu objectmenu;
     
     public void createObject (Image picture, int x, int y) {
         this.picture = picture;
+        this.objectmenu = new ObjectMenu(this);
         
         this.x = x;
         this.y = y;
@@ -25,6 +30,18 @@ public class Object {
     public void scroll (int x, int y) {
         this.x = this.x + x;
         this.y = this.y + y;
+    }
+    
+    public void paintMenu (Graphics g) {
+        objectmenu.paint(g);
+    }
+    
+    public void actionPerformed (String command) {
+        //
+    }
+    
+    public void grow () {
+        //Nur für Pflanzen
     }
     
 }
