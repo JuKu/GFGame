@@ -38,27 +38,7 @@ public class ObjectMenu {
     
     public void paint (Graphics g) {
         
-        //menu_pages_counter = menu_counter / 8;
-        
-        /*g.setColor(Color.blue);
-        g.fillRoundRect(hunger_anzeige_x, hunger_anzeige_y, hunger_length, 20, 50, 50);
-        
-        if (player.isHungry()) {
-            g.setColor(Color.red);
-        } else if (player.getHunger() < 40) {
-            g.setColor(Color.orange);
-        } else {
-            g.setColor(Color.green);
-        }
-        
-        if (player.getHunger() <= 0) {
-            player.addHunger(1);
-        }
-        
-        g.fillRoundRect(hunger_anzeige_x, hunger_anzeige_y, player.getHunger() * 2, 20, 50, 50);
-        
-        g.setColor(Color.white);
-        g.drawString("Hunger", 10 + 30, 50);*/
+        if (isShown) {
         
         int menu_x = 100;
         int menu_y = 140;
@@ -88,6 +68,8 @@ public class ObjectMenu {
             g.drawString(menu[i][0] + "", menu_x_ + 10, menu_y_);
             
             menu_y = menu_y + 25;
+            
+            }
             
         }    
         

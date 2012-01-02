@@ -33,6 +33,7 @@ public class plant extends Object {
     protected int growing_counter = 0;
     
     protected int tipping_counter = 0;
+    protected Boolean isTipping = false;
     
     @Override
     public void createObject (Image picture, int x, int y) {
@@ -71,6 +72,10 @@ public class plant extends Object {
         
     }
     
+    public void tipping () {
+        tipping = true;
+    }
+    
     @Override
     public void paint (Graphics g) {
         
@@ -100,6 +105,8 @@ public class plant extends Object {
             
         } else if (tipping) {
             
+            if (!isTipping) {
+            
             if (tipping_counter == 0) {
                 tipping1.draw(x, y);
             } else if (tipping_counter == 1) {
@@ -119,16 +126,21 @@ public class plant extends Object {
             } else if (tipping_counter == 8) {
                 tipping9.draw(x, y);
             } else if (tipping_counter == 9) {
-                picture.draw(x, y);
+                tipping9.draw(x, y);//picture.draw(x, y);
             }
             
-            if (tipping_counter >= 10) {
+            if (tipping_counter >= 9) {
                 tipping_counter = 0;
-                tipping = false;
+                //tipping = false;
                 
-                isShown = false;
+                //isShown = false;
+                isTipping = true;
             } else {
                 tipping_counter++;
+            }
+            
+            } else {
+                tipping9.draw(x, y);
             }
             
         } else {
@@ -137,6 +149,11 @@ public class plant extends Object {
         
         }
         
+    }
+    
+    public void sammeln () {
+        isTipping = false;
+        isShown = false;
     }
     
 }

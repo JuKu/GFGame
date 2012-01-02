@@ -54,7 +54,7 @@ public class GFGame extends BasicGame{
         minimap = new Image("materials/mystery.png");
         map = new TiledMap("materials/firstmystery.tmx","materials");
         playerposImage = new Image("materials/point.png");
-        tree1_picture1 = new Image("src/materials/trees/tree1_/fir C ani0000.bmp");
+        tree1_picture1 = new Image("src/materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
         
         if (this.tree1_picture1 == null) {
             System.err.println("NullPointerException.");

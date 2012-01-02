@@ -10,6 +10,8 @@ public class Object {
     
     protected int x = 1;
     protected int y = 1;
+    protected int height = 128;
+    protected int width = 128;
     
     protected ObjectMenu objectmenu;
     
@@ -36,6 +38,10 @@ public class Object {
     
     public void actionPerformed (String command) {
         //
+    }
+    
+    public void grow () {
+        //Nur für Pflanzen
     }
     
 }
