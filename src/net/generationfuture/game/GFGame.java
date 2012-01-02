@@ -89,6 +89,14 @@ public class GFGame extends BasicGame{
             JOptionPane.showInternalMessageDialog(new JLabel("test"), this);
         }
         
+        for (int i = 0; i < animals.length; i++) {
+            
+            if (animals[i] != null) {
+                animals[i].move();
+            }
+            
+        }
+        
         //player.addHunger(-1);
         //player.addEnergie(-1);
         //player.addHygiene(-1);
