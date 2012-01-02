@@ -59,6 +59,7 @@ public class plant extends Object {
         this.y = y;
     }
     
+    @Override
     public void grow () {
         
         growing_counter++;
@@ -151,9 +152,11 @@ public class plant extends Object {
         
     }
     
-    public void sammeln () {
+    public void pick () {
         isTipping = false;
         isShown = false;
+        
+        tipping = false;
     }
     
 }
