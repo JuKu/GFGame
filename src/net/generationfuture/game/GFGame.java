@@ -77,10 +77,10 @@ public class GFGame extends BasicGame{
         objekte = new Object[grafik_ebenen][width][height];
         
         animals = new Animal[100];
-        animals[0] = new Rabbit(100, 200);
+        animals[0] = new Rabbit("Hase1", 100, 200);
         
-        objects[0] = new Tree1(200, 200, this.tree1_picture1);
-        objects[1] = new Tree1(200 + 128, 200, this.tree1_picture1);
+        objects[0] = new Tree1(200, 200, this.tree1_picture1, "Baum1");
+        objects[1] = new Tree1(200 + 128, 200, this.tree1_picture1, "Baum2");
         
         objekte[2][1][1] = objects[0];
         objects_2 = new Object[100];
@@ -456,9 +456,30 @@ public class GFGame extends BasicGame{
             
             /*********************************
              * 
+             * Teste, ob Maus über Animal "gefahren" wurde.
+             * 
+             ********************************/
+            
+            Boolean isMouseMoved = false;
+            
+            for (int i_ = 0; i_ < objects.length; i_++) {
+                
+            Boolean isClicked;
+            
+            if (animals[i_] != null) {
+                Boolean isMouseMoved_ = animals[i_].mouseMoved(mouse_x, mouse_y);
+                if (isMouseMoved_) { isMouseMoved = true; }
+            }
+            
+            }
+            
+            /*********************************
+             * 
              * Teste, ob Maus über Object "gefahren" wurde.
              * 
              ********************************/
+            
+            if (!isMouseMoved) {
             
             for (int i_ = 0; i_ < objects.length; i_++) {
                 
@@ -466,6 +487,8 @@ public class GFGame extends BasicGame{
             
             if (objects[i_] != null) {
                 objects[i_].mouseMoved(mouse_x, mouse_y);
+            }
+            
             }
             
             }

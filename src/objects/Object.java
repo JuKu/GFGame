@@ -22,6 +22,8 @@ public class Object {
     protected int id = 0;
     public static int object_counter = 0;
     
+    protected String name;
+    
     public void createObject (Image picture, int x, int y) {
         this.picture = picture;
         this.objectmenu = new ObjectMenu(this);
@@ -68,7 +70,7 @@ public class Object {
     }
     
     public void paintMouseOver (Graphics g) {
-        System.out.println("paintMouseMoved.");
+        //System.out.println("paintMouseMoved.");
         g.drawString("teststring", x, y);
         
         g.drawString("Object-ID: " + ObjectID, x, y + 15);

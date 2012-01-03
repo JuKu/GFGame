@@ -6,7 +6,7 @@ import org.newdawn.slick.SlickException;
 
 public class Tree1 extends plant {
     
-    public Tree1 (int x, int y, Image picture1) throws SlickException {
+    public Tree1 (int x, int y, Image picture1, String name) throws SlickException {
         createObject (picture1, x, y);
         
         tipping1 = new Image("materials/trees/tree1_/fir C tipping over0000.bmp",new Color(94, 66, 41, 255));

@@ -35,14 +35,14 @@ public class plant extends Object {
     protected int tipping_counter = 0;
     protected Boolean isTipping = false;
     
-    @Override
-    public void createObject (Image picture, int x, int y) {
+    public void createObject (String name, Image picture, int x, int y) {
         this.picture = picture;
         objectmenu = new ObjectMenu(this);
         this.x = x;
         this.y = y;
         
         this.id = ++plant.object_counter;
+        this.name = name;
     }
     
     public void createObject (Image picture, Image growing1, Image growing2, Image growing3, Image growing4, Image growing5, Image growing6, Image growing7, Image growing8, int x, int y) {
@@ -55,6 +55,7 @@ public class plant extends Object {
         this.growing6 = growing6;
         this.growing7 = growing7;
         this.growing8 = growing8;
+        this.id = ++plant.object_counter;
         
         this.x = x;
         this.y = y;

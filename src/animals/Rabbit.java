@@ -6,8 +6,8 @@ import org.newdawn.slick.SlickException;
 
 public class Rabbit extends Animal {
     
-    public Rabbit (int x, int y) throws SlickException {
-        super(x, y);
+    public Rabbit (String name, int x, int y) throws SlickException {
+        super(name, x, y);
         
         stopped_left = new Image("materials/animals/rabbit/stopped0002.bmp",new Color(97, 68, 43, 255));
         stopped_right = new Image("materials/animals/rabbit/stopped0006.bmp",new Color(97, 68, 43, 255));
