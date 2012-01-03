@@ -21,11 +21,14 @@ public class GFGame extends BasicGame{
     Image minimap = null;
     Image playerposImage = null;
     TiledMap map = null;
+    TiledMap grasland = null;
         
         Image tree1_picture1;
         Image tree1_picture2;
         Image tree1_picture3;
         Image tree1_picture4;
+        
+        Image gras1;
 
     int x = 0;
     int y = 0;
@@ -59,6 +62,9 @@ public class GFGame extends BasicGame{
         playerposImage = new Image("materials/point.png");
         tree1_picture1 = new Image("src/materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
         
+        gras1 = new Image("src/materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
+        //grasland = new TiledMap("materials/Horse.tmx");
+        
         if (this.tree1_picture1 == null) {
             System.err.println("NullPointerException.");
         }
@@ -71,6 +77,12 @@ public class GFGame extends BasicGame{
         
         objects[0] = new Tree1(200, 200, this.tree1_picture1);
         objects[1] = new Tree1(200 + 128, 200, this.tree1_picture1);
+        
+        objekte[2][1][1] = objects[0];
+        objects_2 = new Object[100];
+        
+        objects_3 = new Object[100];
+        objects_3[0] = new Tree1(180, 210, this.tree1_picture1);
         
         player = new Player();
      }
@@ -119,6 +131,38 @@ public class GFGame extends BasicGame{
         
         map.render(0,0,x-400,y-300,800,600);
         
+        for (int i = 0; i < objects_3.length; i++) {
+            
+            if (objects_3[i] != null) {
+                objects_3[i].paint(g);
+            }
+            
+        }
+        
+        /*********************************
+         * 
+         * Animals "zeichnen"
+         * 
+         ********************************/
+        
+        for (int i = 0; i < animals.length; i++) {
+            
+            if (animals[i] != null) {
+                animals[i].paint(g);
+            }
+            
+        }
+        
+        player.getImage().draw(394, 294);//playerposImage.draw(394, 294);
+        
+        for (int i = 0; i < objects_2.length; i++) {
+            
+            if (objects_2[i] != null) {
+                objects_2[i].paint(g);
+            }
+            
+        }
+        
         for (int i = 0; i < objects.length; i++) {
             
             if (objects[i] != null) {
@@ -130,7 +174,7 @@ public class GFGame extends BasicGame{
         map.render(0,0,x-60,y-60,120,120);
         
         playerposImage.draw(54, 54);
-        player.getImage().draw(394, 294);//playerposImage.draw(394, 294);
+        
         //objects[0].paint(g);
         
         /*for (int i = 0; i <= grafik_ebenen; i++) {
@@ -151,13 +195,13 @@ public class GFGame extends BasicGame{
          * 
          ********************************/
         
-        for (int i = 0; i < animals.length; i++) {
+        /*for (int i = 0; i < animals.length; i++) {
             
             if (animals[i] != null) {
                 animals[i].paint(g);
             }
             
-        }
+        }*/
         
         /*********************************
          * 
