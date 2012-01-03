@@ -49,6 +49,10 @@ public class Object {
         objectmenu.paint(g);
     }
     
+    public ObjectMenu getObjectMenu () {
+        return objectmenu;
+    }
+    
     public void actionPerformed (String command) {
         //
     }

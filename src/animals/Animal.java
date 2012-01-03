@@ -1,5 +1,6 @@
 package animals;
 
+import objects.ObjectMenu;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -82,13 +83,16 @@ public abstract class Animal extends Object {
     protected Boolean mouseMoved = false;
     
     protected String name = "";
+    protected AnimalMenu animalmenu;
     
     public Animal (String name, int x, int y) throws SlickException {
+        super();
         this.x = x;
         this.y = y;
-        
         this.id = ++Animal.animal_counter;
         this.name = name;
+        
+        animalmenu = new AnimalMenu(this);
     }
     
     public void walkingLeft () {
@@ -275,6 +279,14 @@ public abstract class Animal extends Object {
             paintMouseOver(g);
         }
         
+    }
+    
+    public void paintMenu (Graphics g) {
+        animalmenu.paint(g);
+    }
+    
+    public AnimalMenu getAnimalMenu () {
+        return animalmenu;
     }
     
     public void scroll (int x, int y) {

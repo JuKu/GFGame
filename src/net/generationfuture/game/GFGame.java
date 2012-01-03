@@ -348,6 +348,24 @@ public class GFGame extends BasicGame{
             
         }
         
+        /********************************************
+         * 
+         * Animal-Menu
+         * 
+         *******************************************/
+        
+        /*if (objectmenu != null) {
+            objectmenu.paint(g);
+        }*/
+        
+        for (int i = 0; i < animals.length; i++) {
+            
+            if (animals[i] != null) {
+                animals[i].paintMenu(g);
+            }
+            
+        }
+        
     }
  
     public static void main(String[] args) 

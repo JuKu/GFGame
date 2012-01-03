@@ -158,6 +158,15 @@ public class plant extends Object {
         
     }
     
+    @Override
+    public void paintMouseOver (Graphics g) {
+        //System.out.println("paintMouseMoved.");
+        g.drawString("" + this.name, x, y);
+        
+        g.drawString("Object-ID: " + ObjectID, x, y + 15);
+        g.drawString("ID: " + id, x, y + 40);
+    }
+    
     public void pick () {
         isTipping = false;
         isShown = false;
