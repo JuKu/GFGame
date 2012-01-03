@@ -39,9 +39,10 @@ public class plant extends Object {
     public void createObject (Image picture, int x, int y) {
         this.picture = picture;
         objectmenu = new ObjectMenu(this);
-        
         this.x = x;
         this.y = y;
+        
+        this.id = ++plant.object_counter;
     }
     
     public void createObject (Image picture, Image growing1, Image growing2, Image growing3, Image growing4, Image growing5, Image growing6, Image growing7, Image growing8, int x, int y) {
@@ -148,6 +149,10 @@ public class plant extends Object {
             picture.draw(x, y);
         }
         
+        }
+        
+        if (mouseMoved) {
+            paintMouseOver(g);
         }
         
     }

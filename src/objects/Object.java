@@ -13,7 +13,14 @@ public class Object {
     protected int height = 128;
     protected int width = 128;
     
+    protected Boolean mouseMoved = false;
+    protected String ObjectName = "";
+    
     protected ObjectMenu objectmenu;
+    protected int ObjectID = 0;
+    
+    protected int id = 0;
+    public static int object_counter = 0;
     
     public void createObject (Image picture, int x, int y) {
         this.picture = picture;
@@ -25,6 +32,10 @@ public class Object {
     
     public void paint (Graphics g) {
         picture.draw(x, y);
+        
+        if (mouseMoved) {
+            paintMouseOver(g);
+        }
     }
     
     public void scroll (int x, int y) {
@@ -40,8 +51,48 @@ public class Object {
         //
     }
     
+    public void mouseMoved (int x, int y) {
+        
+        if (x > this.x && x < this.x + width) {
+            
+            if (y > this.y && y < this.y + height) {
+                mouseMoved = true;
+            } else {
+                mouseMoved = false;
+            }
+            
+        } else {
+            mouseMoved = false;
+        }
+        
+    }
+    
+    public void paintMouseOver (Graphics g) {
+        System.out.println("paintMouseMoved.");
+        g.drawString("teststring", x, y);
+        
+        g.drawString("Object-ID: " + ObjectID, x, y + 15);
+        g.drawString("ID: " + id, x, y + 40);
+    }
+    
     public void grow () {
         //Nur für Pflanzen
+    }
+    
+    public Boolean isClicked (int x, int y) {
+        
+        if (x > this.x && x < this.x + width) {
+            
+            if (y > this.y && y < this.y + height) {
+                return true;
+            } else {
+                return false;
+            }
+            
+        } else {
+            return false;
+        }
+        
     }
     
 }

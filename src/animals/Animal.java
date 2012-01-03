@@ -277,13 +277,13 @@ public abstract class Animal extends Object {
         walkingRight();
         
         if (walking_left) {
-            x = x - 2;
+            x = x - 1;
         } else if (walking_right) {
-            x = x + 2;
+            x = x + 1;
         } else if (walking_for) {
-            y = y - 2;
+            y = y - 1;
         } else if (walking_back) {
-            y = y + 2;
+            y = y + 1;
         }
         
     }
