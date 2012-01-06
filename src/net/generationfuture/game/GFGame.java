@@ -56,6 +56,7 @@ public class GFGame extends BasicGame{
     Config config;
     
     String config_datei = "GameData/Config/Config.ini";
+    WebClient client;
     
     public GFGame() throws SlickException
     {
@@ -76,6 +77,15 @@ public class GFGame extends BasicGame{
         } catch (IOException ex) {
             Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        client = config.getClient();
+        client.start();
+        
+        client.getPlayerData();
+        int i[] = client.getPlayerPos();
+        
+        x = i[0];
+        y = i[1];
         
         grasland = new TiledMap("materials/test_.tmx","materials");
         

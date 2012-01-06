@@ -19,12 +19,24 @@ public class Config {
     private String debug_folder = "";
     private String debug_file = "";
     
+    private WebClient client;
+    private String player_name = "testplayer";
+    
+    private int player_pos_x = 10;
+    private int player_pos_y = 10;
+    
+    private String save_folder = "GameData/Player";
+    private int player_id = 1;
+    
+    private String username = "testuser1";
+    private String passwort = "testuser1234";
     
     public Config (String config_datei) throws IOException {
         this.config_datei = new INIDatei(config_datei);
         loadConfig();
         this.debug_datei = new INIDatei("GameData/Config/Debug.ini");
         loadDebugConfig();
+        loadWebClient();
     }
     
     public final void loadConfig () throws IOException {
@@ -82,14 +94,105 @@ public class Config {
         
         if (!file.exists()) {
             
-            file.createNewFile();
+            Boolean isCreatedNewFile = file.createNewFile();
             
-            if (debug_modus == 1) {
-                System.out.println("DEbug-Datei wurde erfolgreich erstellt.");
+            if (debug_modus == 1 && isCreatedNewFile) {
+                System.out.println("Debug-Datei wurde erfolgreich erstellt.");
+            } else if (debug_modus == 1 && !isCreatedNewFile) {
+                System.out.println("Debug-Datei konnte nicht erstellt werden.");
             }
             
         }
         
+    }
+    
+    public Boolean loadPlayer (String player_name) {
+        
+        this.player_name = player_name;
+        
+        File file = new File(save_folder + "/" + player_name + ".ini");
+        
+         if (!file.exists()) {
+             return false;
+         } else {
+             
+             INIDatei player_datei = new INIDatei(save_folder + "/" + player_name + ".ini");
+             this.player_name = player_datei.leseString("Player", "name");
+             this.player_id = player_datei.leseInteger("Player", "id", 1);
+             this.player_pos_x = player_datei.leseInteger("Player", "player_pos_x", 10);
+             this.player_pos_y = player_datei.leseInteger("Player", "player_pos_y", 10);
+             
+             return true;
+             
+         }
+        
+    }
+    
+    public final void savePlayer () {
+        
+        String dateiname = save_folder + "/" + player_name + ".ini";
+        File file = new File(dateiname);
+        
+        if (!file.exists()) {
+            
+            try {
+            
+            file.createNewFile();
+            
+            } catch (IOException ex) {
+                
+                if (debug_modus == 1) {
+                    System.out.println("Die Datei \"" + dateiname + "\" konnte nicht angelegt werden.");
+                }
+                
+            }
+            
+        }
+        
+        INIDatei player_datei = new INIDatei(save_folder + "/" + player_name + ".ini");
+        
+        player_datei.setzeString("Player", "name", "" + player_name);
+        player_datei.setzeInteger("Player", "id", player_id);
+        player_datei.setzeInteger("Player", "player_pos_x", player_pos_x);
+        player_datei.setzeInteger("Player", "player_pos_y", player_pos_y);
+        
+        player_datei.schreibeINIDatei(save_folder + "/" + player_name + ".ini", true);
+        
+    }
+    
+    public final void loadWebClient () throws IOException {
+        
+        if ("php".equals(server_typ)) {
+            this.client = new PHPClient(this);
+        } else {
+            this.client = new JavaClient(this);
+        }
+        
+    }
+    
+    public void setPlayerPosData (int x, int y) {
+        player_pos_x = x;
+        player_pos_y = y;
+    }
+    
+    public String getUsername () {
+        return username;
+    }
+    
+    public String getPasswort () {
+        return passwort;
+    }
+    
+    public WebClient getClient () {
+        return this.client;
+    }
+    
+    public String getServerURL () {
+        return this.server;
+    }
+    
+    public int getPort_ () {
+        return this.port;
     }
     
     public Boolean isDebugMode () {
@@ -100,6 +203,10 @@ public class Config {
             return false;
         }
         
+    }
+    
+    public void setPlayerName (String player_name) {
+        this.player_name = player_name;
     }
     
     public String getServerTyp () {
