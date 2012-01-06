@@ -1,0 +1,1 @@
+Der Ordner "GameData" enthält nicht nur Cache-Dateien (temporäre Dateien), sondern auch grundlegende Dateien des Spiels.
