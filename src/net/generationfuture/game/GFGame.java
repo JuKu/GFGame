@@ -52,6 +52,9 @@ public class GFGame extends BasicGame{
     Animal animals[];
     
     public int zoom = 0;
+    Config config;
+    
+    String config_datei = "GameData/Config/Config.ini";
     
     public GFGame() throws SlickException
     {
@@ -67,6 +70,9 @@ public class GFGame extends BasicGame{
         tree1_picture1 = new Image("src/materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
         
         gras1 = new Image("src/materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
+        
+        config = new Config(config_datei);
+        
         grasland = new TiledMap("materials/test_.tmx","materials");
         
         if (this.tree1_picture1 == null) {
