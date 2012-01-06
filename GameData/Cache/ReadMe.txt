@@ -1,0 +1,1 @@
+In diesen Ordner kommen die "Cache"-Dateien (die temporären Dateien).
