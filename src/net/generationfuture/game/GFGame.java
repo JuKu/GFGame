@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -70,8 +71,11 @@ public class GFGame extends BasicGame{
         tree1_picture1 = new Image("src/materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
         
         gras1 = new Image("src/materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
-        
-        config = new Config(config_datei);
+        try {
+            config = new Config(config_datei);
+        } catch (IOException ex) {
+            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         grasland = new TiledMap("materials/test_.tmx","materials");
         
