@@ -128,6 +128,10 @@ public class Config {
         
     }
     
+    public String getCacheFolder () {
+        return cache_folder;
+    }
+    
     public final void savePlayer () {
         
         String dateiname = save_folder + "/" + player_name + ".ini";

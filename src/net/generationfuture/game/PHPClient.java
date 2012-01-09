@@ -1,6 +1,12 @@
 package net.generationfuture.game;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
@@ -41,9 +47,43 @@ public class PHPClient extends WebClient {
             vomServer_text = text;
             
             this.setPlayerData = false;
+        } else if (this.getAnimals) {
+            url = new URL(config.getServerURL() + "/index.php?username=" + config.getUsername() + "&passwort=" + config.getPasswort() + "&option=getAnimals");
+            is = url.openStream();
+            br = new BufferedReader( new InputStreamReader(is) );
+            text = readFile(is);
+            vomServer_text = text;
+            
+            File file = new File(config.getCacheFolder() + "/Animals/Animals.ini");
+            file.createNewFile();
+            
+            //file.setReadOnly();
+            
+            FileOutputStream schreibeStrom = new FileOutputStream(config.getCacheFolder() + "/Animals/Animals.ini");
+            for (int i=0; i < text.length(); i++){
+                schreibeStrom.write((byte)text.charAt(i));
+                schreibeStrom.write(455);
+            }
+            schreibeStrom.close();
+            
+            //FileOutputStream out = new FileOutputStream(file);
+            //DataOutputStream dout = new DataOutputStream(out);
+            
+            //dout.writeInt(10);
+            //dout.writeInt(100);
+            
+            //dout.close();
+
+            
+            /*FileInputStream in = new FileInputStream(file);
+            DataInputStream din = new DataInputStream(in);
+            
+                System.out.println("Int: " + din.readInt());*/
+            
+            this.getAnimals = false;
         }
         
-        if (config.isDebugMode() && setPlayerData) { System.out.println("vomServer: \"" + text + "\"."); }
+        if (config.isDebugMode()) { System.out.println("vomServer: \"" + text + "\"."); }
     }
     
 }

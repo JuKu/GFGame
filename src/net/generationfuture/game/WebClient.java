@@ -21,6 +21,9 @@ public class WebClient extends Thread {
     protected Boolean getPlayerData = true;
     protected Boolean setPlayerData = false;
     
+    protected Boolean getAnimals = true;
+    protected Boolean getPlayer = true;
+    
     protected int player_pos_x = 0;
     protected int player_pos_y = 0;
     

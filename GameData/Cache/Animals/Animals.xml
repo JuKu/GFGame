@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<content>
+	<animal animalID="1" id="1" name="Rabbit1" Animalname="Rabbit">
+		<animal_pos_x>10</animal_pos_x>
+		<animal_pos_y>10</animal_pos_y>
+		<hunger>60</hunger>
+		<durst>60</durst>
+	</animal>
+	<animal animalID="1" id="2" name="Rabbit2" Animalname="Rabbit">
+		<animal_pos_x>20</animal_pos_x>
+		<animal_pos_y>20</animal_pos_y>
+		<hunger>60</hunger>
+		<durst>60</durst>
+	</animal>
+</content>
