@@ -6,6 +6,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,11 +22,16 @@ public class GFGame extends BasicGame{
     Image minimap = null;
     Image playerposImage = null;
     TiledMap map = null;
+    TiledMap grasland = null;
+    
+    TileSet tileset;
         
         Image tree1_picture1;
         Image tree1_picture2;
         Image tree1_picture3;
         Image tree1_picture4;
+        
+        Image gras1;
 
     int x = 0;
     int y = 0;
@@ -46,6 +52,12 @@ public class GFGame extends BasicGame{
     int grafik_ebenen = 3;
     Animal animals[];
     
+    public int zoom = 0;
+    Config config;
+    
+    String config_datei = "GameData/Config/Config.ini";
+    WebClient client;
+    
     public GFGame() throws SlickException
     {
         super("GFGame");
@@ -59,6 +71,24 @@ public class GFGame extends BasicGame{
         playerposImage = new Image("materials/point.png");
         tree1_picture1 = new Image("src/materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
         
+        gras1 = new Image("src/materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
+        try {
+            config = new Config(config_datei);
+        } catch (IOException ex) {
+            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        client = config.getClient();
+        client.start();
+        
+        client.getPlayerData();
+        int i[] = client.getPlayerPos();
+        
+        x = i[0];
+        y = i[1];
+        
+        grasland = new TiledMap("materials/test_.tmx","materials");
+        
         if (this.tree1_picture1 == null) {
             System.err.println("NullPointerException.");
         }
@@ -67,12 +97,19 @@ public class GFGame extends BasicGame{
         objekte = new Object[grafik_ebenen][width][height];
         
         animals = new Animal[100];
-        animals[0] = new Rabbit(100, 200);
+        animals[0] = new Rabbit("Hase1", 100, 200);
         
-        objects[0] = new Tree1(200, 200, this.tree1_picture1);
-        objects[1] = new Tree1(200 + 128, 200, this.tree1_picture1);
+        objects[0] = new Tree1(200, 200, this.tree1_picture1, "Baum1");
+        objects[1] = new Tree1(200 + 128, 200, this.tree1_picture1, "Baum2");
+        
+        objekte[2][1][1] = objects[0];
+        objects_2 = new Object[100];
+        
+        objects_3 = new Object[100];
+        //objects_3[0] = new Tree1(180, 210, this.tree1_picture1);
         
         player = new Player();
+        gc.getInput().addMouseListener(new GameMouseListener());
      }
  
     @Override
@@ -118,6 +155,39 @@ public class GFGame extends BasicGame{
         }*/
         
         map.render(0,0,x-400,y-300,800,600);
+        //grasland.render(0, 0, x, y, 800, 600);
+        
+        for (int i = 0; i < objects_3.length; i++) {
+            
+            if (objects_3[i] != null) {
+                objects_3[i].paint(g);
+            }
+            
+        }
+        
+        /*********************************
+         * 
+         * Animals "zeichnen"
+         * 
+         ********************************/
+        
+        for (int i = 0; i < animals.length; i++) {
+            
+            if (animals[i] != null) {
+                animals[i].paint(g);
+            }
+            
+        }
+        
+        player.getImage().draw(394, 294);//playerposImage.draw(394, 294);
+        
+        for (int i = 0; i < objects_2.length; i++) {
+            
+            if (objects_2[i] != null) {
+                objects_2[i].paint(g);
+            }
+            
+        }
         
         for (int i = 0; i < objects.length; i++) {
             
@@ -130,7 +200,7 @@ public class GFGame extends BasicGame{
         map.render(0,0,x-60,y-60,120,120);
         
         playerposImage.draw(54, 54);
-        player.getImage().draw(394, 294);//playerposImage.draw(394, 294);
+        
         //objects[0].paint(g);
         
         /*for (int i = 0; i <= grafik_ebenen; i++) {
@@ -151,13 +221,13 @@ public class GFGame extends BasicGame{
          * 
          ********************************/
         
-        for (int i = 0; i < animals.length; i++) {
+        /*for (int i = 0; i < animals.length; i++) {
             
             if (animals[i] != null) {
                 animals[i].paint(g);
             }
             
-        }
+        }*/
         
         /*********************************
          * 
@@ -298,6 +368,24 @@ public class GFGame extends BasicGame{
             
         }
         
+        /********************************************
+         * 
+         * Animal-Menu
+         * 
+         *******************************************/
+        
+        /*if (objectmenu != null) {
+            objectmenu.paint(g);
+        }*/
+        
+        for (int i = 0; i < animals.length; i++) {
+            
+            if (animals[i] != null) {
+                animals[i].paintMenu(g);
+            }
+            
+        }
+        
     }
  
     public static void main(String[] args) 
@@ -343,6 +431,133 @@ public class GFGame extends BasicGame{
             
         }
         
+    }
+    
+    class GameMouseListener implements MouseListener {
+
+        @Override
+        public void mouseWheelMoved(int i) {
+            zoom = zoom + i;//throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void mouseClicked(int i, int i1, int i2, int i3) {
+            //System.out.println("i: " + i + ", i1: " + i1 + ", i2: " + i2 + ", i3: " + i3 + ".");//throw new UnsupportedOperationException("Not supported yet.");
+            
+            int mouse_x = i1;
+            int mouse_y = i2;
+            
+            //System.out.println("Mouse x: " + mouse_x + ", y: " + mouse_y + ".");
+            
+            /*********************************
+             * 
+             * Teste, ob Object angeklickt wurde.
+             * 
+             ********************************/
+            
+            Boolean isClicked_ = false;
+            
+            for (int i_ = 0; i_ < objects.length; i_++) {
+                
+            Boolean isClicked;
+            
+            if (objects[i_] != null) {
+                isClicked = objects[i_].isClicked(mouse_x, mouse_y);
+                if (isClicked) { System.out.println("Object[" + i_ + "] isClicked."); isClicked_ = true; }
+            }
+            
+            if (!isClicked_) {
+                
+                //
+                
+            }
+            
+            }
+        }
+
+        @Override
+        public void mousePressed(int i, int i1, int i2) {
+            //throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void mouseReleased(int i, int i1, int i2) {
+            //throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void mouseMoved(int i, int i1, int i2, int i3) {
+            int mouse_x = i;
+            int mouse_y = i1;
+            
+            //System.out.println("mouse_x: " + mouse_x + ", mouse_y: " + mouse_y + ".");//throw new UnsupportedOperationException("Not supported yet.");
+            
+            /*********************************
+             * 
+             * Teste, ob Maus über Animal "gefahren" wurde.
+             * 
+             ********************************/
+            
+            Boolean isMouseMoved = false;
+            
+            for (int i_ = 0; i_ < objects.length; i_++) {
+                
+            Boolean isClicked;
+            
+            if (animals[i_] != null) {
+                Boolean isMouseMoved_ = animals[i_].mouseMoved(mouse_x, mouse_y);
+                if (isMouseMoved_) { isMouseMoved = true; }
+            }
+            
+            }
+            
+            /*********************************
+             * 
+             * Teste, ob Maus über Object "gefahren" wurde.
+             * 
+             ********************************/
+            
+            if (!isMouseMoved) {
+            
+            for (int i_ = 0; i_ < objects.length; i_++) {
+                
+            Boolean isClicked;
+            
+            if (objects[i_] != null) {
+                objects[i_].mouseMoved(mouse_x, mouse_y);
+            }
+            
+            }
+            
+            }
+        }
+
+        @Override
+        public void mouseDragged(int i, int i1, int i2, int i3) {
+            //throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void setInput(Input input) {
+            //throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public boolean isAcceptingInput() {
+            //throw new UnsupportedOperationException("Not supported yet.");
+            return true;
+        }
+
+        @Override
+        public void inputEnded() {
+            //throw new UnsupportedOperationException("Not supported yet.");
+        }
+
+        @Override
+        public void inputStarted() {
+            //throw new UnsupportedOperationException("Not supported yet.");
+        }
+        //
     }
     
 }

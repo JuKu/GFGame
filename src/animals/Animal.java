@@ -1,5 +1,6 @@
 package animals;
 
+import objects.ObjectMenu;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -72,9 +73,26 @@ public abstract class Animal extends Object {
     protected Boolean isIll = false;
     protected Boolean sitting = false;
     
-    public Animal (int x, int y) throws SlickException {
+    protected int width = 96;
+    protected int height = 96;
+    
+    protected int AnimalID = 0;
+    protected int id = 0;
+    
+    public static int animal_counter = 0;
+    protected Boolean mouseMoved = false;
+    
+    protected String name = "";
+    protected AnimalMenu animalmenu;
+    
+    public Animal (String name, int x, int y) throws SlickException {
+        super();
         this.x = x;
         this.y = y;
+        this.id = ++Animal.animal_counter;
+        this.name = name;
+        
+        animalmenu = new AnimalMenu(this);
     }
     
     public void walkingLeft () {
@@ -257,6 +275,18 @@ public abstract class Animal extends Object {
             
         }
         
+        if (mouseMoved) {
+            paintMouseOver(g);
+        }
+        
+    }
+    
+    public void paintMenu (Graphics g) {
+        animalmenu.paint(g);
+    }
+    
+    public AnimalMenu getAnimalMenu () {
+        return animalmenu;
     }
     
     public void scroll (int x, int y) {
@@ -277,13 +307,58 @@ public abstract class Animal extends Object {
         walkingRight();
         
         if (walking_left) {
-            x = x - 2;
+            x = x - 1;
         } else if (walking_right) {
-            x = x + 2;
+            x = x + 1;
         } else if (walking_for) {
-            y = y - 2;
+            y = y - 1;
         } else if (walking_back) {
-            y = y + 2;
+            y = y + 1;
+        }
+        
+    }
+    
+    public Boolean mouseMoved (int x, int y) {
+        
+        if (x > this.x && x < this.x + width) {
+            
+            if (y > this.y && y < this.y + height) {
+                mouseMoved = true;
+                return true;
+            } else {
+                mouseMoved = false;
+                return false;
+            }
+            
+        } else {
+            mouseMoved = false;
+            return false;
+        }
+        
+    }
+    
+    public void paintMouseOver (Graphics g) {
+        //System.out.println("paintMouseMoved.");
+        g.drawString("" + this.name, x, y);
+        
+        g.drawString("Object-ID: " + AnimalID, x, y + 15);
+        g.drawString("ID: " + id, x, y + 40);
+        g.drawString("Hunger: " + hunger, x, y + 60);
+        g.drawString("Durst: " + durst, x, y + 80);
+    }
+    
+    public Boolean isClicked (int x, int y) {
+        
+        if (x > this.x && x < this.x + width) {
+            
+            if (y > this.y && y < this.y + height) {
+                return true;
+            } else {
+                return false;
+            }
+            
+        } else {
+            return false;
         }
         
     }

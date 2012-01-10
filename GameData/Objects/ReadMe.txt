@@ -1,0 +1,1 @@
+In diesen Ordner kommen die Konfigurations-Dateien, ... zu den Spiel-Objekten wie z.B. dem Baum.
