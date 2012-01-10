@@ -11,6 +11,11 @@ if (isset($_REQUEST['username'])) {
     $username = mysql_escape_string($_REQUEST['username']);
 }
 
+if (isset($_REQUEST['option']) && $_REQUEST['option'] == "getAnimals") {
+    echo "[Animals]\r\nAnimalCounter=2";
+    exit;
+}
+
 echo "<?xml version=\"1.0\"?>";
 echo "<content>";
 
