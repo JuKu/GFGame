@@ -7,8 +7,10 @@ import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.PrintStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 
@@ -81,6 +83,57 @@ public class PHPClient extends WebClient {
                 System.out.println("Int: " + din.readInt());*/
             
             this.getAnimals = false;
+        } else if (this.getAnimalsData) {
+            
+            url = new URL(config.getServerURL() + "/index.php?username=" + config.getUsername() + "&passwort=" + config.getPasswort() + "&option=getAnimalsData");
+            is = url.openStream();
+            br = new BufferedReader( new InputStreamReader(is) );
+            text = readFile(is);
+            vomServer_text = text; System.out.println("vomServer: " + text);
+            
+            File file = new File(config.getCacheFolder() + "/Animals/Animals.xml");
+            file.createNewFile();
+            
+            /*FileWriter schreiben = new FileWriter(config.getCacheFolder() + "/Animals/Animals.xml");
+            
+            // char-Array als Puffer für das Lesen
+         char[] buffer = new char[128];
+              
+         // Die Variable gibt die Anzahl der chars an, 
+         // die pro Vorgang gelesen werden              
+         int charsGelesen;
+              
+         // erster Lesevorgang
+         charsGelesen = br.read(buffer);
+              
+         while (charsGelesen != -1) {
+            // Inhalt des Lesevorgangs in Zieldatei
+            // schreiben
+            schreiben.write(buffer, 0, charsGelesen);
+                  
+            // Naechster Lesevorgang
+            charsGelesen = br.read(buffer);
+         }
+              
+         // Streams schliessen
+         schreiben.close();*/  
+            
+            /*FileOutputStream schreibeStrom = new FileOutputStream(config.getCacheFolder() + "/Animals/Animals.xml");
+            for (int i=0; i < text.length(); i++){
+                schreibeStrom.write((byte)text.charAt(i));
+            }
+            schreibeStrom.close();*/
+            
+            PrintStream schreibeStrom = new PrintStream(config.getCacheFolder() + "/Animals/Animals.xml");
+            /*for (int i=0; i < text.length(); i++){
+                schreibeStrom.write((byte)text.charAt(i));
+            }*/
+            String data="irgendwas \n nochwas";
+            schreibeStrom.write(text.getBytes());
+            schreibeStrom.close();
+            
+            this.getAnimalsData = false;
+            
         }
         
         if (config.isDebugMode()) { System.out.println("vomServer: \"" + text + "\"."); }
