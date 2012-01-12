@@ -1,1 +1,2 @@
 In diesen Ordner kommt das Setup von Windows.
+Alles, was im Ordner "Setup-Data" liegt wird später mit installiert.
