@@ -12,6 +12,8 @@ public class GameMenuItem {
     private int y = 10;
     private int mouseOverX = 10;
     private int mouseOverY = 10;
+    private int width = 40;
+    private int height = 40;
     
     private Boolean isMouseOver = false;
     private Boolean isShown = true;
@@ -34,6 +36,28 @@ public class GameMenuItem {
     
     public void setMouseOver (Boolean mouseOver) {
         this.isMouseOver = mouseOver;
+    }
+    
+    public void actionPerformed () {
+        //
+    }
+    
+    public Boolean isMouseClicked (int mouse_x, int mouse_y) {
+        
+        if (mouse_x > x && mouse_x < x + width + mouseOverX) {
+            
+            if (mouse_y > y && mouse_y < y + height + mouseOverY) {
+                return true;
+            } else {
+                return false;
+            }
+            
+        } else {
+            
+            return false;
+            
+        }
+        
     }
     
     public void paint (Graphics g) {
