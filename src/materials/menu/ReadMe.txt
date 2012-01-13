@@ -1,0 +1,1 @@
+In diesen Ordner kommen kostenlose Menu-Grafiken.
