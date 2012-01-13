@@ -1,1 +1,1 @@
-In diesen Ordner kommen kostenlose Menu-Grafiken.
+In diesen Ordner kommen kostenlose Menu-Grafiken, die für dieses Spiel verwendet werden können.
