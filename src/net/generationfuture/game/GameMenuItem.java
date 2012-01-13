@@ -12,8 +12,8 @@ public class GameMenuItem {
     private int y = 10;
     private int mouseOverX = 10;
     private int mouseOverY = 10;
-    private int width = 40;
-    private int height = 40;
+    private int width = 64;//40;
+    private int height = 64;//40;
     
     private Boolean isMouseOver = false;
     private Boolean isShown = true;

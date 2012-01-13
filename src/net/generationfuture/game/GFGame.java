@@ -45,6 +45,7 @@ public class GFGame extends BasicGame{
     Player player;
     
     Object objekte[][][];
+    GameMenu game_menu;
     
     int width = 200;
     int height = 200;
@@ -69,9 +70,9 @@ public class GFGame extends BasicGame{
         minimap = new Image("materials/mystery.png");
         map = new TiledMap("materials/firstmystery.tmx","materials");
         playerposImage = new Image("materials/point.png");
-        tree1_picture1 = new Image("src/materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
+        tree1_picture1 = new Image("materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
         
-        gras1 = new Image("src/materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
+        gras1 = new Image("materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
         try {
             config = new Config(config_datei);
         } catch (IOException ex) {
@@ -88,6 +89,14 @@ public class GFGame extends BasicGame{
         y = i[1];
         
         grasland = new TiledMap("materials/test_.tmx","materials");
+        
+        game_menu = new GameMenu("Menu1", null, 140, 10);
+        GameMenuItem menuItem = new GameMenuItem("test", new Image("materials/buttons/Buttons1/base_button_code.png"));
+        
+        game_menu.addMenuItem(menuItem);
+        
+        menuItem = new GameMenuItem("test", new Image("materials/buttons/Buttons1/base_button.png"));
+        game_menu.addMenuItem(menuItem);
         
         if (this.tree1_picture1 == null) {
             System.err.println("NullPointerException.");
@@ -198,6 +207,7 @@ public class GFGame extends BasicGame{
         }
         
         map.render(0,0,x-60,y-60,120,120);
+        game_menu.paint(g);
         
         playerposImage.draw(54, 54);
         
@@ -490,6 +500,14 @@ public class GFGame extends BasicGame{
             int mouse_x = i;
             int mouse_y = i1;
             
+            GameMenuItem menuItem = game_menu.mouseOver(mouse_x, mouse_y);
+            Boolean isMouseMoved = false;
+            
+            if (menuItem != null) {
+                isMouseMoved = true;
+                menuItem.setMouseOver(true);
+            }
+            
             //System.out.println("mouse_x: " + mouse_x + ", mouse_y: " + mouse_y + ".");//throw new UnsupportedOperationException("Not supported yet.");
             
             /*********************************
@@ -498,7 +516,7 @@ public class GFGame extends BasicGame{
              * 
              ********************************/
             
-            Boolean isMouseMoved = false;
+            if (!isMouseMoved) {
             
             for (int i_ = 0; i_ < objects.length; i_++) {
                 
@@ -507,6 +525,8 @@ public class GFGame extends BasicGame{
             if (animals[i_] != null) {
                 Boolean isMouseMoved_ = animals[i_].mouseMoved(mouse_x, mouse_y);
                 if (isMouseMoved_) { isMouseMoved = true; }
+            }
+            
             }
             
             }
