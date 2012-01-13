@@ -95,7 +95,13 @@ public class GFGame extends BasicGame{
         
         game_menu.addMenuItem(menuItem);
         
-        menuItem = new GameMenuItem("test", new Image("materials/buttons/Buttons1/base_button.png"));
+        menuItem = new GameMenuItem("test", new Image("materials/buttons/Buttons1/base_button_bugs.png"));
+        game_menu.addMenuItem(menuItem);
+        menuItem = new GameMenuItem("Menu_1", new Image("materials/buttons/Buttons1/base_button_faq.png"));
+        game_menu.addMenuItem(menuItem);
+        menuItem = new GameMenuItem("Menu_2", new Image("materials/buttons/Buttons1/base_button_irc.png"));
+        game_menu.addMenuItem(menuItem);
+        menuItem = new GameMenuItem("Menu_2", new Image("materials/buttons/Buttons1/base_button.png"));
         game_menu.addMenuItem(menuItem);
         
         if (this.tree1_picture1 == null) {
