@@ -201,7 +201,7 @@ public class GFGame extends BasicGame{
             
         }
         
-        player.getImage().draw(394, 294);//playerposImage.draw(394, 294);
+        player.getImage().draw(352, 224);//playerposImage.draw(394, 294);
         
         for (int i = 0; i < objects_2.length; i++) {
             
@@ -553,16 +553,16 @@ public class GFGame extends BasicGame{
             
             if (!isMouseMoved) {
             
-            for (int i_ = 0; i_ < objects.length; i_++) {
-                
-            Boolean isClicked;
-            
-            if (animals[i_] != null) {
-                Boolean isMouseMoved_ = animals[i_].mouseMoved(mouse_x, mouse_y);
-                if (isMouseMoved_) { isMouseMoved = true; }
-            }
-            
-            }
+                for (int i_ = 0; i_ < objects.length; i_++) {
+
+                    Boolean isClicked;
+
+                    if (animals[i_] != null) {
+                        Boolean isMouseMoved_ = animals[i_].mouseMoved(mouse_x, mouse_y);
+                        if (isMouseMoved_) { isMouseMoved = true; }
+                    }
+
+                }
             
             }
             
@@ -574,15 +574,15 @@ public class GFGame extends BasicGame{
             
             if (!isMouseMoved) {
             
-            for (int i_ = 0; i_ < objects.length; i_++) {
-                
-            Boolean isClicked;
-            
-            if (objects[i_] != null) {
-                objects[i_].mouseMoved(mouse_x, mouse_y);
-            }
-            
-            }
+                for (int i_ = 0; i_ < objects.length; i_++) {
+
+                    Boolean isClicked;
+
+                    if (objects[i_] != null) {
+                        objects[i_].mouseMoved(mouse_x, mouse_y);
+                    }
+
+                }
             
             }
         }
