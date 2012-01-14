@@ -21,26 +21,22 @@ public class GFGame extends BasicGame{
     Image playerposImage = null;
     TiledMap map = null;
     TiledMap grasland = null;
-    
     TileSet tileset;
 
     int x = 0;
     int y = 0;
     int minimapx = 248;
     int minimapy = 200;
-    Player player;
-    GameMenu game_menu;
-    
+    public Player player;
+    public GameMenu game_menu;
     public int zoom = 0;
-    Config config;
-    String config_datei = "GameData/Config/Config.ini";
-    WebClient client;
-    
-    IRC_Chat irc_chat;
-    NeedsDisplay bedürfnis_anzeige;
-    
-    AnimalManager animal_manager;
-    ObjectManager object_manager;
+    public Config config;
+    private String config_datei = "GameData/Config/Config.ini";
+    public WebClient client;
+    private IRC_Chat irc_chat;
+    private NeedsDisplay bedürfnis_anzeige;
+    public AnimalManager animal_manager;
+    public ObjectManager object_manager;
     
     public GFGame() throws SlickException
     {
@@ -137,7 +133,7 @@ public class GFGame extends BasicGame{
         object_manager.paintObjectsLayer2(g);
         //Objects zeichnen
         object_manager.paintObjects(g);
-        
+        //Map zeichnen
         map.render(0,0,x-60,y-60,120,120);
         game_menu.paint(g);
         //PlayerposImage zeichnen
@@ -156,7 +152,6 @@ public class GFGame extends BasicGame{
     public static void main(String[] args) 
 			throws SlickException
     {
-         
          AppGameContainer app = new AppGameContainer(new GFGame());
          //Dies ist JuKus erster Kommentar in dieser Datei. ;-)
          app.setDisplayMode(800, 600, false);
@@ -172,98 +167,6 @@ public class GFGame extends BasicGame{
         
     }
     
-    class GameMouseListener implements MouseListener {
-        
-        GFGame gfgame;
-        
-        public GameMouseListener (GFGame gfgame) {
-            this.gfgame = gfgame;
-        }
-
-        @Override
-        public void mouseWheelMoved(int i) {
-            zoom = zoom + i;//throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public void mouseClicked(int i, int i1, int i2, int i3) {
-            
-            int mouse_x = i1;
-            int mouse_y = i2;
-            
-            Boolean isClicked_ = false;
-            
-            GameMenuItem menuItem = game_menu.mouseClicked(mouse_x, mouse_y);
-            
-            if (menuItem != null) {
-                isClicked_ = true;
-                
-                //System.out.println("Clicked.");
-                gfgame.actionPerformed(menuItem.getActionCommand(), menuItem);
-            }
-            
-            //Teste, ob Object angeklickt wurde.
-            object_manager.isClicked(mouse_x, mouse_y, isClicked_);
-            
-        }
-
-        @Override
-        public void mousePressed(int i, int i1, int i2) {
-            //throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public void mouseReleased(int i, int i1, int i2) {
-            //throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public void mouseMoved(int i, int i1, int i2, int i3) {
-            int mouse_x = i;
-            int mouse_y = i1;
-            
-            GameMenuItem menuItem = game_menu.mouseOver(mouse_x, mouse_y);
-            Boolean isMouseMoved = false;
-            
-            if (menuItem != null) {
-                isMouseMoved = true;
-                menuItem.setMouseOver(true);
-            }
-            
-            //Testen, ob Maus über Animals gefahren wurde.
-            isMouseMoved = gfgame.animal_manager.isMouseOver(mouse_x, mouse_y, isMouseMoved);
-             //Teste, ob Maus über Object "gefahren" wurde.
-            isMouseMoved = gfgame.object_manager.isMouseOver(mouse_x, mouse_y, isMouseMoved);
-            
-        }
-
-        @Override
-        public void mouseDragged(int i, int i1, int i2, int i3) {
-            //throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public void setInput(Input input) {
-            //throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public boolean isAcceptingInput() {
-            //throw new UnsupportedOperationException("Not supported yet.");
-            return true;
-        }
-
-        @Override
-        public void inputEnded() {
-            //throw new UnsupportedOperationException("Not supported yet.");
-        }
-
-        @Override
-        public void inputStarted() {
-            //throw new UnsupportedOperationException("Not supported yet.");
-        }
-        //
-    }
     public void actionPerformed (String actionCommand, GameMenuItem menuItem) {
         
         /***********************************************
