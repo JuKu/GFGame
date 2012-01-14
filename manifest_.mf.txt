@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+X-COMMENT: Main-Class will be added automatically by build
+Class-Path: lib/lwjgl.jar
+ natives-win32.jar
+ natives-linux.jar
+ natives-mac.jar
+ slick.jar
