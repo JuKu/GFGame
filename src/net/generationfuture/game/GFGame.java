@@ -173,16 +173,7 @@ public class GFGame extends BasicGame{
 			throws SlickException 
     {
         
-        /*for (int i = 0; i < objects.length; i++) {
-            
-            if (objects[i] != null) {
-                objects[i].paint(g);
-            }
-            
-        }*/
-        
         map.render(0,0,x-400,y-300,800,600);
-        //grasland.render(0, 0, x, y, 800, 600);
         
         for (int i = 0; i < objects_3.length; i++) {
             
@@ -206,6 +197,7 @@ public class GFGame extends BasicGame{
             
         }
         
+        //Player zeichnen
         player.getImage().draw(352, 224);//playerposImage.draw(394, 294);
         
         for (int i = 0; i < objects_2.length; i++) {
@@ -227,35 +219,7 @@ public class GFGame extends BasicGame{
         map.render(0,0,x-60,y-60,120,120);
         game_menu.paint(g);
         
-        playerposImage.draw(54, 54);
-        
-        //objects[0].paint(g);
-        
-        /*for (int i = 0; i <= grafik_ebenen; i++) {
-            
-            for (int j = 0; j <= width; j++) {
-                
-                for (int k = 0; k <= height; k++) {
-                    objekte[i][j][k].paint(g);
-                }
-                
-            }
-            
-        }*/
-        
-        /*********************************
-         * 
-         * Animals "zeichnen"
-         * 
-         ********************************/
-        
-        /*for (int i = 0; i < animals.length; i++) {
-            
-            if (animals[i] != null) {
-                animals[i].paint(g);
-            }
-            
-        }*/
+        playerposImage.draw(54, 54);        
         
         /*********************************
          * 
@@ -271,10 +235,6 @@ public class GFGame extends BasicGame{
          * 
          *******************************************/
         
-        /*if (objectmenu != null) {
-            objectmenu.paint(g);
-        }*/
-        
         for (int i = 0; i < objects.length; i++) {
             
             if (objects[i] != null) {
@@ -288,10 +248,6 @@ public class GFGame extends BasicGame{
          * Animal-Menu
          * 
          *******************************************/
-        
-        /*if (objectmenu != null) {
-            objectmenu.paint(g);
-        }*/
         
         for (int i = 0; i < animals.length; i++) {
             
