@@ -56,7 +56,6 @@ public class GFGame extends BasicGame{
         
         client = config.getClient();
         client.start();
-        
         client.getPlayerData();
         int i[] = client.getPlayerPos();
         
