@@ -12,22 +12,16 @@ public class Config {
     private int port = 80;
     private int debug_modus = 0;
     private String cache_folder = "";
-    
     private int auto_update = 1;
     private String server_typ = "";
-    
     private String debug_folder = "";
     private String debug_file = "";
-    
     private WebClient client;
     private String player_name = "testplayer";
-    
     private int player_pos_x = 10;
     private int player_pos_y = 10;
-    
     private String save_folder = "GameData/Player";
     private int player_id = 1;
-    
     private String username = "testuser1";
     private String passwort = "testuser1234";
     
