@@ -124,7 +124,7 @@ public class GFGame extends BasicGame{
         //objects_3[0] = new Tree1(180, 210, this.tree1_picture1);
         
         player = new Player();
-        gc.getInput().addMouseListener(new GameMouseListener());
+        gc.getInput().addMouseListener(new GameMouseListener(this));
      }
  
     @Override
@@ -450,6 +450,12 @@ public class GFGame extends BasicGame{
     }
     
     class GameMouseListener implements MouseListener {
+        
+        GFGame gfgame;
+        
+        public GameMouseListener (GFGame gfgame) {
+            this.gfgame = gfgame;
+        }
 
         @Override
         public void mouseWheelMoved(int i) {
@@ -465,6 +471,13 @@ public class GFGame extends BasicGame{
             
             Boolean isClicked_ = false;
             
+            GameMenuItem menuItem = game_menu.mouseClicked(mouse_x, mouse_y);
+            
+            if (menuItem != null) {
+                isClicked_ = true;
+                //
+            }
+            
             //System.out.println("Mouse x: " + mouse_x + ", y: " + mouse_y + ".");
             
             /*********************************
@@ -472,6 +485,8 @@ public class GFGame extends BasicGame{
              * Teste, ob Object angeklickt wurde.
              * 
              ********************************/
+            
+            if (!isClicked_) {
             
             for (int i_ = 0; i_ < objects.length; i_++) {
                 
@@ -482,9 +497,12 @@ public class GFGame extends BasicGame{
                 if (isClicked) { System.out.println("Object[" + i_ + "] isClicked."); isClicked_ = true; }
             }
             
-            if (!isClicked_) {
+            }
+            
+            if (isClicked_) {
                 
-                //
+                
+                gfgame.actionPerformed(menuItem.getActionCommand(), menuItem);
                 
             }
             
@@ -584,6 +602,21 @@ public class GFGame extends BasicGame{
             //throw new UnsupportedOperationException("Not supported yet.");
         }
         //
+    }
+    
+    public void actionPerformed (String actionCommand, GameMenuItem menuItem) {
+        
+        /***********************************************
+         * 
+         * Methode wird aufgerufen, wenn ein Menü angeklickt wurde.
+         * Dabei wird der String actionCommand des Menüs übergeben,
+         * der vorher mittels menuItem.setActionCommand (String action_command);
+         * übergeben wird. (evtl. der init()-Methode)
+         * 
+         **********************************************/
+        
+        System.out.println("ActionCommand: " + actionCommand);
+        
     }
     
 }

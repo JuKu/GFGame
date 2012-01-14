@@ -86,6 +86,36 @@ public class GameMenu {
         
     }
     
+    public GameMenuItem mouseClicked (int mouse_x, int mouse_y) {
+            
+        Boolean isMouseClicked = false;
+        GameMenuItem menuItem = null;
+        
+        for (int i = 0; i <= MenuItemCounter; i++) {
+            
+            if (menuItems[i] != null && !isMouseClicked) {
+                
+                isMouseClicked = menuItems[i].isMouseClicked(mouse_x, mouse_y);
+                
+                if (isMouseClicked) {
+                    menuItem = menuItems[i];
+                    //break;
+                } else {
+                   //
+                }
+                
+            }
+            
+        }
+        
+        if (isMouseClicked && menuItem != null) {
+            return menuItem;
+        } else {
+            return null;
+        }
+            
+    }
+    
     public void paint (Graphics g) {
         /*g.setColor(Color.white);
         g.fillRoundRect(x, y, (width * (MenuItemCounter + 10) + 10), this.menu_reihe * 50, 50);

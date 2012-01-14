@@ -19,6 +19,7 @@ public class GameMenuItem {
     private Boolean isShown = true;
     
     private Color color_filter = null;
+    private String action_command = "";
     
     public GameMenuItem (String MenuTitle, Image image) {
         this.menu_title = MenuTitle;
@@ -40,6 +41,14 @@ public class GameMenuItem {
     
     public void actionPerformed () {
         //
+    }
+    
+    public void setActionCommand (String command) {
+        action_command = command;
+    }
+    
+    public String getActionCommand () {
+        return action_command;
     }
     
     public Boolean isMouseClicked (int mouse_x, int mouse_y) {
