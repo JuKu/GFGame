@@ -30,6 +30,12 @@ public class AnimalManager {
     
     public void paintAnimals (Graphics g) {
         
+        /*********************************
+         * 
+         * Animals "zeichnen"
+         * 
+         ********************************/
+        
         for (int i = 0; i < animals.length; i++) {
             
             if (animals[i] != null) {

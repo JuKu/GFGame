@@ -1,8 +1,5 @@
 package net.generationfuture.game;
 
-import animals.Animal;
-import animals.Rabbit;
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -10,13 +7,11 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.*;
-
 import objects.Object;
 import objects.Tree1;
 import java.awt.Font.*;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
-import org.newdawn.slick.gui.TextField;
 
 public class GFGame extends BasicGame{
 
@@ -53,7 +48,6 @@ public class GFGame extends BasicGame{
     int height = 200;
     
     int grafik_ebenen = 3;
-    Animal animals[];/********************************************************/
     
     public int zoom = 0;
     Config config;
@@ -64,6 +58,7 @@ public class GFGame extends BasicGame{
     NeedsDisplay bedürfnis_anzeige;
     
     AnimalManager animal_manager;
+    ObjectManager object_manager;
     
     public GFGame() throws SlickException
     {
@@ -126,9 +121,6 @@ public class GFGame extends BasicGame{
         //Animal_Manager erzeugen, der sich um die Animals kümmert.
         animal_manager = new AnimalManager(config, player);
         
-        /*animals = new Animal[100];
-        animals[0] = new Rabbit("Hase1", 100, 200);*/
-        
         objects[0] = new Tree1(200, 200, this.tree1_picture1, "Baum1");
         objects[1] = new Tree1(200 + 128, 200, this.tree1_picture1, "Baum2");
         
@@ -159,21 +151,8 @@ public class GFGame extends BasicGame{
             JOptionPane.showInternalMessageDialog(new JLabel("test"), this);
         }
         
-        /*for (int i = 0; i < animals.length; i++) {
-            
-            if (animals[i] != null) {
-                animals[i].move();
-            }
-            
-        }*/
-        
         //Animals bewegen
         animal_manager.moveAnimals();
-        
-        //player.addHunger(-1);
-        //player.addEnergie(-1);
-        //player.addHygiene(-1);
-        //player.addHarndrang(-1);
         
     }
  
@@ -191,20 +170,6 @@ public class GFGame extends BasicGame{
             }
             
         }
-        
-        /*********************************
-         * 
-         * Animals "zeichnen"
-         * 
-         ********************************/
-        
-        /*for (int i = 0; i < animals.length; i++) {
-            
-            if (animals[i] != null) {
-                animals[i].paint(g);
-            }
-            
-        }*/
         
         //Animals zeichnen
         animal_manager.paintAnimals(g);
@@ -255,20 +220,6 @@ public class GFGame extends BasicGame{
             
         }
         
-        /********************************************
-         * 
-         * Animal-Menu
-         * 
-         *******************************************/
-        
-        /*for (int i = 0; i < animals.length; i++) {
-            
-            if (animals[i] != null) {
-                animals[i].paintMenu(g);
-            }
-            
-        }*/
-        
         //Animal-Menü zeichnen
         animal_manager.paintAnimalMenu(g);
         
@@ -295,14 +246,6 @@ public class GFGame extends BasicGame{
             }
             
         }
-        
-        /*for (int i = 0; i < animals.length; i++) {
-            
-            if (animals[i] != null) {
-                animals[i].scroll(x, y);
-            }
-            
-        }*/
         
         //Animals scrollen
         animal_manager.scrollAnimals(x, y);
@@ -359,12 +302,12 @@ public class GFGame extends BasicGame{
             
             }
             
-            if (isClicked_) {
+            /*if (isClicked_) {
                 
                 //System.out.println("Clicked.");
                 gfgame.actionPerformed(menuItem.getActionCommand(), menuItem);
                 
-            }
+            }*/
             
             }
         }
@@ -392,29 +335,8 @@ public class GFGame extends BasicGame{
                 menuItem.setMouseOver(true);
             }
             
-            /*********************************
-             * 
-             * Teste, ob Maus über Animal "gefahren" wurde.
-             * 
-             ********************************/
-            
-            /*if (!isMouseMoved) {
-            
-                for (int i_ = 0; i_ < objects.length; i_++) {
-
-                    Boolean isClicked;
-
-                    if (animals[i_] != null) {
-                        Boolean isMouseMoved_ = animals[i_].mouseMoved(mouse_x, mouse_y);
-                        if (isMouseMoved_) { isMouseMoved = true; }
-                    }
-
-                }
-            
-            }*/
-            
             //Testen, ob Maus über Animals gefahren wurde.
-            isMouseMoved = animal_manager.isMouseOver(mouse_x, mouse_y, isMouseMoved);
+            isMouseMoved = gfgame.animal_manager.isMouseOver(mouse_x, mouse_y, isMouseMoved);
             
             /*********************************
              * 
