@@ -25,12 +25,21 @@ public class Config {
     private String username = "testuser1";
     private String passwort = "testuser1234";
     
+    private int showIRC_Chat = 1;
+    private int IRC_Chat_max_lines = 5;
+    private int IRC_Chat_showRanks = 1;
+    private int IRC_Chat_showUsername=1;
+    private String IRC_Chat_cache_folder = "";
+    private String IRC_Chat_config_file = "GameData/Config/IRC_Chat.ini";
+    
     public Config (String config_datei) throws IOException {
         this.config_datei = new INIDatei(config_datei);
         loadConfig();
         this.debug_datei = new INIDatei("GameData/Config/Debug.ini");
         loadDebugConfig();
         loadWebClient();
+        
+        loadIRC_ChatConfig();
     }
     
     public final void loadConfig () throws IOException {
@@ -119,6 +128,26 @@ public class Config {
              return true;
              
          }
+        
+    }
+    
+    public final void loadIRC_ChatConfig () {
+        INIDatei inidatei = new INIDatei(this.IRC_Chat_config_file);
+        
+        this.showIRC_Chat = inidatei.leseInteger("IRC_Chat", "showIRC_Chat", 1);
+        this.IRC_Chat_max_lines = inidatei.leseInteger("IRC_Chat", "max_lines", 5);
+        this.IRC_Chat_showRanks = inidatei.leseInteger("IRC_Chat", "showRanks", 1);
+        this.IRC_Chat_showUsername = inidatei.leseInteger("IRC_Chat", "showUsername", 1);
+        this.IRC_Chat_cache_folder = inidatei.leseString("IRC_Chat", "cache_folder");
+    }
+    
+    public Boolean showIRC_Chat () {
+        
+        if (this.showIRC_Chat == 0) {
+            return false;
+        } else {
+            return true;
+        }
         
     }
     

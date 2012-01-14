@@ -26,6 +26,7 @@ public class IRC_Chat {
         this.config = config;
         
         messages = new String[100][5];
+        showChat = config.showIRC_Chat();
     }
     
     public void switchshowChat () {
