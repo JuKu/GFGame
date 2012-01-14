@@ -68,22 +68,7 @@ public class GFGame extends BasicGame{
         grasland = new TiledMap("materials/test_.tmx","materials");
         
         game_menu = new GameMenu("Menu1", null, 140, 10);
-        GameMenuItem menuItem = new GameMenuItem("test", new Image("materials/buttons/Buttons1/base_button_code.png"));
-        menuItem.setActionCommand("settings");
-        game_menu.addMenuItem(menuItem);
-        
-        menuItem = new GameMenuItem("test", new Image("materials/buttons/Buttons1/base_button_bugs.png"));
-        menuItem.setActionCommand("bugs");
-        game_menu.addMenuItem(menuItem);
-        menuItem = new GameMenuItem("Menu_1", new Image("materials/buttons/Buttons1/base_button_faq.png"));
-        menuItem.setActionCommand("faq");
-        game_menu.addMenuItem(menuItem);
-        menuItem = new GameMenuItem("Menu_2", new Image("materials/buttons/Buttons1/base_button_irc.png"));
-        menuItem.setActionCommand("irc");
-        game_menu.addMenuItem(menuItem);
-        menuItem = new GameMenuItem("Menu_2", new Image("materials/buttons/Buttons1/base_button.png"));
-        menuItem.setActionCommand("base_button");
-        game_menu.addMenuItem(menuItem);
+        game_menu = MenuManager.getGameMenu(game_menu);//Menu übergeben.
         
         player = new Player();
         
@@ -174,7 +159,7 @@ public class GFGame extends BasicGame{
          * Methode wird aufgerufen, wenn ein Menü angeklickt wurde.
          * Dabei wird der String actionCommand des Menüs übergeben,
          * der vorher mittels menuItem.setActionCommand (String action_command);
-         * übergeben wird. (evtl. der init()-Methode)
+         * übergeben wird. (evtl. in der init()-Methode)
          * 
          **********************************************/
         
