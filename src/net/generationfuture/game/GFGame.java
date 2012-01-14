@@ -7,8 +7,6 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.*;
-import objects.Object;
-import objects.Tree1;
 import java.awt.Font.*;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
