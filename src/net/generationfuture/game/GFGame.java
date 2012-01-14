@@ -55,9 +55,10 @@ public class GFGame extends BasicGame{
     
     public int zoom = 0;
     Config config;
-    
     String config_datei = "GameData/Config/Config.ini";
     WebClient client;
+    
+    IRC_Chat irc_chat;
     
     public GFGame() throws SlickException
     {
@@ -128,6 +129,8 @@ public class GFGame extends BasicGame{
         //objects_3[0] = new Tree1(180, 210, this.tree1_picture1);
         
         player = new Player();
+        irc_chat = new IRC_Chat(client, this, player, config);
+        
         gc.getInput().addMouseListener(new GameMouseListener(this));
      }
  
@@ -406,6 +409,8 @@ public class GFGame extends BasicGame{
             
         }
         
+        irc_chat.paint(g);
+        
     }
  
     public static void main(String[] args) 
@@ -622,6 +627,10 @@ public class GFGame extends BasicGame{
          **********************************************/
         
         System.out.println("ActionCommand: " + actionCommand);
+        
+        if ("irc".equals(actionCommand)) {
+            irc_chat.switchshowChat();
+        }
         
     }
     
