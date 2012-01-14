@@ -475,7 +475,9 @@ public class GFGame extends BasicGame{
             
             if (menuItem != null) {
                 isClicked_ = true;
-                //
+                
+                //System.out.println("Clicked.");
+                gfgame.actionPerformed(menuItem.getActionCommand(), menuItem);
             }
             
             //System.out.println("Mouse x: " + mouse_x + ", y: " + mouse_y + ".");
@@ -501,7 +503,7 @@ public class GFGame extends BasicGame{
             
             if (isClicked_) {
                 
-                
+                //System.out.println("Clicked.");
                 gfgame.actionPerformed(menuItem.getActionCommand(), menuItem);
                 
             }

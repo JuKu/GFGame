@@ -54,7 +54,25 @@ public class GameMenuItem {
     public Boolean isMouseClicked (int mouse_x, int mouse_y) {
         
         if (mouse_x > x && mouse_x < x + width + mouseOverX) {
+            //System.out.println("MenuX: " + x + ", MenuY: " + y + ".");
+            if (mouse_y > y && mouse_y < y + height + mouseOverY) {
+                return true;
+            } else {
+                return false;
+            }
             
+        } else {
+            
+            return false;
+            
+        }
+        
+    }
+    
+    public Boolean isMouseOver (int mouse_x, int mouse_y) {
+        
+        if (mouse_x > x && mouse_x < x + width + mouseOverX) {
+            //System.out.println("MenuX: " + x + ", MenuY: " + y + ".");
             if (mouse_y > y && mouse_y < y + height + mouseOverY) {
                 return true;
             } else {

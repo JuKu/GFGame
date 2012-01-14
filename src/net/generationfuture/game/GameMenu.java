@@ -66,7 +66,7 @@ public class GameMenu {
             
             if (menuItems[i] != null && !isMouseOver) {
                 
-                isMouseOver = menuItems[i].isMouseClicked(mouse_x, mouse_y);
+                isMouseOver = menuItems[i].isMouseOver(mouse_x, mouse_y);
                 
                 if (isMouseOver) {
                     menuItem = menuItems[i];
