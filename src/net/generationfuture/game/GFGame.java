@@ -3,11 +3,9 @@ package net.generationfuture.game;
 import animals.Animal;
 import animals.Rabbit;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import org.newdawn.slick.*;
@@ -15,6 +13,10 @@ import org.newdawn.slick.tiled.*;
 
 import objects.Object;
 import objects.Tree1;
+import java.awt.Font.*;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.gui.TextField;
 
 public class GFGame extends BasicGame{
 
@@ -409,7 +411,7 @@ public class GFGame extends BasicGame{
             
         }
         
-        irc_chat.paint(g);
+        irc_chat.paint(gc, g);
         
     }
  

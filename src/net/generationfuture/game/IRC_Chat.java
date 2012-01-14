@@ -2,6 +2,8 @@ package net.generationfuture.game;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.gui.GUIContext;
+import org.newdawn.slick.gui.TextField;
 
 public class IRC_Chat {
     
@@ -30,7 +32,7 @@ public class IRC_Chat {
         showChat = !showChat;
     }
     
-    public void paint (Graphics g) {
+    public void paint (GUIContext container, Graphics g) {
         
         if (showChat) {
             g.setColor(Color.white);
