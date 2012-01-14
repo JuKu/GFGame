@@ -63,6 +63,8 @@ public class GFGame extends BasicGame{
     IRC_Chat irc_chat;
     NeedsDisplay bedürfnis_anzeige;
     
+    AnimalManager animal_manager;
+    
     public GFGame() throws SlickException
     {
         super("GFGame");
@@ -116,11 +118,16 @@ public class GFGame extends BasicGame{
             System.err.println("NullPointerException.");
         }
         
+        player = new Player();
+        
         objects = new Object[100];
         objekte = new Object[grafik_ebenen][width][height];
         
-        animals = new Animal[100];
-        animals[0] = new Rabbit("Hase1", 100, 200);
+        //Animal_Manager erzeugen, der sich um die Animals kümmert.
+        animal_manager = new AnimalManager(config, player);
+        
+        /*animals = new Animal[100];
+        animals[0] = new Rabbit("Hase1", 100, 200);*/
         
         objects[0] = new Tree1(200, 200, this.tree1_picture1, "Baum1");
         objects[1] = new Tree1(200 + 128, 200, this.tree1_picture1, "Baum2");
@@ -131,7 +138,6 @@ public class GFGame extends BasicGame{
         objects_3 = new Object[100];
         //objects_3[0] = new Tree1(180, 210, this.tree1_picture1);
         
-        player = new Player();
         irc_chat = new IRC_Chat(client, this, player, config);
         
         bedürfnis_anzeige = new NeedsDisplay(player);
@@ -153,13 +159,16 @@ public class GFGame extends BasicGame{
             JOptionPane.showInternalMessageDialog(new JLabel("test"), this);
         }
         
-        for (int i = 0; i < animals.length; i++) {
+        /*for (int i = 0; i < animals.length; i++) {
             
             if (animals[i] != null) {
                 animals[i].move();
             }
             
-        }
+        }*/
+        
+        //Animals bewegen
+        animal_manager.moveAnimals();
         
         //player.addHunger(-1);
         //player.addEnergie(-1);
@@ -189,13 +198,16 @@ public class GFGame extends BasicGame{
          * 
          ********************************/
         
-        for (int i = 0; i < animals.length; i++) {
+        /*for (int i = 0; i < animals.length; i++) {
             
             if (animals[i] != null) {
                 animals[i].paint(g);
             }
             
-        }
+        }*/
+        
+        //Animals zeichnen
+        animal_manager.paintAnimals(g);
         
         //Player zeichnen
         player.getImage().draw(352, 224);//playerposImage.draw(394, 294);
@@ -249,13 +261,16 @@ public class GFGame extends BasicGame{
          * 
          *******************************************/
         
-        for (int i = 0; i < animals.length; i++) {
+        /*for (int i = 0; i < animals.length; i++) {
             
             if (animals[i] != null) {
                 animals[i].paintMenu(g);
             }
             
-        }
+        }*/
+        
+        //Animal-Menü zeichnen
+        animal_manager.paintAnimalMenu(g);
         
         irc_chat.paint(gc, g);
         
@@ -281,13 +296,16 @@ public class GFGame extends BasicGame{
             
         }
         
-        for (int i = 0; i < animals.length; i++) {
+        /*for (int i = 0; i < animals.length; i++) {
             
             if (animals[i] != null) {
                 animals[i].scroll(x, y);
             }
             
-        }
+        }*/
+        
+        //Animals scrollen
+        animal_manager.scrollAnimals(x, y);
         
     }
     
@@ -380,7 +398,7 @@ public class GFGame extends BasicGame{
              * 
              ********************************/
             
-            if (!isMouseMoved) {
+            /*if (!isMouseMoved) {
             
                 for (int i_ = 0; i_ < objects.length; i_++) {
 
@@ -393,7 +411,10 @@ public class GFGame extends BasicGame{
 
                 }
             
-            }
+            }*/
+            
+            //Testen, ob Maus über Animals gefahren wurde.
+            isMouseMoved = animal_manager.isMouseOver(mouse_x, mouse_y, isMouseMoved);
             
             /*********************************
              * 
