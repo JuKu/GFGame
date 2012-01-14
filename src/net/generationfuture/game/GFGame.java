@@ -463,6 +463,8 @@ public class GFGame extends BasicGame{
             int mouse_x = i1;
             int mouse_y = i2;
             
+            Boolean isClicked_ = false;
+            
             //System.out.println("Mouse x: " + mouse_x + ", y: " + mouse_y + ".");
             
             /*********************************
@@ -470,8 +472,6 @@ public class GFGame extends BasicGame{
              * Teste, ob Object angeklickt wurde.
              * 
              ********************************/
-            
-            Boolean isClicked_ = false;
             
             for (int i_ = 0; i_ < objects.length; i_++) {
                 
