@@ -53,7 +53,7 @@ public class GFGame extends BasicGame{
     int height = 200;
     
     int grafik_ebenen = 3;
-    Animal animals[];
+    Animal animals[];/********************************************************/
     
     public int zoom = 0;
     Config config;
