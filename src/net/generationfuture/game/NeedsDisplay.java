@@ -13,6 +13,12 @@ public class NeedsDisplay {
     
     public void paint (Graphics g) {
         
+        /*********************************
+        * 
+        * Bedürfnis-Anzeige
+        * 
+        ********************************/
+        
         g.setColor(Color.blue);
         g.drawLine(0, 500, 800, 500);
         g.setColor(Color.white);
