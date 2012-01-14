@@ -271,21 +271,6 @@ public class GFGame extends BasicGame{
          app.start();
     }
     
-    public BufferedImage makeTransparent (BufferedImage img) {
-        
-        for (int i = img.getWidth() - 1; i > -1; i--) {
-	for (int j = img.getHeight() - 1;  j > -1; j--) {
-		if (img.getRGB(i, j) == new Color(255,255,255).getAlpha()) {
-			img.setRGB(i, j, new Color(0, 0, 0, 0).getAlpha());
-		}
-	}
-        
-        }
-        
-        return img;
-        
-    }
-    
     public void scroll (int x, int y) {
         
         for (int i = 0; i < objects.length; i++) {
@@ -336,8 +321,6 @@ public class GFGame extends BasicGame{
                 //System.out.println("Clicked.");
                 gfgame.actionPerformed(menuItem.getActionCommand(), menuItem);
             }
-            
-            //System.out.println("Mouse x: " + mouse_x + ", y: " + mouse_y + ".");
             
             /*********************************
              * 
@@ -390,8 +373,6 @@ public class GFGame extends BasicGame{
                 isMouseMoved = true;
                 menuItem.setMouseOver(true);
             }
-            
-            //System.out.println("mouse_x: " + mouse_x + ", mouse_y: " + mouse_y + ".");//throw new UnsupportedOperationException("Not supported yet.");
             
             /*********************************
              * 
