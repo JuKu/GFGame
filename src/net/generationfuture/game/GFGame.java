@@ -13,6 +13,7 @@ import java.awt.Font.*;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
+    
 public class GFGame extends BasicGame{
 
     // @param args
@@ -23,12 +24,12 @@ public class GFGame extends BasicGame{
     
     TileSet tileset;
         
-        Image tree1_picture1;
+        /*Image tree1_picture1;
         Image tree1_picture2;
         Image tree1_picture3;
         Image tree1_picture4;
         
-        Image gras1;
+        Image gras1;*/
 
     int x = 0;
     int y = 0;
@@ -36,18 +37,18 @@ public class GFGame extends BasicGame{
     int minimapx = 248;
     int minimapy = 200;
     
-    Object objects[];
+    /*Object objects[];
     Object objects_2[];//2. Grafik-Ebene
-    Object objects_3[];//3. Grafik-Ebene
+    Object objects_3[];//3. Grafik-Ebene*/
     Player player;
     
-    Object objekte[][][];
+    //Object objekte[][][];
     GameMenu game_menu;
     
-    int width = 200;
-    int height = 200;
+    /*int width = 200;
+    int height = 200;*/
     
-    int grafik_ebenen = 3;
+    //int grafik_ebenen = 3;
     
     public int zoom = 0;
     Config config;
@@ -70,10 +71,11 @@ public class GFGame extends BasicGame{
 			throws SlickException {
         minimap = new Image("materials/mystery.png");
         map = new TiledMap("materials/mystery1.tmx","materials");
-        playerposImage = new Image("materials/point.png");
-        tree1_picture1 = new Image("materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
         
-        gras1 = new Image("materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
+        playerposImage = new Image("materials/point.png");
+        /*tree1_picture1 = new Image("materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
+        
+        gras1 = new Image("materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));*/
         try {
             config = new Config(config_datei);
         } catch (IOException ex) {
@@ -109,25 +111,27 @@ public class GFGame extends BasicGame{
         menuItem.setActionCommand("base_button");
         game_menu.addMenuItem(menuItem);
         
-        if (this.tree1_picture1 == null) {
+        /*if (this.tree1_picture1 == null) {
             System.err.println("NullPointerException.");
-        }
+        }*/
         
         player = new Player();
         
-        objects = new Object[100];
-        objekte = new Object[grafik_ebenen][width][height];
+        /*objects = new Object[100];
+        objekte = new Object[grafik_ebenen][width][height];*/
         
+        //Object_Manager erzeugen, der sich um die Objekte kümmert.
+        object_manager = new ObjectManager(config, player);
         //Animal_Manager erzeugen, der sich um die Animals kümmert.
         animal_manager = new AnimalManager(config, player);
         
-        objects[0] = new Tree1(200, 200, this.tree1_picture1, "Baum1");
+        /*objects[0] = new Tree1(200, 200, this.tree1_picture1, "Baum1");
         objects[1] = new Tree1(200 + 128, 200, this.tree1_picture1, "Baum2");
         
         objekte[2][1][1] = objects[0];
         objects_2 = new Object[100];
         
-        objects_3 = new Object[100];
+        objects_3 = new Object[100];*/
         //objects_3[0] = new Tree1(180, 210, this.tree1_picture1);
         
         irc_chat = new IRC_Chat(client, this, player, config);
@@ -163,13 +167,16 @@ public class GFGame extends BasicGame{
         
         map.render(0,0,x-400,y-300,800,600);
         
-        for (int i = 0; i < objects_3.length; i++) {
+        /*for (int i = 0; i < objects_3.length; i++) {
             
             if (objects_3[i] != null) {
                 objects_3[i].paint(g);
             }
             
-        }
+        }*/
+        
+        //Objects Ebene 3 zeichnen
+        object_manager.paintObjectsLayer3(g);
         
         //Animals zeichnen
         animal_manager.paintAnimals(g);
@@ -177,21 +184,27 @@ public class GFGame extends BasicGame{
         //Player zeichnen
         player.getImage().draw(352, 224);//playerposImage.draw(394, 294);
         
-        for (int i = 0; i < objects_2.length; i++) {
+        /*for (int i = 0; i < objects_2.length; i++) {
             
             if (objects_2[i] != null) {
                 objects_2[i].paint(g);
             }
             
-        }
+        }*/
         
-        for (int i = 0; i < objects.length; i++) {
+        //Objects Ebene 2 zeichnen
+        object_manager.paintObjectsLayer2(g);
+        
+        /*for (int i = 0; i < objects.length; i++) {
             
             if (objects[i] != null) {
                 objects[i].paint(g);
             }
             
-        }
+        }*/
+        
+        //Objects zeichnen
+        object_manager.paintObjects(g);
         
         map.render(0,0,x-60,y-60,120,120);
         game_menu.paint(g);
@@ -212,13 +225,16 @@ public class GFGame extends BasicGame{
          * 
          *******************************************/
         
-        for (int i = 0; i < objects.length; i++) {
+        /*for (int i = 0; i < objects.length; i++) {
             
             if (objects[i] != null) {
                 objects[i].paintMenu(g);
             }
             
-        }
+        }*/
+        
+        //Object-Menü zeichnen
+        object_manager.paintObjectMenu(g);
         
         //Animal-Menü zeichnen
         animal_manager.paintAnimalMenu(g);
@@ -239,14 +255,16 @@ public class GFGame extends BasicGame{
     
     public void scroll (int x, int y) {
         
-        for (int i = 0; i < objects.length; i++) {
+        /*for (int i = 0; i < objects.length; i++) {
             
             if (objects[i] != null) {
                 objects[i].scroll(x, y);
             }
             
-        }
+        }*/
         
+        //Objects scrollen
+        object_manager.scrollObjects(x, y);
         //Animals scrollen
         animal_manager.scrollAnimals(x, y);
         
@@ -289,7 +307,7 @@ public class GFGame extends BasicGame{
              * 
              ********************************/
             
-            if (!isClicked_) {
+            /*if (!isClicked_) {
             
             for (int i_ = 0; i_ < objects.length; i_++) {
                 
@@ -300,16 +318,19 @@ public class GFGame extends BasicGame{
                 if (isClicked) { System.out.println("Object[" + i_ + "] isClicked."); isClicked_ = true; }
             }
             
-            }
+            }*/
+            
+            //Teste, ob Object angeklickt wurde.
+            object_manager.isClicked(mouse_x, mouse_y, isClicked_);
             
             /*if (isClicked_) {
                 
                 //System.out.println("Clicked.");
                 gfgame.actionPerformed(menuItem.getActionCommand(), menuItem);
                 
-            }*/
-            
             }
+            
+            }*/
         }
 
         @Override
@@ -337,6 +358,8 @@ public class GFGame extends BasicGame{
             
             //Testen, ob Maus über Animals gefahren wurde.
             isMouseMoved = gfgame.animal_manager.isMouseOver(mouse_x, mouse_y, isMouseMoved);
+             //Teste, ob Maus über Object "gefahren" wurde.
+            isMouseMoved = gfgame.object_manager.isMouseOver(mouse_x, mouse_y, isMouseMoved);
             
             /*********************************
              * 
@@ -344,7 +367,7 @@ public class GFGame extends BasicGame{
              * 
              ********************************/
             
-            if (!isMouseMoved) {
+            /*if (!isMouseMoved) {
             
                 for (int i_ = 0; i_ < objects.length; i_++) {
 
@@ -356,7 +379,8 @@ public class GFGame extends BasicGame{
 
                 }
             
-            }
+            }*/
+            
         }
 
         @Override
@@ -386,7 +410,6 @@ public class GFGame extends BasicGame{
         }
         //
     }
-    
     public void actionPerformed (String actionCommand, GameMenuItem menuItem) {
         
         /***********************************************
@@ -405,5 +428,5 @@ public class GFGame extends BasicGame{
         }
         
     }
-    
+
 }

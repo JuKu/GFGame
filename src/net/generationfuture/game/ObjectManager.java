@@ -49,6 +49,10 @@ public class ObjectManager {
         
         objects_3 = new Object[100];
         //objects_3[0] = new Tree1(180, 210, this.tree1_picture1);
+        
+        if (this.tree1_picture1 == null) {
+            System.err.println("NullPointerException.");
+        }
     }
     
     public void createObjects () {
@@ -58,10 +62,10 @@ public class ObjectManager {
     public Boolean isMouseOver (int mouse_x, int mouse_y, Boolean isMouseMoved) {
         
         /*********************************
-             * 
-             * Teste, ob Maus über Object "gefahren" wurde.
-             * 
-             ********************************/
+        * 
+        * Teste, ob Maus über Object "gefahren" wurde.
+        * 
+        ********************************/
             
             if (!isMouseMoved) {
             
@@ -82,6 +86,12 @@ public class ObjectManager {
     }
     
     public Boolean isClicked (int mouse_x, int mouse_y, Boolean isClicked_) {
+        
+        /*********************************
+        * 
+        * Teste, ob Object angeklickt wurde.
+        * 
+        ********************************/
         
         if (!isClicked_) {
             
