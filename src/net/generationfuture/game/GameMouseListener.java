@@ -6,8 +6,9 @@ import org.newdawn.slick.MouseListener;
 public class GameMouseListener implements MouseListener {
 
     GFGame gfgame;
+    Player player;
         
-        public GameMouseListener (GFGame gfgame) {
+        public GameMouseListener (GFGame gfgame, Player player) {
             this.gfgame = gfgame;
         }
 

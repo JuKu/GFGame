@@ -82,7 +82,7 @@ public class GFGame extends BasicGame{
         irc_chat = new IRC_Chat(client, this, player, config);
         bedürfnis_anzeige = new NeedsDisplay(player);
         
-        gc.getInput().addMouseListener(new GameMouseListener(this));
+        gc.getInput().addMouseListener(new GameMouseListener(this, player));
      }
  
     @Override

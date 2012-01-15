@@ -25,6 +25,8 @@ public abstract class Animal extends Object {
     
     protected int x = 50;
     protected int y = 50;
+    protected double xp = 0;
+    protected double yp = 0;
     
     protected int durst = 100;
     protected int hunger = 100;
@@ -75,6 +77,9 @@ public abstract class Animal extends Object {
     }
     
     public void paint (Graphics g,double xp,double yp) {
+        
+        this.xp = xp;
+        this.yp = yp;
         
         if (!walking) {
             stopped[orientation].draw(x-(int)xp,y-(int)yp);
