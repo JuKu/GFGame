@@ -34,6 +34,7 @@ public class GFGame extends BasicGame{
     public AnimalManager animal_manager;
     public ObjectManager object_manager;
     
+    private inputHandler ih = new inputHandler();
     
     public GFGame() throws SlickException
     {
@@ -90,10 +91,7 @@ public class GFGame extends BasicGame{
 			throws SlickException     
     {
         
-        if (gc.getInput().isKeyDown(Input.KEY_LEFT)) {player.moveLeft();}
-	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {player.moveRight();}
-	if (gc.getInput().isKeyDown(Input.KEY_UP)) {player.moveUp(); }
-	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {player.moveDown(); }
+        ih.check(gc,player);
         
         if (gc.isMouseGrabbed()) {
             JOptionPane.showInternalMessageDialog(new JLabel("test"), this);

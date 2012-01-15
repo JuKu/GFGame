@@ -25,8 +25,11 @@ public abstract class Animal extends Object {
     
     protected int x = 50;
     protected int y = 50;
-    protected double xp = 0;
-    protected double yp = 0;
+    //protected double xp = 0;
+    //protected double yp = 0;
+    
+    protected int movingSpeed = 1;
+    protected int omovingSpeed = 1;
     
     protected int durst = 100;
     protected int hunger = 100;
@@ -78,8 +81,8 @@ public abstract class Animal extends Object {
     
     public void paint (Graphics g,double xp,double yp) {
         
-        this.xp = xp;
-        this.yp = yp;
+        //this.xp = xp;
+        //this.yp = yp;
         
         if (!walking) {
             stopped[orientation].draw(x-(int)xp,y-(int)yp);
@@ -114,28 +117,34 @@ public abstract class Animal extends Object {
         return animalmenu;
     }
     
-    public void scroll (int x, int y) {
-        this.x = this.x + x;
-        this.y = this.y + y;
-    }
-    
     public void drink (int drink) {
         this.durst = this.durst + drink;
+        this.movingSpeed = this.omovingSpeed/(101-this.durst);
     }
     
     public void eat (int eat) {
         this.hunger = this.hunger + eat;
+        this.movingSpeed = this.omovingSpeed/(101-this.hunger);
     }
     
     public void move () {
         
         walkingRight();
         
+        if((this.durst<50||this.hunger<50)&&this.movingSpeed>1) {
+            if(this.durst<50) {
+                this.movingSpeed=this.omovingSpeed/(101-this.durst);
+            }
+            else {
+                this.movingSpeed = this.omovingSpeed/(101-this.hunger);
+            }
+        }
+        
         switch(orientation) {
-            case 1: x--; break;
-            case 3: x++; break;
-            case 2: y--; break;
-            default: y++; break;
+            case 1: x-=movingSpeed; break;
+            case 3: x+=movingSpeed; break;
+            case 2: y-=movingSpeed; break;
+            default: y+=movingSpeed; break;
         }
         
     }

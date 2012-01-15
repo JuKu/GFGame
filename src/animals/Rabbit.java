@@ -9,6 +9,7 @@ public class Rabbit extends Animal {
     public Rabbit (String name, int x, int y) throws SlickException {
         super(name, x, y);
         
+        this.omovingSpeed = this.movingSpeed = 5;
         
         for(int i =0;i<4;++i) {
             stopped[i] = new Image("materials/animals/rabbit/stopped000"+(i*2)+".bmp",new Color(97, 68, 43, 255));

@@ -223,16 +223,16 @@ public class Player {
             
             picture_counter++;
             
-            if (picture_counter > 7) {
+            if (picture_counter > 14) {
                 picture_counter = 0;
                 walking = false;
             }
             
             switch(orientation) {
-                case 1:return walking_lefti[picture_counter];
-                case 2:return walking_backi[picture_counter];
-                case 3:return walking_righti[picture_counter];
-                default:return walking_fori[picture_counter];
+                case 1:return walking_lefti[picture_counter/2];
+                case 2:return walking_backi[picture_counter/2];
+                case 3:return walking_righti[picture_counter/2];
+                default:return walking_fori[picture_counter/2];
            }        
         }
      }
