@@ -1,1 +1,0 @@
-In diesem Ordner sind Menu-Grafiken.
