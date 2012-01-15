@@ -80,12 +80,12 @@ public abstract class Animal extends Object {
             stopped[orientation].draw(x-(int)xp,y-(int)yp);
         } else {
             
-            if (picture_counter >= 7) {
-                picture_counter = -1;
+            picture_counter++;
+            
+            if (picture_counter > 7) {
+                picture_counter = 0;
                 walking = false;
             }
-            
-            picture_counter++;
 
             switch(orientation) {
                 case 1: walking_left[picture_counter].draw(x-(int)xp, y-(int)yp); break;

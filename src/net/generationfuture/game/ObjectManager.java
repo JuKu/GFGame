@@ -120,7 +120,7 @@ public class ObjectManager {
         for (int i = 0; i < objects_2.length; ++i) {
             
             if (objects_2[i] != null) {
-                if(((front&&objects_2[i].getY()<=y+objects_2[i].getImage().getHeight())||(!front&&objects_2[i].getY()>y+objects_2[i].getImage().getHeight()))) {
+                if(((front&&objects_2[i].getY()+objects_2[i].getImage().getHeight()>y)||(!front&&objects_2[i].getY()+objects_2[i].getImage().getHeight()<=y))) {
                     objects_2[i].paint(g,x,y);
                 }
             }
@@ -134,7 +134,7 @@ public class ObjectManager {
         for (int i = 0; i < objects_3.length; ++i) {
             
             if (objects_3[i] != null) {
-                if(((front&&objects_3[i].getY()<=y+objects[i].getImage().getHeight())||(!front&&objects_3[i].getY()>y+objects_3[i].getImage().getHeight()))) {
+                if(((front&&objects_3[i].getY()+objects[i].getImage().getHeight()>y)||(!front&&objects_3[i].getY()+objects_3[i].getImage().getHeight()<=y))) {
                     objects_3[i].paint(g,x,y);
                 }
             }
@@ -148,7 +148,7 @@ public class ObjectManager {
         for (int i = 0; i < objects.length; ++i) {
             
             if (objects[i] != null) {
-                if(((front&&objects[i].getY()<=y+objects[i].getImage().getHeight())||(!front&&objects[i].getY()>y+objects[i].getImage().getHeight()))) {
+                if(((front&&objects[i].getY()+objects[i].getImage().getHeight()>y)||(!front&&objects[i].getY()+objects[i].getImage().getHeight()<=y))) {
                     objects[i].paint(g,x,y);
                 }
             }

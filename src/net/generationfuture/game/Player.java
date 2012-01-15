@@ -221,12 +221,12 @@ public class Player {
        }
        else {
             
-            if (picture_counter >= 7) {
-                picture_counter = -1;
+            picture_counter++;
+            
+            if (picture_counter > 7) {
+                picture_counter = 0;
                 walking = false;
             }
-            
-            picture_counter++;
             
             switch(orientation) {
                 case 1:return walking_lefti[picture_counter];
