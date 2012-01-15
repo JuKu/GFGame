@@ -12,6 +12,8 @@ public class WebClient extends Thread {
     protected BufferedReader vomServer;
     protected PrintWriter zumServer;
     
+    private boolean ready = false;
+    
     protected int timeout = 5000;
     protected String vomServer_text = "";
     
@@ -53,6 +55,7 @@ public class WebClient extends Thread {
         vomServer_text = text;
         vomServer = br;
         if (config.isDebugMode()) { System.out.println("vomServer: \"" + text + "\"."); }
+        ready = true;
     }
     
     @Override
@@ -73,10 +76,10 @@ public class WebClient extends Thread {
     
     public int[] getPlayerPos() {
         
-        /*while ((player_pos_x == 0 && player_pos_y == 0) || setPlayerData) {//Wenn gerade Pos-Daten gesendet werden, keine Player-Daten empfangen.
+        while ((player_pos_x == 0 && player_pos_y == 0) || setPlayerData && !ready) {//Wenn gerade Pos-Daten gesendet werden, keine Player-Daten empfangen.
             //warten
         }
-        */
+
         int player_pos_data[] = new int[2];
         
         /*player_pos_data[0] = player_pos_x;

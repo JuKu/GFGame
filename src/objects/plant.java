@@ -7,24 +7,9 @@ public class plant extends Object {
     
     protected Image picture;
     
-    protected Image growing1;
-    protected Image growing2;
-    protected Image growing3;
-    protected Image growing4;
-    protected Image growing5;
-    protected Image growing6;
-    protected Image growing7;
-    protected Image growing8;
+    protected Image[] growingi = new Image[8];
     
-    protected Image tipping1;
-    protected Image tipping2;
-    protected Image tipping3;
-    protected Image tipping4;
-    protected Image tipping5;
-    protected Image tipping6;
-    protected Image tipping7;
-    protected Image tipping8;
-    protected Image tipping9;
+    protected Image[] tippingi = new Image[9];
     
     Boolean tipping = false;
     Boolean isShown = true;
@@ -47,14 +32,14 @@ public class plant extends Object {
     
     public void createObject (Image picture, Image growing1, Image growing2, Image growing3, Image growing4, Image growing5, Image growing6, Image growing7, Image growing8, int x, int y) {
         this.picture = picture;
-        this.growing1 = growing1;
-        this.growing2 = growing2;
-        this.growing3 = growing3;
-        this.growing4 = growing4;
-        this.growing5 = growing5;
-        this.growing6 = growing6;
-        this.growing7 = growing7;
-        this.growing8 = growing8;
+        this.growingi[0] = growing1;
+        this.growingi[1] = growing2;
+        this.growingi[2] = growing3;
+        this.growingi[3] = growing4;
+        this.growingi[4] = growing5;
+        this.growingi[5] = growing6;
+        this.growingi[6] = growing7;
+        this.growingi[7] = growing8;
         this.id = ++plant.object_counter;
         
         this.x = x;
@@ -80,57 +65,25 @@ public class plant extends Object {
     }
     
     @Override
-    public void paint (Graphics g) {
+    public void paint (Graphics g,double xp,double yp) {
         
         if (isShown) {
         
         if (growing) {
             
-            if (growing_counter == 0) {
-                growing1.draw(x, y);
-            } else if (growing_counter == 1) {
-                growing2.draw(x, y);
-            } else if (growing_counter == 2) {
-                growing3.draw(x, y);
-            } else if (growing_counter == 3) {
-                growing4.draw(x, y);
-            } else if (growing_counter == 4) {
-                growing5.draw(x, y);
-            } else if (growing_counter == 5) {
-                growing6.draw(x, y);
-            } else if (growing_counter == 6) {
-                growing7.draw(x, y);
-            } else if (growing_counter == 7) {
-                growing8.draw(x, y);
+            if(growing_counter<8) {
+                growingi[growing_counter].draw(x-(int)xp, y);
             } else if (growing_counter == 8) {
-                picture.draw(x, y);
+                picture.draw(x-(int)xp, y-(int)yp);
             }
             
         } else if (tipping) {
             
             if (!isTipping) {
             
-            if (tipping_counter == 0) {
-                tipping1.draw(x, y);
-            } else if (tipping_counter == 1) {
-                tipping2.draw(x, y);
-            } else if (tipping_counter == 2) {
-                tipping3.draw(x, y);
-            } else if (tipping_counter == 3) {
-                tipping4.draw(x, y);
-            } else if (tipping_counter == 4) {
-                tipping5.draw(x, y);
-            } else if (tipping_counter == 5) {
-                tipping6.draw(x, y);
-            } else if (tipping_counter == 6) {
-                tipping7.draw(x, y);
-            } else if (tipping_counter == 7) {
-                tipping8.draw(x, y);
-            } else if (tipping_counter == 8) {
-                tipping9.draw(x, y);
-            } else if (tipping_counter == 9) {
-                tipping9.draw(x, y);//picture.draw(x, y);
-            }
+            if(tipping_counter<9) {
+                tippingi[tipping_counter].draw(x-(int)xp, y-(int)yp);
+            } 
             
             if (tipping_counter >= 9) {
                 tipping_counter = 0;
@@ -143,28 +96,28 @@ public class plant extends Object {
             }
             
             } else {
-                tipping9.draw(x, y);
+                tippingi[8].draw(x-(int)xp, y-(int)yp);
             }
             
         } else {
-            picture.draw(x, y);
+            picture.draw(x-(int)xp, y-(int)yp);
         }
         
         }
         
         if (mouseMoved) {
-            paintMouseOver(g);
+            paintMouseOver(g,xp,yp);
         }
         
     }
     
     @Override
-    public void paintMouseOver (Graphics g) {
+    public void paintMouseOver (Graphics g,double xp,double yp) {
         //System.out.println("paintMouseMoved.");
-        g.drawString("" + this.name, x, y);
+        g.drawString("" + this.name, x-(int)xp, y-(int)yp);
         
-        g.drawString("Object-ID: " + ObjectID, x, y + 15);
-        g.drawString("ID: " + id, x, y + 40);
+        g.drawString("Object-ID: " + ObjectID, x-(int)xp, y + 15-(int)yp);
+        g.drawString("ID: " + id, x-(int)xp, y + 40-(int)yp);
     }
     
     public void pick () {
