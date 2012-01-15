@@ -61,7 +61,6 @@ public class GFGame extends BasicGame{
         client.start();
         client.getPlayerData();
         
-        player.setPos(client.getPlayerPos());
         
         //grasland = new TiledMap("materials/test_.tmx","materials");
         
@@ -71,6 +70,7 @@ public class GFGame extends BasicGame{
         
         //error("Loading Entities...");
         player = new Player();
+        player.setPos(client.getPlayerPos());
         
         //Object_Manager erzeugen, der sich um die Objekte kümmert.
         object_manager = new ObjectManager(config, player);

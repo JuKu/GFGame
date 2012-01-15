@@ -29,11 +29,11 @@ public class Player {
     
     private Image[] stopped = new Image[4];
     
-    private Image[] walking_lefti = new Image[9];
-    private Image[] walking_righti = new Image[9];
-    private Image[] walking_fori = new Image[9];
+    private Image[] walking_lefti = new Image[8];
+    private Image[] walking_righti = new Image[8];
+    private Image[] walking_fori = new Image[8];
     
-    private Image[] walking_backi = new Image[9];
+    private Image[] walking_backi = new Image[8];
     
     int picture_counter;
     
@@ -54,17 +54,17 @@ public class Player {
         for(int i = 0;i<4;i+=2) {
             stopped[i] = new Image("materials/characters/test/stopped000"+i+".bmp",new Color(97, 68, 43, 255));
         }
-        for(int i=0;i<9;++i) {
+        for(int i=0;i<8;++i) {
             walking_lefti[i] = new Image("materials/characters/test/walking w000"+i+".bmp",new Color(97, 68, 43, 255));
         }
         
-        for(int i=0;i<9;++i) {
+        for(int i=0;i<8;++i) {
             walking_righti[i] = new Image("materials/characters/test/walking e000"+i+".bmp",new Color(97, 68, 43, 255));
         }
-        for(int i=0;i<9;++i) {
+        for(int i=0;i<8;++i) {
             walking_fori[i] = new Image("materials/characters/test/walking s000"+i+".bmp",new Color(97, 68, 43, 255));
         }
-        for(int i=0;i<9;++i) {
+        for(int i=0;i<8;++i) {
             walking_backi[i] = new Image("materials/characters/test/walking n000"+i+".bmp",new Color(97, 68, 43, 255));
         }
 

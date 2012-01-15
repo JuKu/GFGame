@@ -76,7 +76,7 @@ public class WebClient extends Thread {
     
     public int[] getPlayerPos() {
         
-        while ((player_pos_x == 0 && player_pos_y == 0) || setPlayerData && !ready) {//Wenn gerade Pos-Daten gesendet werden, keine Player-Daten empfangen.
+        while (((player_pos_x == 0 && player_pos_y == 0) || setPlayerData )&& !ready) {//Wenn gerade Pos-Daten gesendet werden, keine Player-Daten empfangen.
             //warten
         }
 

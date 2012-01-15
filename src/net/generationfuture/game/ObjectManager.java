@@ -16,10 +16,7 @@ public class ObjectManager {
     private Object objects_2[];//2. Grafik-Ebene
     private Object objects_3[];//3. Grafik-Ebene
     
-    Image tree1_picture1;
-    Image tree1_picture2;
-    Image tree1_picture3;
-    Image tree1_picture4;
+    Image[] tree1_picture = new Image[4];
     
     private int width = 200;
     private int height = 200;
@@ -38,11 +35,11 @@ public class ObjectManager {
     }
     
     public final void initObjects () throws SlickException {
-        tree1_picture1 = new Image("materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
+        tree1_picture[0] = new Image("materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
         gras1 = new Image("materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
         
-        objects[0] = new Tree1(200, 200, this.tree1_picture1, "Baum1");
-        objects[1] = new Tree1(200 + 128, 200, this.tree1_picture1, "Baum2");
+        objects[0] = new Tree1(200, 200, this.tree1_picture[0], "Baum1");
+        objects[1] = new Tree1(200 + 128, 200, this.tree1_picture[0], "Baum2");
         
         objekte[2][1][1] = objects[0];
         objects_2 = new Object[100];
@@ -50,7 +47,7 @@ public class ObjectManager {
         objects_3 = new Object[100];
         //objects_3[0] = new Tree1(180, 210, this.tree1_picture1);
         
-        if (this.tree1_picture1 == null) {
+        if (this.tree1_picture[0] == null) {
             System.err.println("NullPointerException.");
         }
     }
