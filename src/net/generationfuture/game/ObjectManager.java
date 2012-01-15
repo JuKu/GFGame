@@ -117,10 +117,12 @@ public class ObjectManager {
     
     public void paintObjectsLayer2 (Graphics g,double x,double y,boolean front) {
         
-        for (int i = 0; i < objects_2.length; i++) {
+        for (int i = 0; i < objects_2.length; ++i) {
             
-            if (objects_2[i] != null&&((front&&objects_2[i].getY()<=y)||(!front&&objects_2[i].getY()>y))) {
-                objects_2[i].paint(g,x,y);
+            if (objects_2[i] != null) {
+                if(((front&&objects_2[i].getY()<=y+objects_2[i].getImage().getHeight())||(!front&&objects_2[i].getY()>y+objects_2[i].getImage().getHeight()))) {
+                    objects_2[i].paint(g,x,y);
+                }
             }
             
         }
@@ -129,10 +131,12 @@ public class ObjectManager {
     
     public void paintObjectsLayer3 (Graphics g,double x,double y,boolean front) {
         
-        for (int i = 0; i < objects_3.length; i++) {
+        for (int i = 0; i < objects_3.length; ++i) {
             
-            if (objects_3[i] != null&&((front&&objects_3[i].getY()<=y)||(!front&&objects_3[i].getY()>y))) {
-                objects_3[i].paint(g,x,y);
+            if (objects_3[i] != null) {
+                if(((front&&objects_3[i].getY()<=y+objects[i].getImage().getHeight())||(!front&&objects_3[i].getY()>y+objects_3[i].getImage().getHeight()))) {
+                    objects_3[i].paint(g,x,y);
+                }
             }
             
         }
@@ -141,10 +145,12 @@ public class ObjectManager {
     
     public void paintObjects (Graphics g,double x,double y,boolean front) {
         
-        for (int i = 0; i < objects.length; i++) {
+        for (int i = 0; i < objects.length; ++i) {
             
-            if (objects[i] != null&&((front&&objects[i].getY()>=y)||(!front&&objects[i].getY()<y))) {
-                objects[i].paint(g,x,y);
+            if (objects[i] != null) {
+                if(((front&&objects[i].getY()<=y+objects[i].getImage().getHeight())||(!front&&objects[i].getY()>y+objects[i].getImage().getHeight()))) {
+                    objects[i].paint(g,x,y);
+                }
             }
             
         }

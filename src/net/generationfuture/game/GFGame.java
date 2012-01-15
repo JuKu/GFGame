@@ -116,7 +116,7 @@ public class GFGame extends BasicGame{
         map.render(0,0,(int)player.getX()-gc.getWidth()/2,(int)player.getY()-gc.getHeight()/2,gc.getWidth(),gc.getHeight()-100);
         
         //Animals zeichnen
-        animal_manager.paintAnimals(g);
+        animal_manager.paintAnimals(g,player.getX(),player.getY());
         
         //Objects Ebene 2 zeichnen
         object_manager.paintObjectsBehindPlayer(g,player.getX(),player.getY());

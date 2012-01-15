@@ -105,4 +105,8 @@ public class Object {
         return y;
     }
     
+    public Image getImage() {
+        return this.picture;
+    }
+    
 }

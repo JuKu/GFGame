@@ -51,8 +51,8 @@ public class Player {
         
         picture1 = timage;
         
-        for(int i = 0;i<4;i+=2) {
-            stopped[i] = new Image("materials/characters/test/stopped000"+i+".bmp",new Color(97, 68, 43, 255));
+        for(int i = 0;i<4;++i) {
+            stopped[i] = new Image("materials/characters/test/stopped000"+(i*2)+".bmp",new Color(97, 68, 43, 255));
         }
         for(int i=0;i<8;++i) {
             walking_lefti[i] = new Image("materials/characters/test/walking w000"+i+".bmp",new Color(97, 68, 43, 255));
@@ -91,7 +91,7 @@ public class Player {
         }
     }
     
-    public void move () {
+    private void move () {
         
         if (counter1 > 100) {
             
@@ -217,22 +217,22 @@ public class Player {
     
     public Image getImage () {
        if(!walking) {
-            return stopped[orientation*2];
+            return stopped[orientation];
        }
        else {
             
-            if (picture_counter >= 14) {
-                picture_counter = 0;
+            if (picture_counter >= 7) {
+                picture_counter = -1;
                 walking = false;
             }
             
             picture_counter++;
             
             switch(orientation) {
-                case 1:return walking_lefti[picture_counter/2];
-                case 2:return walking_backi[picture_counter/2];
-                case 3:return walking_righti[picture_counter/2];
-                default:return walking_fori[picture_counter/2];
+                case 1:return walking_lefti[picture_counter];
+                case 2:return walking_backi[picture_counter];
+                case 3:return walking_righti[picture_counter];
+                default:return walking_fori[picture_counter];
            }        
         }
      }
@@ -252,14 +252,14 @@ public class Player {
     }
     
     public void standingFor () {
-        orientation = 0;
+        orientation = 2;
         walking = false;
         
         picture_counter = 0;
     }
     
     public void standingBack () {
-        orientation = 2;
+        orientation = 0;
         walking = false;
         
         picture_counter = 0;
@@ -280,14 +280,14 @@ public class Player {
     }
     
     public void walkingFor () {
-        orientation = 0;
+        orientation = 2;
         walking = true;
         
         //picture_counter = 0;
     }
     
     public void walkingBack () {
-        orientation = 3;
+        orientation = 0;
         walking = true;
         
         //picture_counter = 0;

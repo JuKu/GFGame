@@ -65,45 +65,52 @@ public class plant extends Object {
     }
     
     @Override
-    public void paint (Graphics g,double xp,double yp) {
-        
+    public Image getImage() {
         if (isShown) {
         
-        if (growing) {
-            
-            if(growing_counter<8) {
-                growingi[growing_counter].draw(x-(int)xp, y);
-            } else if (growing_counter == 8) {
-                picture.draw(x-(int)xp, y-(int)yp);
-            }
-            
-        } else if (tipping) {
-            
-            if (!isTipping) {
-            
-            if(tipping_counter<9) {
-                tippingi[tipping_counter].draw(x-(int)xp, y-(int)yp);
-            } 
-            
-            if (tipping_counter >= 9) {
-                tipping_counter = 0;
-                //tipping = false;
-                
-                //isShown = false;
-                isTipping = true;
+            if (growing) {
+
+                if(growing_counter<8) {
+                    return growingi[growing_counter];
+                } else if (growing_counter == 8) {
+                    return picture;
+                }
+
+            } else if (tipping) {
+
+                if (!isTipping) {
+
+                    if(tipping_counter<9) {
+                        return tippingi[tipping_counter];
+                    } 
+
+                    if (tipping_counter >= 9) {
+                        tipping_counter = 0;
+                        //tipping = false;
+
+                        //isShown = false;
+                        isTipping = true;
+                    } else {
+                        tipping_counter++;
+                    }
+
+                } else {
+                    return tippingi[8];
+                }
+
             } else {
-                tipping_counter++;
+                return picture;
             }
-            
-            } else {
-                tippingi[8].draw(x-(int)xp, y-(int)yp);
-            }
-            
-        } else {
-            picture.draw(x-(int)xp, y-(int)yp);
-        }
         
         }
+        
+        return null;
+    }
+    
+    @Override
+    public void paint (Graphics g,double xp,double yp) {
+        
+        getImage().draw(x-(int)xp, y-(int)yp);
         
         if (mouseMoved) {
             paintMouseOver(g,xp,yp);

@@ -28,7 +28,7 @@ public class AnimalManager {
         //
     }
     
-    public void paintAnimals (Graphics g) {
+    public void paintAnimals (Graphics g,double x, double y) {
         
         /*********************************
          * 
@@ -39,7 +39,7 @@ public class AnimalManager {
         for (int i = 0; i < animals.length; i++) {
             
             if (animals[i] != null) {
-                animals[i].paint(g);
+                animals[i].paint(g,x,y);
             }
             
         }
@@ -66,18 +66,6 @@ public class AnimalManager {
     
     public Animal[] getAnimals () {
         return animals;
-    }
-    
-    public void scrollAnimals (int x, int y) {
-        
-        for (int i = 0; i < animals.length; i++) {
-            
-            if (animals[i] != null) {
-                animals[i].scroll(x, y);
-            }
-            
-        }
-        
     }
     
     public Boolean isMouseOver (int mouse_x, int mouse_y, Boolean isMouseMoved) {

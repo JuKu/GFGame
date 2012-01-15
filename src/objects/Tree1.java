@@ -13,7 +13,7 @@ public class Tree1 extends plant {
             tippingi[i] = new Image("materials/trees/tree1_/fir C tipping over000"+i+".bmp",new Color(94, 66, 41, 255));
         }
         
-        for(int i=0;i<8;++i) {
+        for(int i=0;i<7;++i) {
             growingi[i] = new Image("materials/trees/tree1_/fir C growing 000"+(i+1)+".bmp",new Color(94, 66, 41, 255));
         }
     }

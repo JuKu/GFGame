@@ -10,59 +10,18 @@ public abstract class Animal extends Object {
     
     protected int picture_counter = 0;
     
-    protected Image stopped_left;
-    protected Image stopped_right;
-    protected Image stopped_front;
-    protected Image stopped_back;
-    protected Image sitting_left;
-    protected Image sitting_right;
-    protected Image sitting_front;
-    protected Image sitting_back;
+    protected Image[] stopped= new Image[4];
     
-    protected Image walking_left1;
-    protected Image walking_left2;
-    protected Image walking_left3;
-    protected Image walking_left4;
-    protected Image walking_left5;
-    protected Image walking_left6;
-    protected Image walking_left7;
-    protected Image walking_left8;
+    protected Image[] walking_left = new Image[8];
     
-    protected Image walking_right1;
-    protected Image walking_right2;
-    protected Image walking_right3;
-    protected Image walking_right4;
-    protected Image walking_right5;
-    protected Image walking_right6;
-    protected Image walking_right7;
-    protected Image walking_right8;
+    protected Image[] walking_right = new Image[8];
     
-    protected Image walking_for1;
-    protected Image walking_for2;
-    protected Image walking_for3;
-    protected Image walking_for4;
-    protected Image walking_for5;
-    protected Image walking_for6;
-    protected Image walking_for7;
-    protected Image walking_for8;
+    protected Image[] walking_for = new Image[8];
     
-    protected Image walking_back1;
-    protected Image walking_back2;
-    protected Image walking_back3;
-    protected Image walking_back4;
-    protected Image walking_back5;
-    protected Image walking_back6;
-    protected Image walking_back7;
-    protected Image walking_back8;
+    protected Image[] walking_back = new Image[8];
     
-    protected Boolean walking_left = true;
-    protected Boolean walking_right = false;
-    protected Boolean walking_for = false;
-    protected Boolean walking_back = false;
-    protected Boolean standing_left = true;
-    protected Boolean standing_right = false;
-    protected Boolean standing_for = false;
-    protected Boolean standing_back = false;
+    private boolean walking = true;
+    private int orientation = 3;
     
     protected int x = 50;
     protected int y = 50;
@@ -96,187 +55,48 @@ public abstract class Animal extends Object {
     }
     
     public void walkingLeft () {
-        this.walking_left = true;
-        this.walking_right = false;
-        this.walking_for = false;
-        this.walking_back = false;
-        this.standing_left = false;
-        this.standing_right = false;
-        this.standing_for = false;
-        this.standing_back = false;
+        orientation = 1;
+        walking = true;
     }
     
     public void walkingRight () {
-        this.walking_left = false;
-        this.walking_right = true;
-        this.walking_for = false;
-        this.walking_back = false;
-        this.standing_left = false;
-        this.standing_right = false;
-        this.standing_for = false;
-        this.standing_back = false;
+        orientation = 3;
+        walking = true;
     }
     
     public void walkingFront () {
-        this.walking_left = false;
-        this.walking_right = false;
-        this.walking_for = true;
-        this.walking_back = false;
-        this.standing_left = false;
-        this.standing_right = false;
-        this.standing_for = false;
-        this.standing_back = false;
+        orientation = 2;
+        walking = true;
     }
     
     public void walkingBack () {
-        this.walking_left = false;
-        this.walking_right = false;
-        this.walking_for = false;
-        this.walking_back = true;
-        this.standing_left = false;
-        this.standing_right = false;
-        this.standing_for = false;
-        this.standing_back = false;
+        orientation = 0;
+        walking = true;
     }
     
-    public void paint (Graphics g) {
+    public void paint (Graphics g,double xp,double yp) {
         
-        if (standing_left) {
-            stopped_left.draw(x, y);
-        } else if (standing_right) {
-            stopped_right.draw(x, y);
-        } else if (standing_for) {
-            stopped_front.draw(x, y);
-        } else if (standing_back) {
-            stopped_back.draw(x, y);
-        } else if (walking_left) {
+        if (!walking) {
+            stopped[orientation].draw(x-(int)xp,y-(int)yp);
+        } else {
             
-            if (picture_counter >= 8) {
-                picture_counter = 0;
-                walking_left = false;
-                
-                standing_left = true;
+            if (picture_counter >= 7) {
+                picture_counter = -1;
+                walking = false;
             }
             
             picture_counter++;
-            
-            if (picture_counter == 0) {
-                walking_left1.draw(x, y);
-            } else if (picture_counter == 1) {
-                walking_left2.draw(x, y);
-            } else if (picture_counter == 2) {
-                walking_left3.draw(x, y);
-            } else if (picture_counter == 3) {
-                walking_left4.draw(x, y);
-            } else if (picture_counter == 4) {
-                walking_left5.draw(x, y);
-            } else if (picture_counter == 5) {
-                walking_left6.draw(x, y);
-            } else if (picture_counter == 6) {
-                walking_left7.draw(x, y);
-            } else if (picture_counter == 7) {
-                walking_left8.draw(x, y);
-            } else {
-                walking_left1.draw(x, y);
+
+            switch(orientation) {
+                case 1: walking_left[picture_counter].draw(x-(int)xp, y-(int)yp); break;
+                case 2: walking_for[picture_counter].draw(x-(int)xp, y-(int)yp); break;
+                case 3: walking_right[picture_counter].draw(x-(int)xp, y-(int)yp); break;
+               default: walking_back[picture_counter].draw(x-(int)xp, y-(int)yp); break;         
             }
-            
-        } else if (walking_right) {
-            
-            if (picture_counter >= 8) {
-                picture_counter = 0;
-                walking_right = false;
-                
-                standing_right = true;
-            }
-            
-            picture_counter++;
-            
-            if (picture_counter == 0) {
-                walking_right1.draw(x, y);
-            } else if (picture_counter == 1) {
-                walking_right2.draw(x, y);
-            } else if (picture_counter == 2) {
-                walking_right3.draw(x, y);
-            } else if (picture_counter == 3) {
-                walking_right4.draw(x, y);
-            } else if (picture_counter == 4) {
-                walking_right5.draw(x, y);
-            } else if (picture_counter == 5) {
-                walking_right6.draw(x, y);
-            } else if (picture_counter == 6) {
-                walking_right7.draw(x, y);
-            } else if (picture_counter == 7) {
-                walking_right8.draw(x, y);
-            } else {
-                walking_right1.draw(x, y);
-            }
-            
-        } else if (walking_for) {
-            
-            if (picture_counter >= 8) {
-                picture_counter = 0;
-                walking_for = false;
-                
-                standing_for = true;
-            }
-            
-            picture_counter++;
-            
-            if (picture_counter == 0) {
-                walking_for1.draw(x, y);
-            } else if (picture_counter == 1) {
-                walking_for2.draw(x, y);
-            } else if (picture_counter == 2) {
-                walking_for3.draw(x, y);
-            } else if (picture_counter == 3) {
-                walking_for4.draw(x, y);
-            } else if (picture_counter == 4) {
-                walking_for5.draw(x, y);
-            } else if (picture_counter == 5) {
-                walking_for6.draw(x, y);
-            } else if (picture_counter == 6) {
-                walking_for7.draw(x, y);
-            } else if (picture_counter == 7) {
-                walking_for8.draw(x, y);
-            } else {
-                walking_for1.draw(x, y);
-            }
-            
-        } else if (walking_back) {
-            
-            if (picture_counter >= 8) {
-                picture_counter = 0;
-                walking_back = false;
-                
-                standing_back = true;
-            }
-            
-            picture_counter++;
-            
-            if (picture_counter == 0) {
-                walking_back1.draw(x, y);
-            } else if (picture_counter == 1) {
-                walking_back2.draw(x, y);
-            } else if (picture_counter == 2) {
-                walking_back3.draw(x, y);
-            } else if (picture_counter == 3) {
-                walking_back4.draw(x, y);
-            } else if (picture_counter == 4) {
-                walking_back5.draw(x, y);
-            } else if (picture_counter == 5) {
-                walking_back6.draw(x, y);
-            } else if (picture_counter == 6) {
-                walking_back7.draw(x, y);
-            } else if (picture_counter == 7) {
-                walking_back8.draw(x, y);
-            } else {
-                walking_back1.draw(x, y);
-            }
-            
         }
         
         if (mouseMoved) {
-            paintMouseOver(g);
+            paintMouseOver(g,xp,yp);
         }
         
     }
@@ -306,14 +126,11 @@ public abstract class Animal extends Object {
         
         walkingRight();
         
-        if (walking_left) {
-            x = x - 1;
-        } else if (walking_right) {
-            x = x + 1;
-        } else if (walking_for) {
-            y = y - 1;
-        } else if (walking_back) {
-            y = y + 1;
+        switch(orientation) {
+            case 1: x--; break;
+            case 3: x++; break;
+            case 2: y--; break;
+            default: y++; break;
         }
         
     }
@@ -337,14 +154,14 @@ public abstract class Animal extends Object {
         
     }
     
-    public void paintMouseOver (Graphics g) {
+    public void paintMouseOver (Graphics g,double xp,double yp) {
         //System.out.println("paintMouseMoved.");
-        g.drawString("" + this.name, x, y);
+        g.drawString("" + this.name, x-(int)xp, y-(int)yp);
         
-        g.drawString("Object-ID: " + AnimalID, x, y + 15);
-        g.drawString("ID: " + id, x, y + 40);
-        g.drawString("Hunger: " + hunger, x, y + 60);
-        g.drawString("Durst: " + durst, x, y + 80);
+        g.drawString("Object-ID: " + AnimalID, x-(int)xp, y-(int)yp + 15);
+        g.drawString("ID: " + id, x-(int)xp, y + 40);
+        g.drawString("Hunger: " + hunger, x-(int)xp, y-(int)yp + 60);
+        g.drawString("Durst: " + durst, x-(int)xp, y-(int)yp + 80);
     }
     
     public Boolean isClicked (int x, int y) {

@@ -44,17 +44,14 @@ public class WebClient extends Thread {
         server_url = config.getServerURL();
         
         URL url = new URL(server_url);
-        //try {
-            is = url.openStream();
-        //} catch (Exception e) {
-            //Error.throwError("Server not found");
-        //}
+        is = url.openStream();
         
         BufferedReader br = new BufferedReader( new InputStreamReader(is) );
         String text = readFile(is);
         vomServer_text = text;
         vomServer = br;
         if (config.isDebugMode()) { System.out.println("vomServer: \"" + text + "\"."); }
+        
         ready = true;
     }
     
