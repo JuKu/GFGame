@@ -32,11 +32,11 @@ public class Object {
         this.y = y;
     }
     
-    public void paint (Graphics g) {
-        picture.draw(x, y);
+    public void paint (Graphics g,double xp,double yp) {
+        picture.draw(x-(int)xp, y-(int)yp);
         
         if (mouseMoved) {
-            paintMouseOver(g);
+            paintMouseOver(g,xp,yp);
         }
     }
     
@@ -73,12 +73,12 @@ public class Object {
         
     }
     
-    public void paintMouseOver (Graphics g) {
+    public void paintMouseOver (Graphics g,double xp,double yp) {
         //System.out.println("paintMouseMoved.");
-        g.drawString("teststring", x, y);
+        g.drawString("teststring", x-(int)xp, y-(int)yp);
         
-        g.drawString("Object-ID: " + ObjectID, x, y + 15);
-        g.drawString("ID: " + id, x, y + 40);
+        g.drawString("Object-ID: " + ObjectID, x-(int)xp, y-(int)yp + 15);
+        g.drawString("ID: " + id, x-(int)xp, y-(int)yp + 40);
     }
     
     public void grow () {
@@ -99,6 +99,10 @@ public class Object {
             return false;
         }
         
+    }
+    
+    public double getY () {
+        return y;
     }
     
 }

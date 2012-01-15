@@ -112,46 +112,58 @@ public class ObjectManager {
         
     }
     
-    public void paintObjectsLayer1 (Graphics g) {
+    public void paintObjectsLayer1 (Graphics g,double x,double y,boolean front) {
         
-        paintObjects(g);
+        paintObjects(g,x,y,front);
         
     }
     
-    public void paintObjectsLayer2 (Graphics g) {
+    public void paintObjectsLayer2 (Graphics g,double x,double y,boolean front) {
         
         for (int i = 0; i < objects_2.length; i++) {
             
-            if (objects_2[i] != null) {
-                objects_2[i].paint(g);
+            if (objects_2[i] != null&&((front&&objects_2[i].getY()<=y)||(!front&&objects_2[i].getY()>y))) {
+                objects_2[i].paint(g,x,y);
             }
             
         }
         
     }
     
-    public void paintObjectsLayer3 (Graphics g) {
+    public void paintObjectsLayer3 (Graphics g,double x,double y,boolean front) {
         
         for (int i = 0; i < objects_3.length; i++) {
             
-            if (objects_3[i] != null) {
-                objects_3[i].paint(g);
+            if (objects_3[i] != null&&((front&&objects_3[i].getY()<=y)||(!front&&objects_3[i].getY()>y))) {
+                objects_3[i].paint(g,x,y);
             }
             
         }
         
     }
     
-    public void paintObjects (Graphics g) {
+    public void paintObjects (Graphics g,double x,double y,boolean front) {
         
         for (int i = 0; i < objects.length; i++) {
             
-            if (objects[i] != null) {
-                objects[i].paint(g);
+            if (objects[i] != null&&((front&&objects[i].getY()>=y)||(!front&&objects[i].getY()<y))) {
+                objects[i].paint(g,x,y);
             }
             
         }
         
+    }
+    
+    public void paintObjectsBehindPlayer(Graphics g,double x,double y) {
+        paintObjectsLayer3(g, x, y, false);
+        paintObjectsLayer2(g, x, y, false);
+        paintObjectsLayer1(g, x, y, false);
+    }
+    
+    public void paintObjectsOverPlayer(Graphics g,double x,double y) {
+        paintObjectsLayer3(g, x, y, true);
+        paintObjectsLayer2(g, x, y, true);
+        paintObjectsLayer1(g, x, y, true);
     }
     
     public void paintObjectMenu (Graphics g) {
@@ -166,18 +178,6 @@ public class ObjectManager {
             
             if (objects[i] != null) {
                 objects[i].paintMenu(g);
-            }
-            
-        }
-        
-    }
-    
-    public void scrollObjects (int x, int y) {
-        
-        for (int i = 0; i < objects.length; i++) {
-            
-            if (objects[i] != null) {
-                objects[i].scroll(x, y);
             }
             
         }

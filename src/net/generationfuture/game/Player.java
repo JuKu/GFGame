@@ -8,6 +8,9 @@ import org.newdawn.slick.SlickException;
 
 public class Player {
     
+    private double x = 0;
+    private double y = 0;
+    
     private int energie = 100;//Energie (Schlafen)
     private int hunger = 100;//Hunger
     private int hygiene = 100;//Hygiene (waschen)
@@ -523,6 +526,45 @@ public class Player {
         
         return img;
         
+    }
+    
+    public void moveUp() {
+        y--;
+        move();
+        walkingFor();
+    }
+    
+    public void moveDown() {
+        y++;
+        move();
+        walkingBack();
+    }
+    
+    public void moveLeft() {
+        x--;
+        move();
+        walkingLeft();
+    }
+    
+    public void moveRight() {
+        x++;
+        move();
+        walkingRight();
+    }
+    
+    public double getX() {
+        return x;
+    }
+    
+    public double getY() {
+        return y;
+    }
+    
+    public void setPos(int[] i) {
+        if(i.length==2) { 
+            x = i[0];
+            y = i[1];
+        }
     }
     
 }

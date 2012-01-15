@@ -21,8 +21,6 @@ public class GFGame extends BasicGame{
     TiledMap grasland = null;
     TileSet tileset;
 
-    int x = 0;
-    int y = 0;
     int minimapx = 248;
     int minimapy = 200;
     public Player player;
@@ -36,6 +34,7 @@ public class GFGame extends BasicGame{
     public AnimalManager animal_manager;
     public ObjectManager object_manager;
     
+    
     public GFGame() throws SlickException
     {
         super("GFGame");
@@ -44,10 +43,14 @@ public class GFGame extends BasicGame{
     @Override
     public void init(GameContainer gc) 
 			throws SlickException {
+        
+        //error("Loading map");
         minimap = new Image("materials/mystery.png");
         map = new TiledMap("materials/mystery1.tmx","materials");
         
         playerposImage = new Image("materials/point.png");
+        
+        //error("Loading Settings...");
         try {
             config = new Config(config_datei);
         } catch (IOException ex) {
@@ -57,22 +60,24 @@ public class GFGame extends BasicGame{
         client = config.getClient();
         client.start();
         client.getPlayerData();
-        int i[] = client.getPlayerPos();
         
-        x = i[0];
-        y = i[1];
+        player.setPos(client.getPlayerPos());
         
-        grasland = new TiledMap("materials/test_.tmx","materials");
+        //grasland = new TiledMap("materials/test_.tmx","materials");
         
+        //error("Loading Menu...");
         game_menu = new GameMenu("Menu1", null, 140, 10);
         game_menu = MenuManager.getGameMenu(game_menu);//Menu übergeben.
         
+        //error("Loading Entities...");
         player = new Player();
         
         //Object_Manager erzeugen, der sich um die Objekte kümmert.
         object_manager = new ObjectManager(config, player);
         //Animal_Manager erzeugen, der sich um die Animals kümmert.
         animal_manager = new AnimalManager(config, player);
+        
+        //error("Loading Chat...");
         
         irc_chat = new IRC_Chat(client, this, player, config);
         bedürfnis_anzeige = new NeedsDisplay(player);
@@ -85,10 +90,10 @@ public class GFGame extends BasicGame{
 			throws SlickException     
     {
         
-        if (gc.getInput().isKeyDown(Input.KEY_LEFT)) {x--; player.move(); this.scroll(1, 0); player.walkingLeft(); }
-	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {x++; player.move(); this.scroll(-1, 0); player.walkingRight(); }
-	if (gc.getInput().isKeyDown(Input.KEY_UP)) {y--; player.move(); this.scroll(0, 1); player.walkingBack(); }
-	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {y++; player.move(); this.scroll(0, -1); player.walkingFor(); }
+        if (gc.getInput().isKeyDown(Input.KEY_LEFT)) {player.moveLeft();}
+	if (gc.getInput().isKeyDown(Input.KEY_RIGHT)) {player.moveRight();}
+	if (gc.getInput().isKeyDown(Input.KEY_UP)) {player.moveUp(); }
+	if (gc.getInput().isKeyDown(Input.KEY_DOWN)) {player.moveDown(); }
         
         if (gc.isMouseGrabbed()) {
             JOptionPane.showInternalMessageDialog(new JLabel("test"), this);
@@ -103,27 +108,38 @@ public class GFGame extends BasicGame{
     public void render(GameContainer gc, Graphics g) 
 			throws SlickException 
     {
+        if(g.getClip()==null) { 
+            g.setClip(0, 0, gc.getWidth(), gc.getHeight());
+        }
         
-        map.render(0,0,x-400,y-300,800,600);
-        //Objects Ebene 3 zeichnen
-        object_manager.paintObjectsLayer3(g);
+        
+        map.render(0,0,(int)player.getX()-gc.getWidth()/2,(int)player.getY()-gc.getHeight()/2,gc.getWidth(),gc.getHeight()-100);
+        
         //Animals zeichnen
         animal_manager.paintAnimals(g);
-        //Player zeichnen
-        player.getImage().draw(352, 224);//playerposImage.draw(394, 294);
+        
         //Objects Ebene 2 zeichnen
-        object_manager.paintObjectsLayer2(g);
+        object_manager.paintObjectsBehindPlayer(g,player.getX(),player.getY());
+        
+        //Player zeichnen
+        player.getImage().draw((gc.getWidth()-player.getImage().getWidth())/2, 224);//playerposImage.draw(394, 294);
+        
         //Objects zeichnen
-        object_manager.paintObjects(g);
+        object_manager.paintObjectsOverPlayer(g,player.getX(),player.getY());
+        
         //Map zeichnen
-        map.render(0,0,x-60,y-60,120,120);
+        map.render(0,0,(int)player.getX()-60,(int)player.getY()-60,120,120);
         game_menu.paint(g);
+        
         //PlayerposImage zeichnen
         playerposImage.draw(54, 54);        
+        
         //Bedürfnis-Anzeige zeichnen
         bedürfnis_anzeige.paint(g);
+        
         //Object-Menü zeichnen
         object_manager.paintObjectMenu(g);
+        
         //Animal-Menü zeichnen
         animal_manager.paintAnimalMenu(g);
         
@@ -138,15 +154,6 @@ public class GFGame extends BasicGame{
          //Dies ist JuKus erster Kommentar in dieser Datei. ;-)
          app.setDisplayMode(800, 600, false);
          app.start();
-    }
-    
-    public void scroll (int x, int y) {
-        
-        //Objects scrollen
-        object_manager.scrollObjects(x, y);
-        //Animals scrollen
-        animal_manager.scrollAnimals(x, y);
-        
     }
     
     public void actionPerformed (String actionCommand, GameMenuItem menuItem) {
@@ -167,5 +174,4 @@ public class GFGame extends BasicGame{
         }
         
     }
-
 }

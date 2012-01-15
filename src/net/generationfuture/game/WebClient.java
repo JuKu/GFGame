@@ -42,7 +42,11 @@ public class WebClient extends Thread {
         server_url = config.getServerURL();
         
         URL url = new URL(server_url);
-        is = url.openStream();
+        //try {
+            is = url.openStream();
+        //} catch (Exception e) {
+            //Error.throwError("Server not found");
+        //}
         
         BufferedReader br = new BufferedReader( new InputStreamReader(is) );
         String text = readFile(is);
@@ -67,16 +71,19 @@ public class WebClient extends Thread {
         
     }
     
-    public int[] getPlayerPos () {
+    public int[] getPlayerPos() {
         
-        while ((player_pos_x == 0 && player_pos_y == 0) || setPlayerData) {//Wenn gerade Pos-Daten gesendet werden, keine Player-Daten empfangen.
+        /*while ((player_pos_x == 0 && player_pos_y == 0) || setPlayerData) {//Wenn gerade Pos-Daten gesendet werden, keine Player-Daten empfangen.
             //warten
         }
-        
+        */
         int player_pos_data[] = new int[2];
         
-        player_pos_data[0] = player_pos_x;
-        player_pos_data[1] = player_pos_y;
+        /*player_pos_data[0] = player_pos_x;
+        player_pos_data[1] = player_pos_y;*/
+        
+        player_pos_data[0] = 10;
+        player_pos_data[1] = 10;
         
         return player_pos_data;
         
