@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map SYSTEM "http://mapeditor.org/dtd/1.0/map.dtd">
+<map version="1.0" orientation="orthogonal" width="50" height="50" tilewidth="16" tileheight="16">
+ <tileset firstgid="1" name="1" tilewidth="16" tileheight="16">
+  <image source="tileset-advance.png" trans="ff00ff" width="128" height="15971"/>
+ </tileset>
+ <layer name="Kachelebene 1" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3DAQkAAAwEofv+pZdjoOCqqaqqqqqqqqqq6vMHV4Re6RAnAAA=
+  </data>
+ </layer>
+ <layer name="3" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3VsQ5AMBRG4UtCMIiB938+JkyIwTVIDA2R9KapnC85W5e/HSoCAMB3fSsyRN6oTdoceYu2apvH9gBJJ5Joqccyg3JH9a3CYIfvLfVD1yaLHRbv8bbN6j0s78R17txRalXkNV3o3wsAAAAAAAAAAAB/dwAF2dgIECcAAA==
+  </data>
+ </layer>
+ <layer name="2" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAAODfAC7KO00QJwAA
+  </data>
+ </layer>
+ <layer name="4" width="50" height="50" opacity="0.97">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3WyQqCYBSG4XMFuupKGzYNm4Yra1o0LaIraBFZEc00f4HBn6hhUB3re+BFRcFzwIUi/y1pi6RQGmXsb0/zuixmz6E8KsR4jyJmL6EyqsR4DxO/MV1+8RsjIr2qlkgN1VHDPQ/r/lzTivCOxGPv0MI8bdSJUBf1lO3RN+YbhGQ+czuOlO0xfDJ/UNr2GGMex6cJmqJZwP15hD0+YYF5lj6t0Bpt3Outp52yPfaY5+DTEZ3Q2b2+eBL+TxERERERERERERERkTJX2SditRAnAAA=
+  </data>
+ </layer>
+ <layer name="5" width="50" height="50" opacity="0.98">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3RuQrCYBBF4T+lSgr16dxxxx133HF/bU+TJiiYKplwPzj9XMa5ZMl4zmUjlPPivvg77UiWPHcVUrAj8O9fkr4j+Es4azt+Ce8rGt0hkkYl37kyVahKNapTw4/7smia3NuiNnWoSz3qG9sx4N4hjWhME5rSzNiOOfcuaEkrWtOGtsZ27Lh3Twc60onOdDG248q9N7rTg570orexHSIiIiIiIiIiIiIiIhLNB4XT6kQQJwAA
+  </data>
+ </layer>
+ <layer name="6" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3RvQqCUByG8b9DH0sfg3VvtVVQDVFdR5tudV8NQg1BF9ILejDybJmmPD94FjnoedGsWgu1zFplz3qqX/E9vuXbMVJja9Ye346O6lq+pwl8OwZqaPmefzZTc7Wz4o6Jmlq+x1mHZhu1DYvvuwZpVXv/D587HLfH2ev+B3X07LgHaU6iM7cW9FDPFgQAAIByRSpWpxKKayyq+fvsaOeOs7qUVJ07AAAAAAAAAPzeCwuadO8QJwAA
+  </data>
+ </layer>
+</map>
