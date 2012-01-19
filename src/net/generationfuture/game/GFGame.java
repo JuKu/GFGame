@@ -34,7 +34,11 @@ public class GFGame extends BasicGame{
     public AnimalManager animal_manager;
     public ObjectManager object_manager;
     
+    private Image willkommens_bild;
+    public Boolean GameStart = false;
+    
     private inputHandler ih = new inputHandler();
+    private static AppGameContainer app;
     
     public GFGame() throws SlickException
     {
@@ -50,6 +54,7 @@ public class GFGame extends BasicGame{
         map = new TiledMap("materials/mystery1.tmx","materials");
         
         playerposImage = new Image("materials/point.png");
+        willkommens_bild = new Image("materials/willkomen_bild_2.png");
         
         //error("Loading Settings...");
         try {
@@ -91,6 +96,8 @@ public class GFGame extends BasicGame{
 			throws SlickException     
     {
         
+        if (this.GameStart) {//Wenn Game gestartet wurde.
+        
         ih.check(gc,player);
         
         if (gc.isMouseGrabbed()) {
@@ -99,6 +106,11 @@ public class GFGame extends BasicGame{
         
         //Animals bewegen
         animal_manager.moveAnimals();
+        app.setDisplayMode(800, 600, false);
+        
+        } else {
+            app.setDisplayMode(600, 600, false);
+        }
         
     }
  
@@ -109,6 +121,8 @@ public class GFGame extends BasicGame{
         if(g.getClip()==null) { 
             g.setClip(0, 0, gc.getWidth(), gc.getHeight());
         }
+        
+        if (this.GameStart) {//Wenn Game gestartet wurde. (Vorher Willkommens-Bildschirm)
         
         
         map.render(0,0,(int)player.getX()-gc.getWidth()/2,(int)player.getY()-gc.getHeight()/2,gc.getWidth(),gc.getHeight()-100);
@@ -143,12 +157,19 @@ public class GFGame extends BasicGame{
         
         irc_chat.paint(gc, g);
         
+        } else {
+            this.willkommens_bild.draw(1, 1);
+            g.setColor(Color.blue);
+            g.drawString("Zum Fortsetzen mit der Maus klicken.", 200, 300);
+            g.setColor(Color.white);
+        }
+        
     }
  
     public static void main(String[] args) 
 			throws SlickException
     {
-         AppGameContainer app = new AppGameContainer(new GFGame());
+         /*AppGameContainer */app = new AppGameContainer(new GFGame());
          //Dies ist JuKus erster Kommentar in dieser Datei. ;-)
          app.setDisplayMode(800, 600, false);
          app.start();
