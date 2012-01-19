@@ -53,6 +53,8 @@ public class Config {
         cache_folder = config_datei.leseString("Config", "cache");
         auto_update = config_datei.leseInteger("Config", "auto_update", 1);
         server_typ = config_datei.leseString("Config", "server_typ");
+        IRC_Chat_config_file = config_datei.leseString("Config", "irc_chat_file");
+        firstRunFile = config_datei.leseString("Config", "FirstRunFile");
         
         if (debug_modus == 1) {
             System.out.println("Server: " + server + ", Port: " + port + ".");
