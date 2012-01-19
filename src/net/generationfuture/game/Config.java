@@ -32,14 +32,17 @@ public class Config {
     private String IRC_Chat_cache_folder = "";
     private String IRC_Chat_config_file = "GameData/Config/IRC_Chat.ini";
     
+    private String firstRunFile = "GameData/Config/FirstRun.ini";
+    private Boolean firstRun = true;
+    
     public Config (String config_datei) throws IOException {
         this.config_datei = new INIDatei(config_datei);
         loadConfig();
         this.debug_datei = new INIDatei("GameData/Config/Debug.ini");
         loadDebugConfig();
         loadWebClient();
-        
         loadIRC_ChatConfig();
+        loadFirstRunConfig();
     }
     
     public final void loadConfig () throws IOException {
@@ -139,6 +142,45 @@ public class Config {
         this.IRC_Chat_showRanks = inidatei.leseInteger("IRC_Chat", "showRanks", 1);
         this.IRC_Chat_showUsername = inidatei.leseInteger("IRC_Chat", "showUsername", 1);
         this.IRC_Chat_cache_folder = inidatei.leseString("IRC_Chat", "cache_folder");
+    }
+    
+    public final void loadFirstRunConfig () {
+        
+        INIDatei inidatei = new INIDatei(this.firstRunFile);
+        
+        int i = inidatei.leseInteger("FirstRun", "FirstRun", 0);
+        
+        if (i == 0) {
+            this.firstRun = false;//Anwendung wwurde schon öfters ausgeführt.
+        } else {
+            this.firstRun = true;//Anwendung wurde noch nicht ausgeführt.
+        }
+        
+    }
+    
+    public Boolean isFirstRun () {
+        return this.firstRun;
+    }
+    
+    public void setFirstRun (Boolean firstRun) {
+        
+        this.firstRun = firstRun;
+        
+        //Datei schreiben
+        
+        INIDatei inidatei = new INIDatei(this.firstRunFile);
+        
+        int i = 0;
+        
+        if (this.firstRun) {
+            i = 1;//Anwenudng wurde noch nicht ausgeführt.
+        } else {
+            i = 0;//Anwenudng wurde schon ausgeführt.
+        }
+        
+        inidatei.setzeInteger("FirstRun", "FirstRun", i);
+        inidatei.schreibeINIDatei(this.firstRunFile, true);
+        
     }
     
     public Boolean showIRC_Chat () {
