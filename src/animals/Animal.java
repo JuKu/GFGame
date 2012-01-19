@@ -33,6 +33,8 @@ public abstract class Animal extends Object {
     
     protected int durst = 100;
     protected int hunger = 100;
+    protected double xp = 0;
+    protected double yp = 0;
     
     protected Boolean isIll = false;
     protected Boolean sitting = false;
@@ -83,6 +85,9 @@ public abstract class Animal extends Object {
         
         //this.xp = xp;
         //this.yp = yp;
+        
+        this.xp = xp;
+        this.yp = yp;
         
         if (!walking) {
             stopped[orientation].draw(x-(int)xp,y-(int)yp);
@@ -151,9 +156,9 @@ public abstract class Animal extends Object {
     
     public Boolean mouseMoved (int x, int y) {
         
-        if (x > this.x && x < this.x + width) {
+        if (x > this.x - (int) xp && x < this.x + width - (int) xp) {
             
-            if (y > this.y && y < this.y + height) {
+            if (y > this.y - (int) yp && y < this.y + height - (int) yp) {
                 mouseMoved = true;
                 return true;
             } else {

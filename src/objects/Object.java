@@ -15,6 +15,8 @@ public class Object {
     
     protected Boolean mouseMoved = false;
     protected String ObjectName = "";
+    protected double xp = 0;
+    protected double yp = 0;
     
     protected ObjectMenu objectmenu;
     protected int ObjectID = 0;
@@ -34,6 +36,9 @@ public class Object {
     
     public void paint (Graphics g,double xp,double yp) {
         picture.draw(x-(int)xp, y-(int)yp);
+        
+        this.xp = xp;
+        this.yp = yp;
         
         if (mouseMoved) {
             paintMouseOver(g,xp,yp);
@@ -59,9 +64,9 @@ public class Object {
     
     public void mouseMoved (int x, int y) {
         
-        if (x > this.x && x < this.x + width) {
+        if (x > this.x - (int) xp && x < this.x + width - (int) xp) {
             
-            if (y > this.y && y < this.y + height) {
+            if (y > this.y - (int) yp && y < this.y + height - (int) yp) {
                 mouseMoved = true;
             } else {
                 mouseMoved = false;

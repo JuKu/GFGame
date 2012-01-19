@@ -112,6 +112,9 @@ public class plant extends Object {
         
         getImage().draw(x-(int)xp, y-(int)yp);
         
+        this.xp = xp;
+        this.yp = yp;
+        
         if (mouseMoved) {
             paintMouseOver(g,xp,yp);
         }
