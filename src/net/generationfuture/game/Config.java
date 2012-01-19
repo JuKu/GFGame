@@ -42,7 +42,7 @@ public class Config {
         loadDebugConfig();
         loadWebClient();
         loadIRC_ChatConfig();
-        loadFirstRunConfig();this.setFirstRun(true);
+        loadFirstRunConfig();
     }
     
     public final void loadConfig () throws IOException {
