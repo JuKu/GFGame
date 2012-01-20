@@ -10,7 +10,7 @@ public class Quest extends Thread {
     protected String Questname = "";
     protected Boolean UserQuest = true;
     protected Boolean FreakQuest = false;
-    protected Boolean isShown = false;
+    protected Boolean isShown = true;
     protected Boolean isLook = false;
     protected int windowNumber = 1;
     protected Boolean windowShow = false;
@@ -47,8 +47,14 @@ public class Quest extends Thread {
     }
     
     public void paint (Graphics g) {
+        
+        if (isShown) {
+            
         //Quest zeichnen
         paintQuestIcon(g);
+        
+        }
+        
     }
     
     public void setPositionsData (int x, int y) {
@@ -59,8 +65,11 @@ public class Quest extends Thread {
     public void paintQuestIcon (Graphics g) {
         
         Questimage[0].draw(x + 10, y + 10);
+        int anzahl_zeichen = Questhinweis.toCharArray().length;
         
         if (mouseOver) {//Questhinweis anzeigen
+            g.setColor(Color.white);
+            g.fillRect(x + 10, y + 18, anzahl_zeichen * 9 + 20, 20);
             g.setColor(Color.blue);
             g.drawString(Questhinweis, x + 20, y + 20);
         }
@@ -69,8 +78,37 @@ public class Quest extends Thread {
         
     }
     
-    public void mouseOver (int x, int y) {
+    public void mouseOver (int mouse_x, int mouse_y) {
+        
+        if (mouse_x > this.x && mouse_x < this.x + width) {
+            
+            if (mouse_y > this.y && mouse_y < this.y + height) {
+                //System.out.println("mouseOver.");
+                mouseOver = true;
+            } else {
+                mouseOver = false;
+            }
+            
+        } else {
+            mouseOver = false;
+        }
+        
+    }
+    
+    public void mouseClicked (int mouse_x, int mouse_y) {
         //
+    }
+    
+    public void wechsleAnsicht (Boolean show) {
+        this.isShown = show;
+    }
+    
+    public void wechsleAnsicht () {
+        this.isShown = !this.isShown;
+    }
+    
+    public Boolean getIsShown () {
+        return this.isShown;
     }
     
     public Boolean checkQuestFinish () {

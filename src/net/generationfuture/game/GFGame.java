@@ -11,6 +11,7 @@ import java.awt.Font.*;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
+import quests.*;
     
 public class GFGame extends BasicGame{
 
@@ -96,7 +97,7 @@ public class GFGame extends BasicGame{
         gc.getInput().addMouseListener(new GameMouseListener(this, player));
         questmanager = new QuestManager(this, player, items);
         
-        questmanager.start();
+        questmanager.start(); Quest quest_ = new Quest1(player, items); questmanager.createNewQuest(quest_); quest_ = new Quest1(player, items); questmanager.createNewQuest(quest_);
      }
  
     @Override
@@ -164,6 +165,7 @@ public class GFGame extends BasicGame{
         animal_manager.paintAnimalMenu(g);
         
         irc_chat.paint(gc, g);
+        questmanager.paintQuests(g);
         
         } else {
             this.willkommens_bild.draw(1, 1);
@@ -198,6 +200,8 @@ public class GFGame extends BasicGame{
         
         if ("irc".equals(actionCommand)) {
             irc_chat.switchshowChat();
+        } else if ("quest".equals(actionCommand)) {
+            questmanager.wechsleAnsicht();
         }
         
     }

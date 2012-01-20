@@ -25,6 +25,9 @@ public class MenuManager {
         menuItem = new GameMenuItem("Menu_2", new Image("materials/buttons/Buttons1/base_button_irc.png"));
         menuItem.setActionCommand("irc");
         game_menu.addMenuItem(menuItem);
+        menuItem = new GameMenuItem("Menu_Quest", new Image("materials/buttons/Buttons1/quest_button.png"));
+        menuItem.setActionCommand("quest");
+        game_menu.addMenuItem(menuItem);
         menuItem = new GameMenuItem("Menu_2", new Image("materials/buttons/Buttons1/base_button.png"));
         menuItem.setActionCommand("base_button");
         game_menu.addMenuItem(menuItem);

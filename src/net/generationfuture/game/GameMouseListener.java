@@ -66,6 +66,8 @@ public class GameMouseListener implements MouseListener {
                 menuItem.setMouseOver(true);
             }
             
+            isMouseMoved = gfgame.questmanager.mouseOver(mouse_x, mouse_y, isMouseMoved);
+            
             //Testen, ob Maus über Animals gefahren wurde.
             isMouseMoved = gfgame.animal_manager.isMouseOver(mouse_x, mouse_y, isMouseMoved);
              //Teste, ob Maus über Object "gefahren" wurde.

@@ -1,5 +1,6 @@
 package net.generationfuture.game;
 
+import java.io.File;
 import org.newdawn.slick.Graphics;
 
 public class QuestManager extends Thread {
@@ -10,14 +11,32 @@ public class QuestManager extends Thread {
     private Items items;
     private int FinishedQuests[];
     private int FinishedQuestCounter = 0;
+    private int width = 150;
+    private int height = 50;
     
     private Boolean beenden = false;
+    private String QuestListe_[];
+    private int x = 10;
+    private int y = 150;
     
     public QuestManager (GFGame gfgame, Player player, Items items) {
         //
         Questliste = new Quest[4];//Max. 3 Quests kann man gleichzeitig annehmen.
         
         FinishedQuests = new int[100];
+        findQuests();
+    }
+    
+    public void wechsleAnsicht () {
+        
+        for (int i = 0; i < Questliste.length; i++) {
+            
+            if (Questliste[i] != null) {
+                Questliste[i].wechsleAnsicht();
+            }
+            
+        }
+        
     }
     
     public void paintQuests (Graphics g) {
@@ -25,6 +44,7 @@ public class QuestManager extends Thread {
         for (int i = 0; i < Questliste.length; i++) {
             
             if (Questliste[i] != null) {
+                Questliste[i].setPositionsData(x + 10, y + 10 + (i * (height + 20)));
                 Questliste[i].paint(g);
             }
             
@@ -41,7 +61,7 @@ public class QuestManager extends Thread {
             if (Questliste[i] == null) {
                 Questliste[i] = quest;
                 i_ = 1;
-                Questliste[i].start();//Startt Thread, falls Quest einen benötigt.
+                Questliste[i].start();//Startet Thread, falls Quest einen benötigt.
                 break;
             }
             
@@ -55,20 +75,64 @@ public class QuestManager extends Thread {
         
     }
     
-    public void mouseOver (int x, int y) {
+    public Boolean mouseOver (int x, int y, Boolean isMouseMoved) {
+        
+        if (!isMouseMoved) {
         
         for (int i = 0; i < Questliste.length; i++) {
             
             if (Questliste[i] != null) {
-                //
+                Questliste[i].mouseOver(x, y);
             }
             
         }
+        
+        }
+        
+        return isMouseMoved;
         
     }
     
     public Boolean mouseClicked (int x, int y) {//Wird aufgerufen, wenn Maus auf etwas geklickt wurde
         return false;//Auf keinen Quest-Gegenstand geklickt.
+    }
+    
+    public final void findQuests () {
+        
+        File file = new File("GamaData/Cache/Quests");
+        
+        if (!file.exists()) {
+            file.mkdir();
+        }
+        
+        try {
+        
+        String dateien[] = new String[100];
+        dateien[0] = "";
+        
+        dateien = file.list();
+        
+        int i = 0;
+        
+        //for (int i_ = 0; i_ < dateien.length; i_++) {
+            
+            /*try {
+            
+            File file_ = new File(dateien[i_]);*/
+            /*if (!"README".equals(dateien[i_]) && ".class".equals(file_.getName().substring(0, file_.getName().lastIndexOf(".")))) {
+                System.out.println("Datei: " + dateien[i_]);
+            }*/
+            
+            /*} catch (NullPointerException ex) {
+                System.err.println("NullPointerException.");
+            }*/
+            
+        //}
+        
+        } catch (NullPointerException ex) {
+            System.err.println("NullPointerException.");
+        }
+        
     }
     
     @Override
