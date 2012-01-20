@@ -51,7 +51,7 @@ public class plant extends Object {
         
         growing_counter++;
         
-        if (growing_counter >= 8) {
+        if (growing_counter >= 7) {
             growing_counter = 0;
             growing = false;
         } else {

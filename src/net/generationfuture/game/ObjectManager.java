@@ -2,6 +2,7 @@ package net.generationfuture.game;
 
 import objects.Tree1;
 import objects.Object;
+import objects.ObjectMenu;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -22,6 +23,7 @@ public class ObjectManager {
     private int height = 200;
     
     private int grafik_ebenen = 3;
+    private ObjectMenu objectmenu = null;
     
     private Object objekte[][][];
     
@@ -92,20 +94,48 @@ public class ObjectManager {
         
         if (!isClicked_) {
             
+            int isObjectMenu = 0;
+            
             for (int i_ = 0; i_ < objects.length; i_++) {
                 
             Boolean isClicked;
             
             if (objects[i_] != null) {
                 isClicked = objects[i_].isClicked(mouse_x, mouse_y);
-                if (isClicked) { System.out.println("Object[" + i_ + "] isClicked."); isClicked_ = true; }
+                if (isClicked) {
+                    System.out.println("Object[" + i_ + "] isClicked.");
+                    isClicked_ = true;
+                    objectmenu = objects[i_].getObjectMenu();
+                    objects[i_].getObjectMenu().showMenu(true);
+                    isObjectMenu = 1;
+                } else {
+                    
+                    //if (objectmenu == null) {
+                        objects[i_].getObjectMenu().showMenu(false);
+                    //}
+                    
+                }
             }
             
+            }
+            
+            if (isObjectMenu == 0) {
+                objectmenu = null;//ObjectMenu aus der Variable löschen.
             }
         
         }
         
         return isClicked_;
+        
+    }
+    
+    public ObjectMenu getObjectMenu () {
+        
+        if (objectmenu != null) {
+            return objectmenu;
+        } else {
+            return null;
+        }
         
     }
     

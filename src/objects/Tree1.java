@@ -16,6 +16,21 @@ public class Tree1 extends plant {
         for(int i=0;i<7;++i) {
             growingi[i] = new Image("materials/trees/tree1_/fir C growing 000"+(i+1)+".bmp",new Color(94, 66, 41, 255));
         }
+        
+        objectmenu.addMenu("gießen", "grow");
+        objectmenu.addMenu("fällen", "tipping");
+        
+    }
+    
+    @Override
+    public void actionPerformed (String command) {
+            
+        if ("tipping".equals(command)) {
+            tipping();
+        } else if ("grow".equals(command)) {
+            grow();
+        }
+    
     }
     
 }

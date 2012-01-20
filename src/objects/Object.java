@@ -25,6 +25,7 @@ public class Object {
     public static int object_counter = 0;
     
     protected String name;
+    protected Boolean isClicked = false;
     
     public void createObject (Image picture, int x, int y) {
         this.picture = picture;
@@ -59,7 +60,7 @@ public class Object {
     }
     
     public void actionPerformed (String command) {
-        //
+        System.out.println("actionPerformed command: " + command + ".");
     }
     
     public void mouseMoved (int x, int y) {
@@ -95,12 +96,15 @@ public class Object {
         if (x > this.x && x < this.x + width) {
             
             if (y > this.y && y < this.y + height) {
+                isClicked = true;
                 return true;
             } else {
+                isClicked = false;
                 return false;
             }
             
         } else {
+            isClicked = false;
             return false;
         }
         

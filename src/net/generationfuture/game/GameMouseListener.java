@@ -1,5 +1,6 @@
 package net.generationfuture.game;
 
+import objects.ObjectMenu;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.MouseListener;
 
@@ -7,6 +8,8 @@ public class GameMouseListener implements MouseListener {
 
     GFGame gfgame;
     Player player;
+    
+    ObjectMenu objectmenu;
         
         public GameMouseListener (GFGame gfgame, Player player) {
             this.gfgame = gfgame;
@@ -27,6 +30,8 @@ public class GameMouseListener implements MouseListener {
             int mouse_x = i1;
             int mouse_y = i2;
             
+            objectmenu = gfgame.object_manager.getObjectMenu();
+            
             Boolean isClicked_ = false;
             
             GameMenuItem menuItem = gfgame.game_menu.mouseClicked(mouse_x, mouse_y);
@@ -36,6 +41,14 @@ public class GameMouseListener implements MouseListener {
                 
                 //System.out.println("Clicked.");
                 gfgame.actionPerformed(menuItem.getActionCommand(), menuItem);
+            }
+            
+            if (!isClicked_) {
+                
+                if (objectmenu != null) {
+                    isClicked_ = objectmenu.isClicked(mouse_x, mouse_y);
+                }
+                
             }
             
             //Teste, ob Object angeklickt wurde.
@@ -58,12 +71,22 @@ public class GameMouseListener implements MouseListener {
             int mouse_x = i;
             int mouse_y = i1;
             
+            objectmenu = gfgame.object_manager.getObjectMenu();
+            
             GameMenuItem menuItem = gfgame.game_menu.mouseOver(mouse_x, mouse_y);
             Boolean isMouseMoved = false;
             
             if (menuItem != null) {
                 isMouseMoved = true;
                 menuItem.setMouseOver(true);
+            }
+            
+            if (!isMouseMoved) {
+                
+                if (objectmenu != null) {
+                    isMouseMoved = objectmenu.mouseMoved(mouse_x, mouse_y);
+                }
+                
             }
             
             isMouseMoved = gfgame.questmanager.mouseOver(mouse_x, mouse_y, isMouseMoved);

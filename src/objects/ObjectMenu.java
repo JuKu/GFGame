@@ -13,6 +13,11 @@ public class ObjectMenu {
     
     Boolean mouseOver[];
     Object object;
+    private int menu_x_position = 200;
+    private int menu_y_position = 140;
+    
+    private int menu_width_ = 60;
+    private int menu_height_ = 50;
     
     public ObjectMenu (Object object) {
         
@@ -31,19 +36,19 @@ public class ObjectMenu {
         mouseOver[8] = false;
         mouseOver[9] = false;
         
-        this.addMenu("test", "test");
-        this.addMenu("test2", "test2");
+        //this.addMenu("test", "test");
+        //this.addMenu("test2", "test2");
         
     }
     
     public void paint (Graphics g) {
         
         if (isShown) {
-        
-        int menu_x = 100;
-        int menu_y = 140;
-        
-        int menu_width = 60;
+            
+        int menu_x = menu_x_position;//200;
+        int menu_y = menu_y_position;//140;
+    
+        int menu_width = this.menu_width_;//60;
         
         for (int i = 0; i < menu_counter; i++) {
             
@@ -102,13 +107,85 @@ public class ObjectMenu {
         //
     }
     
-    public void mouseOver (int menu) {
+    public void showMenu (Boolean show) {
+        isShown = show;
+    }
+    
+    public Boolean mouseMoved (int mouse_x, int mouse_y) {
+        
+        Boolean mouseMoved = false;
         
         for (int i = 0; i < 11; i++) {
+            
+            if (menu[i][0] != null) {
+            
+            int menu_width = 60 + (menu[i][0].length() * 5);
+            
+            if (mouse_x > menu_x_position + 2 && mouse_x < menu_x_position + 2 + menu_width) {
+                
+                if (mouse_y > menu_y_position + (i * 25) - 25 && mouse_y < menu_y_position + (i * 25) - 25 + menu_height_ - 2) {
+                    //System.out.println("Menu clicked. (" + i + ")");
+                    mouseMoved = true;
+                    mouseOver(i);
+                    break;
+                }
+                
+                //System.out.println("Menu clicked.");
+                
+            }
+            
+        }
+        
+    }
+        
+    if (!mouseMoved) {
+        
+        for (int i = 0; i < 10; i++) {
+            mouseOver[i] = false;
+        }
+        
+    }
+        
+    return mouseMoved;
+        
+    }
+    
+    public void mouseOver (int menu) {
+        
+        for (int i = 0; i < 10; i++) {
             mouseOver[i] = false;
         }
         
         mouseOver[menu] = true;
+        
+    }
+    
+    public Boolean isClicked (int mouse_x, int mouse_y) {
+        
+        for (int i = 0; i < 11; i++) {
+            
+            if (menu[i][0] != null) {
+            
+            int menu_width = 60 + (menu[i][0].length() * 5);
+            
+            if (mouse_x > menu_x_position + 2 && mouse_x < menu_x_position + 2 + menu_width) {
+                
+                if (mouse_y > menu_y_position + (i * 25) - 25 && mouse_y < menu_y_position + (i * 25) - 25 + menu_height_ - 2) {
+                    //System.out.println("Menu clicked. (" + i + ")");
+                    
+                    object.actionPerformed(menu[i][1]);
+                    break;
+                }
+                
+                //System.out.println("Menu clicked.");
+                
+            }
+            
+            }
+            
+        }
+        
+        return false;
         
     }
     
