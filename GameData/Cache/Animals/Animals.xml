@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+  <content>
+      <min_version>1.0</min_version>
+      <version>1.0</version>
+      <animal animalID="1" id="1" name="Hase1" Animalname="Hase">
+              <geschlecht>m</geschlecht>
+              <alter>4</alter>
+              <animal_pos_x>50</animal_pos_x>
+              <animal_pos_y>50</animal_pos_y>
+      </animal>
+      <animal animalID="1" id="2" name="Hase2" Animalname="Hase">
+              <geschlecht>m</geschlecht>
+              <alter>4</alter>
+              <animal_pos_x>20</animal_pos_x>
+              <animal_pos_y>20</animal_pos_y>
+      </animal>
+  </content>

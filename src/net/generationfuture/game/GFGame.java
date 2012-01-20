@@ -37,6 +37,9 @@ public class GFGame extends BasicGame{
     private Image willkommens_bild;
     public Boolean GameStart = false;
     
+    public QuestManager questmanager;
+    public Items items;
+    
     private inputHandler ih = new inputHandler();
     private static AppGameContainer app;
     
@@ -65,8 +68,8 @@ public class GFGame extends BasicGame{
         
         client = config.getClient();
         client.start();
-        client.getPlayerData();
         
+        client.getPlayerData();
         
         //grasland = new TiledMap("materials/test_.tmx","materials");
         
@@ -88,7 +91,12 @@ public class GFGame extends BasicGame{
         irc_chat = new IRC_Chat(client, this, player, config);
         bedürfnis_anzeige = new NeedsDisplay(player);
         
+        items = new Items();
+        
         gc.getInput().addMouseListener(new GameMouseListener(this, player));
+        questmanager = new QuestManager(this, player, items);
+        
+        questmanager.start();
      }
  
     @Override

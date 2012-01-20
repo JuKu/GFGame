@@ -13,7 +13,7 @@ private/
 build/
 
 # don't commit cache
-Cache/
+Cache/Saves
 
 # No VIM swap files
 *.swp

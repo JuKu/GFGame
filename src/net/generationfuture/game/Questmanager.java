@@ -2,15 +2,18 @@ package net.generationfuture.game;
 
 import org.newdawn.slick.Graphics;
 
-public class Questmanager extends Thread {
+public class QuestManager extends Thread {
     
     private Quest Questliste[];
     private GFGame gfgame;
     private Player player;
+    private Items items;
     private int FinishedQuests[];
     private int FinishedQuestCounter = 0;
     
-    public Questmanager (GFGame gfgame, Player player) {
+    private Boolean beenden = false;
+    
+    public QuestManager (GFGame gfgame, Player player, Items items) {
         //
         Questliste = new Quest[4];//Max. 3 Quests kann man gleichzeitig annehmen.
         
@@ -38,7 +41,7 @@ public class Questmanager extends Thread {
             if (Questliste[i] == null) {
                 Questliste[i] = quest;
                 i_ = 1;
-                
+                Questliste[i].start();//Startt Thread, falls Quest einen benötigt.
                 break;
             }
             
@@ -71,32 +74,36 @@ public class Questmanager extends Thread {
     @Override
     public void run () {//Überprüft die Quest-Daten
         
-        for (int i = 0; i < Questliste.length; i++) {
+        while (!beenden) {
+        
+            for (int i = 0; i < Questliste.length; i++) {
             
-            if (Questliste[i] != null) {
+                if (Questliste[i] != null) {
                 
-                //
-                Boolean QuesthasFinished = Questliste[i].checkQuestFinish();
+                    //
+                    Boolean QuesthasFinished = Questliste[i].checkQuestFinish();
                 
-                if (QuesthasFinished) {
+                    if (QuesthasFinished) {
                     
-                    Boolean Quest_ = Questliste[i].nextQuestStufe();
+                        Boolean Quest_ = Questliste[i].nextQuestStufe();
                     
-                    if (!Quest_) {//Quest ist fertig.
-                        Questliste[i].reward();//Player belohnen
-                        FinishedQuests[this.FinishedQuestCounter] = Questliste[i].getQuestID();
-                        this.FinishedQuestCounter++;
-                        Questliste[i] = null;//Quest löschen
-                    } else {
-                        Questliste[i].rewardQuestStufe();
+                        if (!Quest_) {//Quest ist fertig.
+                            Questliste[i].reward();//Player belohnen
+                            FinishedQuests[this.FinishedQuestCounter] = Questliste[i].getQuestID();
+                            this.FinishedQuestCounter++;
+                            Questliste[i] = null;//Quest löschen
+                        } else {
+                            Questliste[i].rewardQuestStufe();
+                        }
+                    
                     }
-                    
+                
+                    Questliste[i].update();
+                
                 }
-                
-                Questliste[i].update();
-                
-            }
             
+            }
+        
         }
         
     }
