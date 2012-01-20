@@ -1,0 +1,25 @@
+In diesen Ordner kommen Dateien, die zum Quest entwickeln benötigt werden.
+Hinweis: Diese Dateien sind nur abgespeckte Versionen der Klassen, damit das compilieren funktioniert.
+
+Anleitung:
+
+Erstelle eine Datei, z.B. "Quest1.java". (Beispiel-Datei ist vorhanden)
+Wichtig!: In dieser Datei sollte nicht unbedingt Slick vorkommen, da es sonst sein kann, das du es nicht kompilieren kannst.
+Die paint(), ... - Methoden musst du nicht bearbeiten, da sie schon fertig sind, sondern lediglich den Handlungsablauf.
+Folgende Methoden musst du evtl bearbeiten:
+-update()
+-nextQuestStufe()
+-reward() (wird aufgerufen, wenn nextQuestStufe() false zurück gibt, der Quest also fertiggestellt wurde.)
+-rewardQuestStufe()
+-startQuest() - ist die Init-Methode des Quests
+-run()
+
+Wichtig!: Das zeichnen übernimmt die paint()-Methode.
+Bitte bearbeite diese nicht, da es sonst zu Problemen beim kompilieren (wegen Slick) führen kann.
+
+Folgende Variablen musst du unbedingt bearbeiten:
+-int id
+-String Questname
+-Boolean UserQuest - gibt an, ob der Quest für normale User ist.
+-Boolean FreakQuest - gibt an, ob der Quest für Freaks ist.
+-Image Questimage[]

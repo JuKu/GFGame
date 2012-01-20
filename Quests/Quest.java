@@ -1,12 +1,10 @@
-package net.generationfuture.game;
-
-import org.newdawn.slick.Color;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
 
 public class Quest extends Thread {
-    
-    protected int id = 0;
+
+	protected int id = 0;
     protected String Questname = "";
     protected Boolean UserQuest = true;
     protected Boolean FreakQuest = false;
@@ -28,27 +26,23 @@ public class Quest extends Thread {
     
     protected Player player;
     protected Items items;
-    
-    public Quest (Player player, Items items) {
-        Questimage = new Image[10];//Questimage[0] ist das Hauptimage.
-        this.player = player;
-        
-        this.items = items;
-    }
-    
-    public void startQuest () {
+	
+	public Quest (Player player, Items items) {
+	//
+	}
+
+public void startQuest () {
         //Startet den Quest
         isShown = true;
     }
     
     @Override
     public void run () {
-        //ÃœberprÃ¼ft Variablen und beendet gegebenenfalls den Quest.
+        //Überprüft Variablen und beendet gegebenenfalls den Quest.
     }
     
     public void paint (Graphics g) {
         //Quest zeichnen
-        paintQuestIcon(g);
     }
     
     public void setPositionsData (int x, int y) {
@@ -58,14 +52,7 @@ public class Quest extends Thread {
     
     public void paintQuestIcon (Graphics g) {
         
-        Questimage[0].draw(x + 10, y + 10);
-        
-        if (mouseOver) {//Questhinweis anzeigen
-            g.setColor(Color.blue);
-            g.drawString(Questhinweis, x + 20, y + 20);
-        }
-        
-        g.setColor(Color.white);
+   	//
         
     }
     
@@ -90,15 +77,15 @@ public class Quest extends Thread {
     }
     
     public void reward () {
-        //Player fÃ¼r fertigstellen des Quests belohnen.
+        //Player für fertigstellen des Quests belohnen.
     }
     
     public void rewardQuestStufe () {
-        //Player fÃ¼r fertigstellen einer Quest-Stufe belohnen.
+        //Player für fertigstellen einer Quest-Stufe belohnen.
     }
     
     public void update () {//Wird automatisch aufgerufen
         //
     }
-    
+
 }
