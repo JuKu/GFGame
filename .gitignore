@@ -15,8 +15,8 @@ build/
 # don't commit cache
 Cache/Saves
 
-#dist/GameData
-dist/GameData/Cache
+dist/GameData
+#dist/GameData/Cache
 
 # No VIM swap files
 *.swp
