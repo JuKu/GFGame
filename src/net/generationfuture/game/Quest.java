@@ -29,7 +29,7 @@ public class Quest extends Thread {
     protected Player player;
     protected Items items;
     
-    private Boolean paintWindow = false;
+    protected Boolean paintWindow = false;
     protected Color window_bg = Color.white;
     
     protected Boolean closeButtonMoved = false;
@@ -70,7 +70,7 @@ public class Quest extends Thread {
         this.paintWindow = showWindow;
     }
     
-    public void paintWindow (Graphics g) {
+    public final void paintWindow (Graphics g) {
         
         g.setColor(window_bg);
         g.fillRect(200, 100, 550, 350);
@@ -87,8 +87,13 @@ public class Quest extends Thread {
         g.setColor(closeColor_);
         g.drawString("Close", 660, 110);
         
+        paintWindowBody(g);
         g.setColor(Color.white);
         
+    }
+    
+    public void paintWindowBody (Graphics g) {
+        //
     }
     
     public void closeWindow () {

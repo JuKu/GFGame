@@ -100,7 +100,7 @@ public class GFGame extends BasicGame{
         questmanager.start();
         Quest quest_ = new Quest1(player, items);
         questmanager.createNewQuest(quest_);
-        quest_ = new Quest1(player, items);//quest_.showWindow(true);
+        quest_ = new Quest2(player, items); quest_.showWindow(true);
         questmanager.createNewQuest(quest_);
      }
  

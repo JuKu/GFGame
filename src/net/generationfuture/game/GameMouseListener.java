@@ -44,7 +44,7 @@ public class GameMouseListener implements MouseListener {
             }
             
             if (!isClicked_) {
-                isClicked_ = gfgame.questmanager.mouseClicked(mouse_x, mouse_x, isClicked_);//System.out.println("test2");
+                isClicked_ = gfgame.questmanager.mouseClicked(mouse_x, mouse_y, isClicked_);//System.out.println("test2");
             }
             
             if (!isClicked_) {
