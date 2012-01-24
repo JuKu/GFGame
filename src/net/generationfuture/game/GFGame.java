@@ -97,7 +97,11 @@ public class GFGame extends BasicGame{
         gc.getInput().addMouseListener(new GameMouseListener(this, player));
         questmanager = new QuestManager(this, player, items);
         
-        questmanager.start(); Quest quest_ = new Quest1(player, items); questmanager.createNewQuest(quest_); quest_ = new Quest1(player, items); questmanager.createNewQuest(quest_);
+        questmanager.start();
+        Quest quest_ = new Quest1(player, items);
+        questmanager.createNewQuest(quest_);
+        quest_ = new Quest1(player, items);//quest_.showWindow(true);
+        questmanager.createNewQuest(quest_);
      }
  
     @Override

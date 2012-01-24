@@ -19,6 +19,8 @@ public class QuestManager extends Thread {
     private int x = 10;
     private int y = 150;
     
+    public Quest windowQuest = null;
+    
     public QuestManager (GFGame gfgame, Player player, Items items) {
         //
         Questliste = new Quest[4];//Max. 3 Quests kann man gleichzeitig annehmen.
@@ -46,6 +48,10 @@ public class QuestManager extends Thread {
             if (Questliste[i] != null) {
                 Questliste[i].setPositionsData(x + 10, y + 10 + (i * (height + 20)));
                 Questliste[i].paint(g);
+                
+                if (Questliste[i].isWindow()) {
+                    windowQuest = Questliste[i];//System.out.println("QuestWindow.");
+                }
             }
             
         }
@@ -77,6 +83,10 @@ public class QuestManager extends Thread {
     
     public Boolean mouseOver (int x, int y, Boolean isMouseMoved) {
         
+        if (windowQuest != null) {
+            isMouseMoved = windowQuest.WindowMouseOver(x, y);
+        }
+        
         if (!isMouseMoved) {
         
         for (int i = 0; i < Questliste.length; i++) {
@@ -93,8 +103,28 @@ public class QuestManager extends Thread {
         
     }
     
-    public Boolean mouseClicked (int x, int y) {//Wird aufgerufen, wenn Maus auf etwas geklickt wurde
-        return false;//Auf keinen Quest-Gegenstand geklickt.
+    public Boolean mouseClicked (int x, int y, Boolean isMouseClicked) {//Wird aufgerufen, wenn Maus auf etwas geklickt wurde
+        
+        //return false;//Auf keinen Quest-Gegenstand geklickt.
+        //System.out.println("QuestManager mouseClicked.");
+        if (windowQuest != null) {
+            isMouseClicked = windowQuest.WindowMouseClicked(x, y);
+        }
+        
+        if (!isMouseClicked) {
+        
+        for (int i = 0; i < Questliste.length; i++) {
+            
+            if (Questliste[i] != null) {
+                Questliste[i].mouseClicked(x, y);
+            }
+            
+        }
+        
+        }
+        
+        return isMouseClicked;
+        
     }
     
     public final void findQuests () {

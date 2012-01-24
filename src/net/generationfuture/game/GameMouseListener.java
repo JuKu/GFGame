@@ -28,7 +28,7 @@ public class GameMouseListener implements MouseListener {
             }
             
             int mouse_x = i1;
-            int mouse_y = i2;
+            int mouse_y = i2;//System.out.println("i: " + i + ", i1: " + i1 + ", i2: " + i2 + ", i3: " + i3);
             
             objectmenu = gfgame.object_manager.getObjectMenu();
             
@@ -41,6 +41,10 @@ public class GameMouseListener implements MouseListener {
                 
                 //System.out.println("Clicked.");
                 gfgame.actionPerformed(menuItem.getActionCommand(), menuItem);
+            }
+            
+            if (!isClicked_) {
+                isClicked_ = gfgame.questmanager.mouseClicked(mouse_x, mouse_x, isClicked_);//System.out.println("test2");
             }
             
             if (!isClicked_) {
