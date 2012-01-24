@@ -33,6 +33,9 @@ public class Quest extends Thread {
     protected Color window_bg = Color.white;
     
     protected Boolean closeButtonMoved = false;
+    protected String windowBody = "";
+    
+    protected Color WindowSchriftColor = Color.blue;
     
     public Quest (Player player, Items items) {
         Questimage = new Image[10];//Questimage[0] ist das Hauptimage.
@@ -93,7 +96,20 @@ public class Quest extends Thread {
     }
     
     public void paintWindowBody (Graphics g) {
-        //
+        
+        String[] param = /*(*/windowBody/*.split("<br>")[1])*/.split("<br>");
+        //System.out.println("" + param[0] + ", " + param[1]);
+        
+        g.setColor(WindowSchriftColor);
+        
+        for (int i = 0; i < param.length; i++) {
+            g.drawString("" + param[i], 250, 120 + (i * 20));
+        }
+        
+    }
+    
+    public void writeTextOnWindowBody (String string) {
+        windowBody = windowBody + "<br>" + string;
     }
     
     public void closeWindow () {

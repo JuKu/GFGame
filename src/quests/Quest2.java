@@ -14,6 +14,7 @@ public class Quest2 extends Quest {
         Questimage[0] = new Image("GameData/Cache/Quests/Quest1_2.png");
         
         Questhinweis = "Willkommen";
+        this.writeTextOnWindowBody("Herzlich Willkommen im Mystery-Park!<br><br>Im Mystery-Park gibt es viel zu entdecken.<br>bla, bla, bla.");
     }
     
     @Override
@@ -30,7 +31,7 @@ public class Quest2 extends Quest {
         items.Holz = items.Holz + 10;
     }
     
-    @Override
+    /*@Override
     public void paintWindowBody (Graphics g) {
         
         g.setColor(Color.blue);
@@ -41,6 +42,6 @@ public class Quest2 extends Quest {
         
         //
         
-    }
+    }*/
     
 }
