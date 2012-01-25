@@ -27,6 +27,9 @@ public class WebClient extends Thread {
     protected Boolean getPlayer = true;
     
     protected Boolean getAnimalsData = true;
+    protected Boolean getQuests = true;
+    
+    protected String quests;
     
     protected int player_pos_x = 0;
     protected int player_pos_y = 0;

@@ -127,18 +127,18 @@ public class QuestWindow {
     public Boolean WindowMouseClicked (int mouse_x, int mouse_y) {
         
         Boolean mouseMoved = false;//System.out.println("WindowMouseOver.");
-        System.out.println("WindowMouseClicked., mouse_x: " + mouse_x + ", mouse_y: " + mouse_y + ".");
+        //System.out.println("WindowMouseClicked., mouse_x: " + mouse_x + ", mouse_y: " + mouse_y + ".");
         if (mouse_x > 650 && mouse_x < 650 + 100) {
             
             if (mouse_y > 100 && mouse_y < 100 + 40) {
                 //System.out.println("mouseOver.");
                 //mouseOver = true;
                 
-                this.closeWindow();System.out.println("wmc: yes.");
+                this.closeWindow();//System.out.println("wmc: yes.");
                 
                 mouseMoved = true;
                 //this.closeButtonMoved = true;
-            } else {System.out.println("wmc: no, y falsch. mouse_y: " + mouse_y + ".");
+            } else {//System.out.println("wmc: no, y falsch. mouse_y: " + mouse_y + ".");
                 //this.closeButtonMoved = false;
                 //mouseOver = false;
             }

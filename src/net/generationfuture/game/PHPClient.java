@@ -134,6 +134,17 @@ public class PHPClient extends WebClient {
             
             this.getAnimalsData = false;
             
+        } else if (this.getQuests) {
+            
+            url = new URL(config.getServerURL() + "/index.php?username=" + config.getUsername() + "&passwort=" + config.getPasswort() + "&option=getQuest");
+            is = url.openStream();
+            br = new BufferedReader( new InputStreamReader(is) );
+            text = readFile(is);
+            vomServer_text = text; System.out.println("vomServer: " + text);
+            this.quests = text;
+            
+            this.getQuests = false;
+            
         }
         
         if (config.isDebugMode()) { System.out.println("vomServer: \"" + text + "\"."); }
