@@ -94,6 +94,8 @@ public class PHPClient extends WebClient {
             File file = new File(config.getCacheFolder() + "/Animals/Animals.xml");
             file.createNewFile();
             
+            text = text.replace("<br>", System.getProperty("line.separator") + "");
+            
             /*FileWriter schreiben = new FileWriter(config.getCacheFolder() + "/Animals/Animals.xml");
             
             // char-Array als Puffer für das Lesen
