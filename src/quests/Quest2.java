@@ -12,15 +12,17 @@ public class Quest2 extends Quest {
     public Quest2 (Player player, Items items) throws SlickException {
         super(player, items);
         Questimage[0] = new Image("GameData/Cache/Quests/Quest1_2.png");
-        
         Questhinweis = "Willkommen";
-        this.writeTextOnWindowBody("Herzlich Willkommen im Mystery-Park!<br><br>Im Mystery-Park gibt es viel zu entdecken.<br>bla, bla, bla.");
+        questwindow.writeTextOnWindowBody("Herzlich Willkommen im Mystery-Park!<br><br>Im Mystery-Park gibt es viel zu entdecken.<br>bla, bla, bla.");
+        
+        questwindow.showWindow(true);
+        //questwindow.setImage(new Image("GameData/Cache/Quests/Quest1_2.png"), 20, 20);
     }
     
     @Override
     public void update () {
         
-        if (!this.paintWindow) {//Wenn Fenster geschlossen wurde.
+        if (!questwindow.isWindow()) {//Wenn Fenster geschlossen wurde.
             this.QuesthasFinished = true;
         }
         

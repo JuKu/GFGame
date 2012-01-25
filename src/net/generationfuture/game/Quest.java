@@ -29,19 +29,21 @@ public class Quest extends Thread {
     protected Player player;
     protected Items items;
     
-    protected Boolean paintWindow = false;
-    protected Color window_bg = Color.white;
+    //protected Boolean paintWindow = false;
+    //protected Color window_bg = Color.white;
     
-    protected Boolean closeButtonMoved = false;
-    protected String windowBody = "";
+    //protected Boolean closeButtonMoved = false;
+    //protected String windowBody = ""; 
     
-    protected Color WindowSchriftColor = Color.blue;
+    //protected Color WindowSchriftColor = Color.blue;
+    protected QuestWindow questwindow;
     
     public Quest (Player player, Items items) {
         Questimage = new Image[10];//Questimage[0] ist das Hauptimage.
         this.player = player;
         
         this.items = items;
+        questwindow = new QuestWindow(this);
     }
     
     public void startQuest () {
@@ -63,61 +65,28 @@ public class Quest extends Thread {
         
         }
         
-        if (paintWindow) {
+        /*if (paintWindow) {
             paintWindow(g);
-        }
+        }*/
+        
+        questwindow.paint(g);
         
     }
     
     public void showWindow (Boolean showWindow) {
-        this.paintWindow = showWindow;
+        questwindow.showWindow(showWindow);
     }
     
-    public final void paintWindow (Graphics g) {
+    public void actionPerformed (String command) {
         
-        g.setColor(window_bg);
-        g.fillRect(200, 100, 550, 350);
-        
-        Color closeColor = Color.red;
-        Color closeColor_ = Color.white;
-        
-        if (closeButtonMoved) {
-            closeColor = Color.blue;
+        if ("closeWindow".equals(command)) {
+            //Window wurde geschlossen
         }
         
-        g.setColor(closeColor);
-        g.fillRect(650, 100, 100, 40);
-        g.setColor(closeColor_);
-        g.drawString("Close", 660, 110);
-        
-        paintWindowBody(g);
-        g.setColor(Color.white);
-        
-    }
-    
-    public void paintWindowBody (Graphics g) {
-        
-        String[] param = /*(*/windowBody/*.split("<br>")[1])*/.split("<br>");
-        //System.out.println("" + param[0] + ", " + param[1]);
-        
-        g.setColor(WindowSchriftColor);
-        
-        for (int i = 0; i < param.length; i++) {
-            g.drawString("" + param[i], 250, 120 + (i * 20));
-        }
-        
-    }
-    
-    public void writeTextOnWindowBody (String string) {
-        windowBody = windowBody + "<br>" + string;
-    }
-    
-    public void closeWindow () {
-        this.paintWindow = false;
     }
     
     public Boolean isWindow () {
-        return this.paintWindow;
+        return questwindow.isWindow();
     }
     
     public void setPositionsData (int x, int y) {
@@ -164,64 +133,6 @@ public class Quest extends Thread {
         
     }
     
-    public Boolean WindowMouseOver (int mouse_x, int mouse_y) {
-        
-        Boolean mouseMoved = false;//System.out.println("WindowMouseOver.");
-        
-        if (mouse_x > 650 && mouse_x < 650 + 100) {
-            
-            if (mouse_y > 100 && mouse_y < 100 + 40) {
-                //System.out.println("mouseOver.");
-                //mouseOver = true;
-                
-                mouseMoved = true;
-                this.closeButtonMoved = true;
-            } else {
-                this.closeButtonMoved = false;
-                //mouseOver = false;
-            }
-            
-        } else {
-            this.closeButtonMoved = false;
-            //mouseOver = false;
-        }
-        
-        return mouseMoved;
-        
-    }
-    
-    public Boolean WindowMouseClicked (int mouse_x, int mouse_y) {
-        
-        Boolean mouseMoved = false;//System.out.println("WindowMouseOver.");
-        System.out.println("WindowMouseClicked., mouse_x: " + mouse_x + ", mouse_y: " + mouse_y + ".");
-        if (mouse_x > 650 && mouse_x < 650 + 100) {
-            
-            if (mouse_y > 100 && mouse_y < 100 + 40) {
-                //System.out.println("mouseOver.");
-                //mouseOver = true;
-                
-                this.closeWindow();System.out.println("wmc: yes.");
-                
-                mouseMoved = true;
-                //this.closeButtonMoved = true;
-            } else {System.out.println("wmc: no, y falsch. mouse_y: " + mouse_y + ".");
-                //this.closeButtonMoved = false;
-                //mouseOver = false;
-            }
-            
-        } else {//System.out.println("wmc: no, x falsch.");
-            //this.closeButtonMoved = false;
-            //mouseOver = false;
-        }
-        
-        return mouseMoved;
-        
-    }
-    
-    /*public void mouseClicked (int mouse_x, int mouse_y) {
-        //
-    }*/
-    
     public Boolean mouseClicked (int mouse_x, int mouse_y) {
         //System.out.println("mouseClicked.");
         Boolean mouseMoved = false;
@@ -232,6 +143,7 @@ public class Quest extends Thread {
                 //System.out.println("mouseOver.");
                 //mouseOver = true;
                 
+                questwindow.showWindow(true);
                 mouseMoved = true;
             } else {
                 //mouseOver = false;
@@ -244,6 +156,24 @@ public class Quest extends Thread {
         return mouseMoved;
         
     }
+    
+    public Boolean WindowMouseOver (int mouse_x, int mouse_y) {
+        
+        Boolean mouseMoved = questwindow.WindowMouseOver(mouse_x, mouse_y);
+        return mouseMoved;
+        
+    }
+    
+    public Boolean WindowMouseClicked (int mouse_x, int mouse_y) {
+        
+        Boolean mouseMoved = questwindow.WindowMouseClicked(mouse_x, mouse_y);
+        return mouseMoved;
+        
+    }
+    
+    /*public void mouseClicked (int mouse_x, int mouse_y) {
+        //
+    }*/
     
     public void wechsleAnsicht (Boolean show) {
         this.isShown = show;

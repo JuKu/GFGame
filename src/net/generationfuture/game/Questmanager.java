@@ -191,8 +191,12 @@ public class QuestManager extends Thread {
                         }
                     
                     }
-                
-                    Questliste[i].update();
+                    
+                    try {
+                        Questliste[i].update();
+                    } catch (NullPointerException ex) {
+                        //
+                    }
                 
                 }
             

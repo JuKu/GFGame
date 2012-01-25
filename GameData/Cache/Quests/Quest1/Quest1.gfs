@@ -1,0 +1,16 @@
+[VARIBLES:]
+Questimage[0]=GameData/Cache/Quests/Quest1_2.png;
+QuestName=Willkommen im Mystery-Park!;
+Questhinweis=Willkommen im Mystery-Park!;
+TextOnWindowBody=Herzlich Willkommen im Mystery-Park!<br><br>Im Mystery-Park gibt es viel zu entdecken.<br>bla, bla, bla.;
+paintWindow=true;
+
+[update:]
+WENN:
+!paintWindow
+/DANN:
+QuesthasFinished=true;
+/ENDS_WENN
+
+[reward:]
+Holz=10;

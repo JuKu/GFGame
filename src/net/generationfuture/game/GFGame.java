@@ -44,6 +44,8 @@ public class GFGame extends BasicGame{
     private inputHandler ih = new inputHandler();
     private static AppGameContainer app;
     
+    public static Boolean pause = false;
+    
     public GFGame() throws SlickException
     {
         super("GFGame");
@@ -110,15 +112,20 @@ public class GFGame extends BasicGame{
     {
         
         if (this.GameStart) {//Wenn Game gestartet wurde.
+            
+            if (!pause) {//Spiel ist nicht pausiert.
         
-        ih.check(gc,player);
+            ih.check(gc,player);
         
-        if (gc.isMouseGrabbed()) {
-            JOptionPane.showInternalMessageDialog(new JLabel("test"), this);
-        }
+            if (gc.isMouseGrabbed()) {
+                JOptionPane.showInternalMessageDialog(new JLabel("test"), this);
+            }
         
-        //Animals bewegen
-        animal_manager.moveAnimals();
+            //Animals bewegen
+            animal_manager.moveAnimals();
+        
+            }
+            
         app.setDisplayMode(800, 600, false);
         
         } else {
