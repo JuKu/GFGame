@@ -33,9 +33,10 @@ public class Object {
     public void createObject (Image picture, Items items, int x, int y) {
         this.picture = picture;
         this.objectmenu = new ObjectMenu(this);
-        
         this.x = x;
         this.y = y;
+        
+        this.items = items;
     }
     
     public void paint (Graphics g,double xp,double yp) {

@@ -13,6 +13,7 @@ public class Fireplace extends Object {
     protected Image[] animation_ = new Image[8];
     
     protected Image picture2;
+    protected int kostetHolz = 2;
     
     Animation animation;
     Animation animation2;
@@ -57,7 +58,7 @@ public class Fireplace extends Object {
             
         if ("makeFire".equals(command)) {
             
-            if (items.Holz > 2) {
+            if (items.Holz >= 2) {
                 isFire = true;
                 items.Holz = items.Holz - 2;
             }
@@ -90,7 +91,27 @@ public class Fireplace extends Object {
     
     @Override
     public void paintMouseOver (Graphics g,double xp,double yp) {
-        //
+        //System.out.println("paintMouseMoved.");
+        
+        g.setColor(Color.gray);
+        g.fillRect(x - 10, y - 10, 300, 40);
+        
+        g.setColor(Color.white);
+        
+        if (items.Holz >= this.kostetHolz) {
+            g.drawString("Das anzünden kostet " + kostetHolz + " Stück Holz.", x-(int)xp, y-(int)yp);
+        } else {
+            g.setColor(Color.gray);
+            g.fillRect(x - 10, y - 10, 500, 40);
+        
+            g.setColor(Color.white);
+            g.drawString("Du hast nicht genügend Holz, um das Feuer anzuzünden.", x-(int)xp, y-(int)yp);
+        }
+        
+        g.drawString("Du hast " + items.Holz + " Stücke Holz.", x-(int)xp, y-(int)yp + 15);
+        
+        //g.drawString("Object-ID: " + ObjectID, x-(int)xp, y-(int)yp + 15);
+        //g.drawString("ID: " + id, x-(int)xp, y-(int)yp + 40);
     }
     
 }
