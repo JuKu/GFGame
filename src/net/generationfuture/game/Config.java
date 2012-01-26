@@ -76,6 +76,10 @@ public class Config {
         
     }
     
+    public String getDebugFile () {
+        return "" + this.debug_folder + "/" + this.debug_file;
+    }
+    
     public final void loadDebugConfig () throws IOException {
         
         debug_folder = debug_datei.leseString("Debug", "folder");

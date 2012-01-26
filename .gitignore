@@ -15,6 +15,9 @@ build/
 # don't commit cache
 Cache/Saves
 
+# don't commit the debug-file.
+GameData/Cache/debuglog.txt
+
 dist/GameData
 #dist/GameData/Cache
 

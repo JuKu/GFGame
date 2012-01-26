@@ -1,1 +1,4 @@
 Dieser Ordner enthält nicht nur Cache-Dateien (temporäre Dateien), sondern auch grundlegende Dateien des Spiels.
+
+Hinweis zum Debug-Modus:
+Die Standart-Debugdatei ist die "debuglog.txt" im Ordner "Cache".

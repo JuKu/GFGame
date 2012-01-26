@@ -1,5 +1,6 @@
 package net.generationfuture.game;
 
+import java.io.IOException;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.gui.GUIContext;
@@ -29,8 +30,9 @@ public class IRC_Chat {
         showChat = config.showIRC_Chat();
     }
     
-    public void switchshowChat () {
+    public void switchshowChat () throws IOException {
         showChat = !showChat;
+        GFGame.log.write("IRC_Chat switchshowChat().");
     }
     
     public void paint (GUIContext container, Graphics g) {

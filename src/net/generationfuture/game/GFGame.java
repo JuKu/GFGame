@@ -45,6 +45,7 @@ public class GFGame extends BasicGame{
     private static AppGameContainer app;
     
     public static Boolean pause = false;
+    public static Log log;
     
     public GFGame() throws SlickException
     {
@@ -65,6 +66,17 @@ public class GFGame extends BasicGame{
         //error("Loading Settings...");
         try {
             config = new Config(config_datei);
+        } catch (IOException ex) {
+            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            log = new Log(config);
+        } catch (IOException ex) {
+            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            log.write(System.getProperty("GFGame init()."));
         } catch (IOException ex) {
             Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -104,6 +116,12 @@ public class GFGame extends BasicGame{
         questmanager.createNewQuest(quest_);
         quest_ = new Quest2(player, items); quest_.showWindow(true);
         questmanager.createNewQuest(quest_);
+        
+        try {
+            log.write("GFGame init() ist fertig.");
+        } catch (IOException ex) {
+            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
      }
  
     @Override
@@ -196,7 +214,7 @@ public class GFGame extends BasicGame{
          app.start();
     }
     
-    public void actionPerformed (String actionCommand, GameMenuItem menuItem) {
+    public void actionPerformed (String actionCommand, GameMenuItem menuItem) throws IOException {
         
         /***********************************************
          * 
