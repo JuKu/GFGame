@@ -1,3 +1,6 @@
 This is just another try of the generation future from http://generation-future.net/phpBB3 to create a game.
 
 Actually it is based on the slick rendering engine, which you may install to run the game.
+
+Um das Game im Debug-Modus zu starten, muss zum einen die "Config.ini" im Ordner "GameData/Config" bearbeitet werden
+und zum anderen das Game mit der Datei "run.bat" gestartet werden.
