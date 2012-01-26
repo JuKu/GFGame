@@ -62,6 +62,7 @@ public class plant extends Object {
     
     public void tipping () {
         tipping = true;
+        isTipping = true;
     }
     
     @Override
