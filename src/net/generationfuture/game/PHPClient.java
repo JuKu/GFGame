@@ -61,10 +61,12 @@ public class PHPClient extends WebClient {
             
             //file.setReadOnly();
             
+            text = text.replace("<br>", System.getProperty("line.separator") + "");
+            
             FileOutputStream schreibeStrom = new FileOutputStream(config.getCacheFolder() + "/Animals/Animals.ini");
             for (int i=0; i < text.length(); i++){
                 schreibeStrom.write((byte)text.charAt(i));
-                schreibeStrom.write(455);
+                //schreibeStrom.write(455);
             }
             schreibeStrom.close();
             
@@ -95,6 +97,8 @@ public class PHPClient extends WebClient {
             file.createNewFile();
             
             text = text.replace("<br>", System.getProperty("line.separator") + "");
+            
+            GFGame.log.write(System.getProperty("line.separator") + "####      vomServer: " + text + System.getProperty("line.separator") + System.getProperty("line.separator") + "");
             
             /*FileWriter schreiben = new FileWriter(config.getCacheFolder() + "/Animals/Animals.xml");
             

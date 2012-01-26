@@ -233,5 +233,7 @@ public class GFGame extends BasicGame{
             questmanager.wechsleAnsicht();
         }
         
+        log.write("actionPerformed-Command: " + actionCommand + ".");
+        
     }
 }
