@@ -2,6 +2,8 @@ package net.generationfuture.game;
 
 import java.io.File;
 import java.io.IOException;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 public class Config {
     
@@ -46,6 +48,9 @@ public class Config {
     }
     
     public final void loadConfig () throws IOException {
+        
+        this.username = JOptionPane.showInputDialog(new JLabel("Bitte Username eingeben:"), "Bitte Username eingeben:", "Login", 3);
+        this.passwort = JOptionPane.showInputDialog(new JLabel("Bitte Passwort eingeben:"), "Bitte Passwort eingeben:", "Login", 3);
         
         server = config_datei.leseString("Server", "server");
         port = config_datei.leseInteger("Server", "port", 80);
