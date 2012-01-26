@@ -22,6 +22,7 @@ GameData/Cache/Animals/Animals.xml
 GameData/Config/FirstRun.ini
 GameData/Config/Login.ini
 GameData/Config/FirstRun.ini
+
 GameData/Config/Login.ini
 
 # don't commit the debug-file.
