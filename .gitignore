@@ -16,7 +16,7 @@ build/
 Cache/Saves
 
 GameData/Cache/Animals/Animals.ini
-GameData/Cache/Animals.xml
+GameData/Cache/Animals/Animals.xml
 
 # don't commit the debug-file.
 GameData/Cache/debuglog.txt
