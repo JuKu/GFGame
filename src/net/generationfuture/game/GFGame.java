@@ -84,8 +84,10 @@ public class GFGame extends BasicGame{
         player = new Player();
         player.setPos(client.getPlayerPos());
         
+        items = new Items();
+        
         //Object_Manager erzeugen, der sich um die Objekte kümmert.
-        object_manager = new ObjectManager(config, player);
+        object_manager = new ObjectManager(config, player, items);
         //Animal_Manager erzeugen, der sich um die Animals kümmert.
         animal_manager = new AnimalManager(config, player);
         
@@ -93,8 +95,6 @@ public class GFGame extends BasicGame{
         
         irc_chat = new IRC_Chat(client, this, player, config);
         bedürfnis_anzeige = new NeedsDisplay(player);
-        
-        items = new Items();
         
         gc.getInput().addMouseListener(new GameMouseListener(this, player));
         questmanager = new QuestManager(this, player, items);

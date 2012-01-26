@@ -1,5 +1,6 @@
 package objects;
 
+import net.generationfuture.game.Items;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
@@ -27,7 +28,9 @@ public class Object {
     protected String name;
     protected Boolean isClicked = false;
     
-    public void createObject (Image picture, int x, int y) {
+    protected Items items;
+    
+    public void createObject (Image picture, Items items, int x, int y) {
         this.picture = picture;
         this.objectmenu = new ObjectMenu(this);
         

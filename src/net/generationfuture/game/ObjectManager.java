@@ -1,5 +1,6 @@
 package net.generationfuture.game;
 
+import objects.Fireplace;
 import objects.Tree1;
 import objects.Object;
 import objects.ObjectMenu;
@@ -26,13 +27,16 @@ public class ObjectManager {
     private ObjectMenu objectmenu = null;
     
     private Object objekte[][][];
+    protected Image image;
     
-    public ObjectManager (Config config, Player player) throws SlickException {
+    protected Items items;
+    
+    public ObjectManager (Config config, Player player, Items items) throws SlickException {
         this.config = config;
         this.player = player;
         objects = new Object[100];
         objekte = new Object[grafik_ebenen][width][height];
-        
+        this.items = items;
         initObjects();
     }
     
@@ -40,8 +44,12 @@ public class ObjectManager {
         tree1_picture[0] = new Image("materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
         gras1 = new Image("materials/trees/tree1_/fir C ani0000.bmp",new Color(94, 66, 41, 255));
         
+        image =  new Image("materials/objects/fireplace/feuerstelle.bmp",new Color(106, 76, 48, 255));
+        
         objects[0] = new Tree1(200, 200, this.tree1_picture[0], "Baum1");
         objects[1] = new Tree1(200 + 128, 200, this.tree1_picture[0], "Baum2");
+        
+        objects[2] = new Fireplace(200, 400, image, items, "Feuerstelle1");
         
         objekte[2][1][1] = objects[0];
         objects_2 = new Object[100];
