@@ -1,7 +1,9 @@
 package net.generationfuture.game;
 
 import java.io.File;
+import java.lang.reflect.InvocationTargetException;
 import org.newdawn.slick.Graphics;
+import java.lang.reflect.Method;
 
 public class QuestManager extends Thread {
     
@@ -19,12 +21,14 @@ public class QuestManager extends Thread {
     private int x = 10;
     private int y = 150;
     
+    private Config config;
+    
     public Quest windowQuest = null;
     
-    public QuestManager (GFGame gfgame, Player player, Items items) {
+    public QuestManager (GFGame gfgame, Player player, Items items, Config config) {
         //
         Questliste = new Quest[4];//Max. 3 Quests kann man gleichzeitig annehmen.
-        
+        this.config = config;
         FinishedQuests = new int[100];
         findQuests();
     }
@@ -55,6 +59,42 @@ public class QuestManager extends Thread {
             }
             
         }
+        
+    }
+    
+    public Boolean createNewQuest (String className) {
+        
+        Quest quest = null;
+        Class clazz;
+        
+        FileClassLoader fcl =
+            new FileClassLoader(config.getCacheFolder() + "Quests/" + className + "/");
+        
+        try {
+            clazz = fcl.loadClass(/*"Test"*/className);
+            if (clazz != null) {
+                Method method =
+                    clazz.getMethod("main", new Class[] { String[].class });
+                if (method != null)
+                    method.invoke(null, new Object[] { null });
+            }
+ 
+        } catch (ClassNotFoundException e) {
+            //e.printStackTrace();
+        } catch (SecurityException e) {
+            //e.printStackTrace();
+        } catch (NoSuchMethodException e) {
+            //e.printStackTrace();
+        } catch (IllegalArgumentException e) {
+            //e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            //e.printStackTrace();
+        } catch (InvocationTargetException e) {
+            //e.printStackTrace();
+        }
+        
+        //quest = clazz.newInstance();
+        return createNewQuest(quest);
         
     }
     

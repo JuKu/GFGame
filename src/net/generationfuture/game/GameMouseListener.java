@@ -1,5 +1,8 @@
 package net.generationfuture.game;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import objects.ObjectMenu;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.MouseListener;
@@ -39,8 +42,13 @@ public class GameMouseListener implements MouseListener {
             if (menuItem != null) {
                 isClicked_ = true;
                 
+            try {
                 //System.out.println("Clicked.");
                 gfgame.actionPerformed(menuItem.getActionCommand(), menuItem);
+            } catch (IOException ex) {
+                Logger.getLogger(GameMouseListener.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
             }
             
             if (!isClicked_) {

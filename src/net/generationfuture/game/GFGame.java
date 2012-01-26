@@ -109,7 +109,7 @@ public class GFGame extends BasicGame{
         bedürfnis_anzeige = new NeedsDisplay(player);
         
         gc.getInput().addMouseListener(new GameMouseListener(this, player));
-        questmanager = new QuestManager(this, player, items);
+        questmanager = new QuestManager(this, player, items, config);
         
         questmanager.start();
         Quest quest_ = new Quest1(player, items);
