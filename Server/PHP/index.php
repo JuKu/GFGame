@@ -20,7 +20,7 @@ if (isset($_REQUEST['username'])) {
 }
 
 if (isset($_REQUEST['option']) && $_REQUEST['option'] == "getAnimals") {
-    echo "[Animals]\r\nAnimalCounter=2";
+    echo "[Animals]<br>AnimalCounter=2";
     exit;
 }
 
@@ -48,22 +48,25 @@ if (isset($_REQUEST['option']) && $_REQUEST['option'] == "getQuest") {
 
 if (isset($_REQUEST['option']) && $_REQUEST['option'] == "getAnimalsData") {
 
-    echo "<?xml version=\"1.0\"?>\r\n";
-    echo "  <content>\r\n";
+header('Content-Disposition: attachment; filename=datei.xml');
+header('Content-Type: application/octet-stream'); 
 
-    echo "      <min_version>" . $min_version . "</min_version>\r\n";
-    echo "      <version>" . $version . "</version>\r\n";
+    echo "<?xml version=\"1.0\"?><br>";
+    echo "  <content><br>";
+
+    echo "      <min_version>" . $min_version . "</min_version><br>";
+    echo "      <version>" . $version . "</version><br>";
     
     $sql = "SELECT * FROM `animals` WHERE `activated` = '1'; ";
     $db_erg = mysql_query($sql) or die("Anfrage fehlgeschlagen." . mysql_error());
     
     while ($zeile = mysql_fetch_array($db_erg, MYSQL_ASSOC)) {
-        echo "      <animal animalID=\"" . $zeile['animal_id'] . "\" id=\"" . $zeile['id'] . "\" name=\"" . $zeile['name'] . "\" Animalname=\"" . $zeile['animal_name'] . "\">\r\n";
-        echo "              <geschlecht>" . $zeile['geschlecht'] . "</geschlecht>\r\n";
-        echo "              <alter>" . $zeile['alter'] . "</alter>\r\n";
-        echo "              <animal_pos_x>" . $zeile['animal_pos_x'] . "</animal_pos_x>\r\n";
-        echo "              <animal_pos_y>" . $zeile['animal_pos_y'] . "</animal_pos_y>\r\n";
-        echo "      </animal>\r\n";
+        echo "      <animal animalID=\"" . $zeile['animal_id'] . "\" id=\"" . $zeile['id'] . "\" name=\"" . $zeile['name'] . "\" Animalname=\"" . $zeile['animal_name'] . "\"><br>";
+        echo "              <geschlecht>" . $zeile['geschlecht'] . "</geschlecht><br>";
+        echo "              <alter>" . $zeile['alter'] . "</alter><br>";
+        echo "              <animal_pos_x>" . $zeile['animal_pos_x'] . "</animal_pos_x><br>";
+        echo "              <animal_pos_y>" . $zeile['animal_pos_y'] . "</animal_pos_y><br>";
+        echo "      </animal><br>";
     }
     
     echo "  </content>";
