@@ -50,6 +50,8 @@ public class GFGame extends BasicGame{
     public Boolean init = true;
     public Animation loading = null;
     
+    public Boolean isInput = false;
+    
     public GFGame() throws SlickException
     {
         super("GFGame");
@@ -60,7 +62,36 @@ public class GFGame extends BasicGame{
 			throws SlickException {
         
         loading = new Animation();
-        loading.addFrame(new Image("materials/loading.gif"), 50);
+        //loading.addFrame(new Image("materials/loading/loading.gif"), 50);
+        
+        int speed = 50;
+        
+        for (int i = 0; i < 20; i++) {
+            
+            if (i < 10) {
+                loading.addFrame(new Image("materials/loading/IMG0000" + i + ".bmp"), speed);
+            } else {
+                loading.addFrame(new Image("materials/loading/IMG000" + i + ".bmp"), speed);
+            }
+            
+        }
+        
+        try {
+            config = new Config(config_datei);
+        } catch (IOException ex) {
+            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Das Game wird mit der Methode initGame(GameContainer gc) initialisiert.
+        
+     }
+    
+    public void initGame (GameContainer gc) throws SlickException {
+        
+        this.init = true;
+        this.isInput = false;
+        
+        //Initialisierung des Games
         
         //error("Loading map");
         minimap = new Image("materials/mystery.png");
@@ -70,11 +101,6 @@ public class GFGame extends BasicGame{
         willkommens_bild = new Image("materials/willkomen_bild_2.png");
         
         //error("Loading Settings...");
-        try {
-            config = new Config(config_datei);
-        } catch (IOException ex) {
-            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
-        }
         try {
             log = new Log(config);
         } catch (IOException ex) {
@@ -123,17 +149,17 @@ public class GFGame extends BasicGame{
         quest_ = new Quest2(player, items); quest_.showWindow(true);
         questmanager.createNewQuest(quest_);
         
-        try {
-            log.write("GFGame init() ist fertig.");
-        } catch (IOException ex) {
-            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-     }
+        this.init = false;
+        this.isInput = true;
+        
+    }
  
     @Override
     public void update(GameContainer gc, int delta) 
 			throws SlickException     
     {
+        
+        if (!this.init) {
         
         if (this.GameStart) {//Wenn Game gestartet wurde.
             
@@ -154,6 +180,22 @@ public class GFGame extends BasicGame{
         
         } else {
             app.setDisplayMode(600, 600, false);
+            this.isInput = true;
+        }
+        
+        } else {
+            
+            app.setDisplayMode(400, 200, false);
+            this.isInput = false;
+            
+            initGame(gc);
+        
+            try {
+                log.write("GFGame init() ist fertig.");
+            } catch (IOException ex) {
+                Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
         }
         
     }
@@ -215,8 +257,8 @@ public class GFGame extends BasicGame{
             g.setColor(Color.white);
             g.fillRect(0, 0, 800, 600);
             g.setColor(Color.black);
-            g.drawString("The Game is loading...", 200, 300);
-            loading.draw(200, 320);
+            g.drawString("The Game is loading...", 100, 20);
+            loading.draw(100, 50);
         }
         
     }

@@ -30,6 +30,8 @@ public class GameMouseListener implements MouseListener {
                 gfgame.GameStart = true;
             }
             
+            if (gfgame.isInput) {
+            
             int mouse_x = i1;
             int mouse_y = i2;//System.out.println("i: " + i + ", i1: " + i1 + ", i2: " + i2 + ", i3: " + i3);
             
@@ -65,6 +67,10 @@ public class GameMouseListener implements MouseListener {
             
             //Teste, ob Object angeklickt wurde.
             gfgame.object_manager.isClicked(mouse_x, mouse_y, isClicked_);
+            
+            } else {
+                //Es werden keine Inputs angenommen.
+            }
             
         }
 
