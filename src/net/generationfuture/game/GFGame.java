@@ -82,14 +82,22 @@ public class GFGame extends BasicGame{
             Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        try {
+            log = new Log(config);
+        } catch (IOException ex) {
+            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         //Das Game wird mit der Methode initGame(GameContainer gc) initialisiert.
         
      }
     
-    public void initGame (GameContainer gc) throws SlickException {
+    public void initGame (GameContainer gc) throws SlickException, InterruptedException, IOException {
         
         this.init = true;
         this.isInput = false;
+        
+        log.write("Methode initGame() start.");
         
         //Initialisierung des Games
         
@@ -101,11 +109,6 @@ public class GFGame extends BasicGame{
         willkommens_bild = new Image("materials/willkomen_bild_2.png");
         
         //error("Loading Settings...");
-        try {
-            log = new Log(config);
-        } catch (IOException ex) {
-            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
         try {
             log.write(System.getProperty("GFGame init()."));
@@ -149,6 +152,9 @@ public class GFGame extends BasicGame{
         quest_ = new Quest2(player, items); quest_.showWindow(true);
         questmanager.createNewQuest(quest_);
         
+        log.write("Methode initGame() fertig.");
+        log.write("Maus-Input eingeschalten.");
+        
         this.init = false;
         this.isInput = true;
         
@@ -188,7 +194,17 @@ public class GFGame extends BasicGame{
             app.setDisplayMode(400, 200, false);
             this.isInput = false;
             
-            initGame(gc);
+            try {
+                
+                try {
+                    initGame(gc);
+                } catch (IOException ex) {
+                    Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
+            } catch (InterruptedException ex) {
+                Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
+            }
         
             try {
                 log.write("GFGame init() ist fertig.");
