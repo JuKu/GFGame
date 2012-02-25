@@ -47,6 +47,9 @@ public class GFGame extends BasicGame{
     public static Boolean pause = false;
     public static Log log;
     
+    public Boolean init = false;
+    public Animation loading = null;
+    
     public GFGame() throws SlickException
     {
         super("GFGame");
@@ -55,6 +58,9 @@ public class GFGame extends BasicGame{
     @Override
     public void init(GameContainer gc) 
 			throws SlickException {
+        
+        loading = new Animation();
+        loading.addFrame(new Image("materials/loading.gif"), 50);
         
         //error("Loading map");
         minimap = new Image("materials/mystery.png");
@@ -160,6 +166,8 @@ public class GFGame extends BasicGame{
             g.setClip(0, 0, gc.getWidth(), gc.getHeight());
         }
         
+        if (!init) {
+        
         if (this.GameStart) {//Wenn Game gestartet wurde. (Vorher Willkommens-Bildschirm)
         
         
@@ -201,6 +209,11 @@ public class GFGame extends BasicGame{
             g.setColor(Color.blue);
             g.drawString("Zum Fortsetzen mit der Maus klicken.", 200, 300);
             g.setColor(Color.white);
+        }
+        
+        } else {
+            g.drawString("The Game is loading...", 200, 300);
+            loading.draw(200, 320);
         }
         
     }
