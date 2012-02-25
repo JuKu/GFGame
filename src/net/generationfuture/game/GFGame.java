@@ -47,7 +47,7 @@ public class GFGame extends BasicGame{
     public static Boolean pause = false;
     public static Log log;
     
-    public Boolean init = false;
+    public Boolean init = true;
     public Animation loading = null;
     
     public GFGame() throws SlickException
@@ -212,6 +212,9 @@ public class GFGame extends BasicGame{
         }
         
         } else {
+            g.setColor(Color.white);
+            g.fillRect(0, 0, 800, 600);
+            g.setColor(Color.black);
             g.drawString("The Game is loading...", 200, 300);
             loading.draw(200, 320);
         }

@@ -26,7 +26,7 @@ public class GameMouseListener implements MouseListener {
         @Override
         public void mouseClicked(int i, int i1, int i2, int i3) {
             
-            if (gfgame.GameStart == false) {
+            if (gfgame.GameStart == false && !gfgame.init) {
                 gfgame.GameStart = true;
             }
             
