@@ -24,6 +24,9 @@ public class PHPClient extends WebClient {
     
     @Override
     public void runProtokoll () throws MalformedURLException, IOException {
+        
+        try {
+            
         URL url = new URL(config.getServerURL());
         is = url.openStream();
         BufferedReader br = new BufferedReader( new InputStreamReader(is) );
@@ -154,6 +157,11 @@ public class PHPClient extends WebClient {
         }
         
         if (config.isDebugMode()) { System.out.println("vomServer: \"" + text + "\"."); }
+        
+        } catch (Exception e) {
+            GFGame.log.write("#### Error: " + e.getMessage());
+        }
+        
     }
     
 }

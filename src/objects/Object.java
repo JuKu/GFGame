@@ -55,8 +55,8 @@ public class Object {
         this.y = this.y + y;
     }
     
-    public void paintMenu (Graphics g) {
-        objectmenu.paint(g);
+    public void paintMenu (Graphics g, double xp, double yp) {
+        objectmenu.paint(g, xp, yp);
     }
     
     public ObjectMenu getObjectMenu () {

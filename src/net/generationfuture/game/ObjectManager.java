@@ -207,7 +207,7 @@ public class ObjectManager {
         paintObjectsLayer1(g, x, y, true);
     }
     
-    public void paintObjectMenu (Graphics g) {
+    public void paintObjectMenu (Graphics g, double xp, double yp) {
         
         /********************************************
          * 
@@ -218,7 +218,7 @@ public class ObjectManager {
         for (int i = 0; i < objects.length; i++) {
             
             if (objects[i] != null) {
-                objects[i].paintMenu(g);
+                objects[i].paintMenu(g, xp, yp);
             }
             
         }

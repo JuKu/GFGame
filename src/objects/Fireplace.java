@@ -11,7 +11,6 @@ public class Fireplace extends Object {
     
     protected Boolean isFire = false;
     protected Image[] animation_ = new Image[8];
-    
     protected Image picture2;
     protected int kostetHolz = 2;
     
@@ -94,7 +93,7 @@ public class Fireplace extends Object {
         //System.out.println("paintMouseMoved.");
         
         g.setColor(Color.gray);
-        g.fillRect(x - 10, y - 10, 300, 40);
+        g.fillRect(x - 10 - (int) xp, y/* - 10*/ - (int) yp, 350, 40);
         
         g.setColor(Color.white);
         

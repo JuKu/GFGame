@@ -41,7 +41,7 @@ public class ObjectMenu {
         
     }
     
-    public void paint (Graphics g) {
+    public void paint (Graphics g, double xp, double yp) {
         
         if (isShown) {
             
@@ -56,21 +56,21 @@ public class ObjectMenu {
             Boolean isMouseOver = mouseOver[i];
             
             g.setColor(Color.white);
-            g.fillRoundRect(menu_x, menu_y, menu_width, 20, 50, 50);
+            g.fillRoundRect(menu_x - (int) xp, menu_y - (int) yp, menu_width, 20, 50, 50);
             
             int menu_x_ = menu_x + 2;
             int menu_y_ = menu_y + 2;
             
             if (isMouseOver) {
                 g.setColor(Color.blue);
-                g.fillRoundRect(menu_x, menu_y, menu_width, 20, 50, 50);
+                g.fillRoundRect(menu_x - (int) xp, menu_y - (int) yp, menu_width, 20, 50, 50);
             } else {
                 g.setColor(Color.blue);
-                g.fillRoundRect(menu_x_, menu_y_, menu_width, 20, 50, 50);
+                g.fillRoundRect(menu_x_ - (int) xp, menu_y_ - (int) yp, menu_width, 20, 50, 50);
             }
             
             g.setColor(Color.white);
-            g.drawString(menu[i][0] + "", menu_x_ + 10, menu_y_);
+            g.drawString(menu[i][0] + "", menu_x_ + 10 - (int) xp, menu_y_ - (int) yp);
             
             menu_y = menu_y + 25;
             

@@ -254,7 +254,7 @@ public class GFGame extends BasicGame{
         bedürfnis_anzeige.paint(g);
         
         //Object-Menü zeichnen
-        object_manager.paintObjectMenu(g);
+        object_manager.paintObjectMenu(g, player.getX(), player.getY());
         
         //Animal-Menü zeichnen
         animal_manager.paintAnimalMenu(g);
