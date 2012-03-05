@@ -1,0 +1,4 @@
+In diesen Ordner kommen die Plugins.
+Die Plugins werden in diesem Spiel allerdings nicht allzu viel können, da sie keinen Zugriff auf die Items, etc. des Players haben.
+Sie können höchstens die Bedienung verbessern.
+Es wird auch Plugins für Entwickler geben, die z.B. genauere Informationen in die Log-Datei schreiben.

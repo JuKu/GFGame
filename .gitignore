@@ -12,6 +12,9 @@ desktop.ini
 private/
 build/
 
+#don't commit GameData-Folder
+dist/GameData
+
 # don't commit cache
 Cache/Saves
 
