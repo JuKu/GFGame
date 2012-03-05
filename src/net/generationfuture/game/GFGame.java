@@ -51,6 +51,7 @@ public class GFGame extends BasicGame{
     public Boolean isInput = false;
     
     double plugindeveloper_jar_version = 1.0;
+    List<Pluggable> plugins = null;
     
     public GFGame() throws SlickException
     {
@@ -76,15 +77,7 @@ public class GFGame extends BasicGame{
             
         }
         
-        /*try {
-            loadPlugins();
-        } catch (IOException ex) {
-            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-        
         //Plugins laden
-        
-        List<Pluggable> plugins = null;
         
         try {
             plugins = PluginLoader.loadPlugins(new File("Plugin"));
@@ -104,12 +97,18 @@ public class GFGame extends BasicGame{
             if (p.isCompatible(this.plugindeveloper_jar_version)) {
                 //
             } else {
-                JOptionPane.showConfirmDialog(new JLabel("Das Plugin " + p.getName() + " ist wahrscheinlich nicht mit diesem Spiel kompatibel."), this);
+                //JOptionPane.showConfirmDialog(new JLabel("Das Plugin " + p.getName() + " ist wahrscheinlich nicht mit diesem Spiel kompatibel."), this);
+                int i_ = JOptionPane.showConfirmDialog(new JLabel(), new JLabel("Das Plugin \"" + p.getName() + "\" ist wahrscheinlich nicht mit diesem Spiel kompatibel. Trotzdem fortfahren?"), "GFGame", 1);
+                
+                if (i_ == 1) {
+                    System.exit(0);
+                }
             }
             Boolean plugin_bool = p.start();
             
             if (!plugin_bool) {
-                JOptionPane.showConfirmDialog(new JLabel("Ein Plugin konnte nicht erfolgreich gestartet werden."), this);
+                JOptionPane.showConfirmDialog(new JLabel("test"), new JLabel("Ein Plugin konnte nicht erfolgreich gestartet werden."));
+                //JOptionPane.showConfirmDialog(new JLabel("test2"), new JLabel("test"), "test_", 1);
             } else {
                 System.out.println("Ein Plugin wurde erfolgreich gestartet.");
             }
@@ -122,9 +121,6 @@ public class GFGame extends BasicGame{
     catch (InterruptedException ie) {
       ie.printStackTrace();
     }*/
-    for (Pluggable p : plugins) {
-      p.stop();
-    }
         
         try {
             config = new Config(config_datei);
@@ -359,6 +355,12 @@ public class GFGame extends BasicGame{
         
         log.write("actionPerformed-Command: " + actionCommand + ".");
         
+    }
+    
+    public void close () {
+        for (Pluggable p : plugins) {
+            p.stop();
+        }
     }
     
 }
