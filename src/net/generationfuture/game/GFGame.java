@@ -85,7 +85,19 @@ public class GFGame extends BasicGame{
             Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        PluginManager manager = (PluginManager) new PluginManagerImpl();
+        try {
+            config = new Config(config_datei);
+        } catch (IOException ex) {
+            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
+            log = new Log(config);
+        } catch (IOException ex) {
+            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        PluginManager manager = new PluginManagerImpl(log);
         for (Pluggable p : plugins) {
         //System.out.println("Plugin gefunden.");
         p.setPluginManager(manager);
@@ -121,18 +133,6 @@ public class GFGame extends BasicGame{
     catch (InterruptedException ie) {
       ie.printStackTrace();
     }*/
-        
-        try {
-            config = new Config(config_datei);
-        } catch (IOException ex) {
-            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        try {
-            log = new Log(config);
-        } catch (IOException ex) {
-            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
         //Das Game wird mit der Methode initGame(GameContainer gc) initialisiert.
         
