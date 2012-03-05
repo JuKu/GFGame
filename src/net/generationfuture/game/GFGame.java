@@ -8,6 +8,8 @@ import javax.swing.JOptionPane;
 import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.*;
 import java.awt.Font.*;
+import java.io.File;
+import java.util.List;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
@@ -74,6 +76,11 @@ public class GFGame extends BasicGame{
                 loading.addFrame(new Image("materials/loading/IMG000" + i + ".bmp"), speed);
             }
             
+        }
+        try {
+            loadPlugins();
+        } catch (IOException ex) {
+            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         try {
@@ -309,5 +316,26 @@ public class GFGame extends BasicGame{
         
         log.write("actionPerformed-Command: " + actionCommand + ".");
         
+    }
+    
+    public void loadPlugins () throws IOException {
+         List<Pluggable> plugins = PluginLoader.loadPlugins(new File("./Plugin"));
+    PluginManager manager = new PluginManagerImpl();
+    for (Pluggable p : plugins) {
+      p.setPluginManager(manager);
+    }
+    for (Pluggable p : plugins) {
+      p.start();
+    }
+    // wait
+    try {
+      Thread.sleep(10000);
+    }
+    catch (InterruptedException ie) {
+      ie.printStackTrace();
+    }
+    for (Pluggable p : plugins) {
+      p.stop();
+    }
     }
 }
