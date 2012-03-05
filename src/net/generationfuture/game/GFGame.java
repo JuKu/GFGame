@@ -14,6 +14,9 @@ import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 
 import quests.*;
+import plugindeveloper.Pluggable;
+
+import plugindeveloper.PluginManager;
     
 public class GFGame extends BasicGame{
 
@@ -23,7 +26,6 @@ public class GFGame extends BasicGame{
     TiledMap map = null;
     TiledMap grasland = null;
     TileSet tileset;
-
     int minimapx = 248;
     int minimapy = 200;
     public Player player;
@@ -36,23 +38,19 @@ public class GFGame extends BasicGame{
     private NeedsDisplay bedürfnis_anzeige;
     public AnimalManager animal_manager;
     public ObjectManager object_manager;
-    
     private Image willkommens_bild;
     public Boolean GameStart = false;
-    
     public QuestManager questmanager;
     public Items items;
-    
     private inputHandler ih = new inputHandler();
     private static AppGameContainer app;
-    
     public static Boolean pause = false;
     public static Log log;
-    
     public Boolean init = true;
     public Animation loading = null;
-    
     public Boolean isInput = false;
+    
+    double plugindeveloper_jar_version = 1.0;
     
     public GFGame() throws SlickException
     {
@@ -77,11 +75,56 @@ public class GFGame extends BasicGame{
             }
             
         }
-        try {
+        
+        /*try {
             loadPlugins();
         } catch (IOException ex) {
             Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+        
+        //Plugins laden
+        
+        List<Pluggable> plugins = null;
+        
+        try {
+            plugins = PluginLoader.loadPlugins(new File("Plugin"));
+        } catch (IOException ex) {
+            Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        PluginManager manager = (PluginManager) new PluginManagerImpl();
+        for (Pluggable p : plugins) {
+        //System.out.println("Plugin gefunden.");
+        p.setPluginManager(manager);
+        }
+        
+        //Plugins starten
+        for (Pluggable p : plugins) {
+            
+            if (p.isCompatible(this.plugindeveloper_jar_version)) {
+                //
+            } else {
+                JOptionPane.showConfirmDialog(new JLabel("Das Plugin " + p.getName() + " ist wahrscheinlich nicht mit diesem Spiel kompatibel."), this);
+            }
+            Boolean plugin_bool = p.start();
+            
+            if (!plugin_bool) {
+                JOptionPane.showConfirmDialog(new JLabel("Ein Plugin konnte nicht erfolgreich gestartet werden."), this);
+            } else {
+                System.out.println("Ein Plugin wurde erfolgreich gestartet.");
+            }
+            
+        }
+    // wait
+    /*try {
+      Thread.sleep(10000);
+    }
+    catch (InterruptedException ie) {
+      ie.printStackTrace();
+    }*/
+    for (Pluggable p : plugins) {
+      p.stop();
+    }
         
         try {
             config = new Config(config_datei);
@@ -318,24 +361,4 @@ public class GFGame extends BasicGame{
         
     }
     
-    public void loadPlugins () throws IOException {
-         List<Pluggable> plugins = PluginLoader.loadPlugins(new File("./Plugin"));
-    PluginManager manager = new PluginManagerImpl();
-    for (Pluggable p : plugins) {
-      p.setPluginManager(manager);
-    }
-    for (Pluggable p : plugins) {
-      p.start();
-    }
-    // wait
-    try {
-      Thread.sleep(10000);
-    }
-    catch (InterruptedException ie) {
-      ie.printStackTrace();
-    }
-    for (Pluggable p : plugins) {
-      p.stop();
-    }
-    }
 }

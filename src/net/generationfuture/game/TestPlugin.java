@@ -1,5 +1,7 @@
 package net.generationfuture.game;
 
+import plugindeveloper.PluginManager;
+
 public class TestPlugin implements Pluggable {
     
     private PluginManager manager;

@@ -10,11 +10,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.jar.JarEntry;
 import java.util.jar.JarInputStream;
+
+import plugindeveloper.Pluggable;
  
 public class PluginLoader {
  
   public static List<Pluggable> loadPlugins(File plugDir) throws IOException {
- 
     File[] plugJars = plugDir.listFiles(new JARFileFilter());
     ClassLoader cl = new URLClassLoader(PluginLoader.fileArrayToURLArray(plugJars));
     List<Class<Pluggable>> plugClasses = PluginLoader.extractClassesFromJARs(plugJars, cl);
@@ -64,12 +65,17 @@ public class PluginLoader {
   }
  
   private static boolean isPluggableClass(Class<?> cls) {
- 
+      //System.err.println("isPluggableClass.");
     for (Class<?> i : cls.getInterfaces()) {
-      if (i.equals(Pluggable.class)) {
+      if (i.equals(/*Pluggable.class*/Pluggable.class)) {
         return true;
+      } else {
+          //System.err.println("Class-Name: " + i.getName());
       }
     }
+    
+    //System.err.println("Keine Pluggable-Klasse vorhanden.");
+    
     return false;
   }
  

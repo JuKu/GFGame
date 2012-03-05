@@ -1,1 +1,0 @@
-In diesen Ordner kommen Bilder rein, die nicht direkt mit im Package einbezogen sind.

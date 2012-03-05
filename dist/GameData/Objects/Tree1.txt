@@ -1,3 +1,0 @@
-[Object]
-name=Tree1
-objectID=1
