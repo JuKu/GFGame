@@ -84,6 +84,8 @@ public class GFGame extends BasicGame{
         } catch (IOException ex) {
             Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
         }
+        System.setProperty("java.library.path", "./lib");
+        System.out.println("java.library.path: " + System.getProperty("java.library.path"));
         
         try {
             config = new Config(config_datei);
