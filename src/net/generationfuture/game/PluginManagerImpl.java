@@ -11,9 +11,11 @@ import plugindeveloper.PluginManager;
 public class PluginManagerImpl implements PluginManager {
     
     Log log;
+    GFGame gfgame;
     
-    public PluginManagerImpl (Log log) {
+    public PluginManagerImpl (Log log, GFGame gfgame) {
         this.log = log;
+        this.gfgame = gfgame;
     }
     
     @Override
@@ -56,6 +58,26 @@ public class PluginManagerImpl implements PluginManager {
     @Override
     public void showMessage(String message) {
         JOptionPane.showConfirmDialog(new JLabel(), new JLabel("" + message), "GFGame-Plugin", 1);
+    }
+
+    @Override
+    public void closeGame() {//Erlaubt dem Plugin das Game zu schließen
+        gfgame.close();
+    }
+
+    @Override
+    public void createQuest(File file) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public double getVersion() {
+        return PluginManagerImpl.version;
+    }
+
+    @Override
+    public void exec(String command) {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
     
 }

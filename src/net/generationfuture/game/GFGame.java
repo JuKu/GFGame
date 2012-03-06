@@ -99,7 +99,7 @@ public class GFGame extends BasicGame{
             Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        PluginManager manager = new PluginManagerImpl(log);
+        PluginManager manager = new PluginManagerImpl(log, this);
         for (Pluggable p : plugins) {
         //System.out.println("Plugin gefunden.");
         p.setPluginManager(manager);
