@@ -23,7 +23,14 @@ public class PluginManagerImpl implements PluginManager {
 
     @Override
     public void showErrorMessage(String message) {
-        System.err.println("Plugin: " + message);
+        
+        try {
+            System.err.println("Plugin: " + message);
+            this.log.write("#### Plugin-Error: " + message);
+        } catch (IOException ex) {
+            Logger.getLogger(PluginManagerImpl.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
 
     @Override
