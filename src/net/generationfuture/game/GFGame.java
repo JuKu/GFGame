@@ -53,6 +53,8 @@ public class GFGame extends BasicGame{
     double plugindeveloper_jar_version = 1.0;
     List<Pluggable> plugins = null;
     
+    Loadscreen loadscreen = null;
+    
     public GFGame() throws SlickException
     {
         super("GFGame");
@@ -61,6 +63,8 @@ public class GFGame extends BasicGame{
     @Override
     public void init(GameContainer gc) 
 			throws SlickException {
+        
+        loadscreen = new Loadscreen();
         
         loading = new Animation();
         //loading.addFrame(new Image("materials/loading/loading.gif"), 50);
@@ -77,6 +81,8 @@ public class GFGame extends BasicGame{
             
         }
         
+        loadscreen.repaint();
+        
         //Plugins laden
         
         try {
@@ -88,6 +94,7 @@ public class GFGame extends BasicGame{
         System.out.println("java.library.path: " + System.getProperty("java.library.path"));
         
         try {
+            loadscreen.setText("Konfiguration laden.");
             config = new Config(config_datei);
         } catch (IOException ex) {
             Logger.getLogger(GFGame.class.getName()).log(Level.SEVERE, null, ex);
@@ -205,6 +212,8 @@ public class GFGame extends BasicGame{
         
         this.init = false;
         this.isInput = true;
+        
+        loadscreen.exit();
         
     }
  
