@@ -40,3 +40,4 @@ dist/GameData
 # No Komodo project files
 *.komodoproject
 .komodotools
+/dist/
